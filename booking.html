@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Reservation | Rol & Ross</title>
+    <link
+      rel="shortcut icon"
+      href="https://image2url.com/r2/default/images/1772645168831-3c6d4695-b910-48ea-81db-bbd83a5094e3.png"
+      type="image/x-icon"
+    />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { black: "#050505", dark: "#0a0a0a", gold: "#d4af37" },
+            fontFamily: {
+              serif: ['"Playfair Display"', "serif"],
+              sans: ["Montserrat", "sans-serif"],
+              bengali: ['"Hind Siliguri"', "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      body {
+        background-color: #050505;
+        color: #ffffff;
+        overflow-x: hidden;
+      }
+      body[data-lang="en"] .lang-bn {
+        display: none !important;
+      }
+      body[data-lang="bn"] .lang-en {
+        display: none !important;
+      }
+
+      /* Custom Cursor */
+      @media (min-width: 1024px) {
+        body,
+        a,
+        button,
+        select,
+        input,
+        textarea {
+          cursor: none !important;
+        }
+        .cursor-dot {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 6px;
+          height: 6px;
+          background: #d4af37;
+          border-radius: 50%;
+          z-index: 9999;
+          pointer-events: none;
+          transform: translate(-50%, -50%);
+        }
+        .cursor-outline {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 40px;
+          height: 40px;
+          border: 1px solid rgba(212, 175, 55, 0.6);
+          border-radius: 50%;
+          z-index: 9998;
+          pointer-events: none;
+          transform: translate(-50%, -50%);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          backdrop-filter: blur(2px);
+          transition: width 0.3s, height 0.3s, background-color 0.3s,
+            border-color 0.3s;
+        }
+        .cursor-hover-link .cursor-outline {
+          width: 50px;
+          height: 50px;
+          border-color: #d4af37;
+          background-color: rgba(212, 175, 55, 0.1);
+        }
+      }
+      @media (max-width: 1023px) {
+        .cursor-dot,
+        .cursor-outline {
+          display: none !important;
+        }
+      }
+
+      .text-gold-gradient {
+        background: linear-gradient(
+          to right,
+          #bf953f,
+          #fcf6ba,
+          #b38728,
+          #fbf5b7,
+          #aa771c
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        color: transparent;
+      }
+
+      /* Premium Form Styling */
+      .form-input {
+        width: 100%;
+        background: transparent;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 16px 0;
+        color: #fff;
+        font-size: 14px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 300;
+        transition: border-color 0.4s ease, box-shadow 0.4s ease;
+        outline: none;
+      }
+      .form-input:focus {
+        border-bottom-color: #d4af37;
+        box-shadow: 0 10px 10px -10px rgba(212, 175, 55, 0.3);
+      }
+      .form-input::placeholder {
+        color: rgba(255, 255, 255, 0.3);
+      }
+
+      select option {
+        background: #0a0a0a;
+        color: #fff;
+      }
+      input[type="date"]::-webkit-calendar-picker-indicator,
+      input[type="time"]::-webkit-calendar-picker-indicator {
+        filter: invert(1) sepia(1) saturate(5) hue-rotate(10deg);
+        cursor: none;
+      }
+
+      /* Creative Solid Button */
+      .btn-solid-luxe {
+        background: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728);
+        color: #000;
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        border: none;
+        cursor: none;
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+          box-shadow 0.4s ease;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 20px;
+      }
+      .btn-solid-luxe::before {
+        content: "";
+        position: absolute;
+        left: -150%;
+        top: 0;
+        width: 150%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.6),
+          transparent
+        );
+        transform: skewX(-25deg);
+        transition: left 0.7s ease;
+        z-index: 2;
+        pointer-events: none;
+      }
+      .btn-solid-luxe:hover::before {
+        left: 150%;
+      }
+      .btn-solid-luxe:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 15px 25px rgba(212, 175, 55, 0.25);
+      }
+
+      /* Split Screen Specifics */
+      .split-left {
+        height: 100vh;
+        position: sticky;
+        top: 0;
+        overflow: hidden;
+      }
+      .split-left img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(0.6) grayscale(20%);
+        transform: scale(1.05);
+        transition: transform 10s ease-out;
+      }
+      .split-left:hover img {
+        transform: scale(1.1);
+      }
+
+      /* Loader */
+      #loader {
+        position: fixed;
+        inset: 0;
+        background: #050505;
+        z-index: 10000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      .loader-line {
+        width: 0%;
+        height: 1px;
+        background: #d4af37;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body data-lang="en">
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <div id="loader">
+      <h1
+        class="font-serif text-4xl md:text-6xl font-bold tracking-widest text-gold-gradient uppercase text-center loader-logo opacity-0"
+      >
+        Rol & Ross
+      </h1>
+      <div class="loader-line"></div>
+    </div>
+
+    <!-- Header -->
+    <header
+      class="fixed w-full top-0 z-50 py-6 px-6 md:px-12 flex justify-between items-center mix-blend-difference pointer-events-none"
+    >
+      <a
+        href="home.html"
+        class="font-serif text-xl md:text-2xl font-bold tracking-[0.15em] text-white uppercase cursor-hover pointer-events-auto flex items-center gap-3 hover:text-gold transition"
+      >
+        <i class="fas fa-arrow-left text-sm"></i>
+        <span class="lang-en">Back</span
+        ><span class="lang-bn font-bengali">ফিরে যান</span>
+      </a>
+      <div
+        class="font-sans text-[10px] flex space-x-3 text-white/50 font-bold tracking-widest pointer-events-auto"
+      >
+        <span class="lang-btn cursor-hover text-gold transition" data-lang="en"
+          >EN</span
+        >
+        <span>/</span>
+        <span
+          class="lang-btn cursor-hover hover:text-gold transition"
+          data-lang="bn"
+          >BN</span
+        >
+      </div>
+    </header>
+
+    <main class="w-full min-h-screen flex flex-col lg:flex-row">
+      <!-- Left Side -->
+      <div
+        class="split-left w-full lg:w-5/12 hidden lg:block border-r border-white/5 relative group"
+      >
+        <img
+          src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?q=80&w=1200&auto=format&fit=crop"
+          alt="Spa Aesthetics"
+        />
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"
+        ></div>
+        <div
+          class="absolute bottom-16 left-12 right-12 z-10 form-anim opacity-0 translate-y-10"
+        >
+          <div class="w-12 h-[1px] bg-gold mb-6"></div>
+          <h2 class="font-serif text-5xl text-white mb-4 leading-tight lang-en">
+            The Golden <br /><span class="text-gold italic font-light"
+              >Touch Awaits.</span
+            >
+          </h2>
+          <h2
+            class="font-bengali text-4xl text-white mb-4 leading-tight lang-bn"
+          >
+            সোনালী স্পর্শ <br /><span class="text-gold">অপেক্ষায়।</span>
+          </h2>
+          <p
+            class="font-sans text-white/70 text-xs font-light tracking-wide lang-en"
+          >
+            Masterclass aesthetics. Uncompromised luxury.
+          </p>
+          <p
+            class="font-bengali text-white/70 text-sm font-light tracking-wide lang-bn"
+          >
+            মাস্টারক্লাস অ্যাসথেটিকস। আপসহীন বিলাসিতা।
+          </p>
+        </div>
+      </div>
+
+      <!-- Right Side -->
+      <div
+        class="w-full lg:w-7/12 min-h-screen bg-black flex items-center justify-center p-8 md:p-16 lg:p-24 relative overflow-hidden"
+      >
+        <div
+          class="absolute top-0 right-0 w-[500px] h-[500px] bg-gold/5 rounded-full blur-[150px] pointer-events-none"
+        ></div>
+
+        <div class="w-full max-w-xl relative z-10">
+          <div class="mb-16 form-anim opacity-0 translate-y-10 mt-12 lg:mt-0">
+            <p
+              class="font-sans text-gold tracking-[0.3em] text-[10px] md:text-xs uppercase mb-4 lang-en"
+            >
+              Priority Reservation
+            </p>
+            <p
+              class="font-bengali text-gold tracking-widest text-xs md:text-sm mb-4 lang-bn"
+            >
+              রিজার্ভেশন
+            </p>
+            <h1
+              class="font-serif text-4xl md:text-5xl font-bold text-white lang-en"
+            >
+              Secure Your Session
+            </h1>
+            <h1
+              class="font-bengali text-3xl md:text-4xl font-bold text-white lang-bn"
+            >
+              সেশন বুক করুন
+            </h1>
+          </div>
+
+          <form id="whatsapp-booking-form" class="space-y-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div class="form-anim opacity-0 translate-y-10">
+                <input
+                  type="text"
+                  id="b-name"
+                  required
+                  class="form-input cursor-hover"
+                  placeholder="Full Name"
+                />
+              </div>
+              <div class="form-anim opacity-0 translate-y-10">
+                <input
+                  type="tel"
+                  id="b-phone"
+                  required
+                  class="form-input cursor-hover"
+                  placeholder="Phone Number"
+                />
+              </div>
+            </div>
+
+            <!-- DYNAMIC SELECT DROPDOWN -->
+            <div class="form-anim opacity-0 translate-y-10">
+              <select
+                id="b-service"
+                required
+                class="form-input cursor-hover appearance-none bg-transparent"
+              >
+                <option value="" disabled selected class="text-gray-500"
+                  >Select Desired Service...</option
+                >
+                <!-- Dynamic options injected here via Firebase -->
+              </select>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div class="form-anim opacity-0 translate-y-10 relative">
+                <label
+                  class="absolute -top-3 left-0 font-sans text-[9px] text-gold uppercase tracking-widest lang-en"
+                  >Select Date</label
+                >
+                <label
+                  class="absolute -top-3 left-0 font-bengali text-[10px] text-gold tracking-widest lang-bn"
+                  >তারিখ নির্বাচন করুন</label
+                >
+                <input
+                  type="date"
+                  id="b-date"
+                  required
+                  class="form-input cursor-hover mt-2"
+                />
+              </div>
+              <div class="form-anim opacity-0 translate-y-10 relative">
+                <label
+                  class="absolute -top-3 left-0 font-sans text-[9px] text-gold uppercase tracking-widest lang-en"
+                  >Select Time</label
+                >
+                <label
+                  class="absolute -top-3 left-0 font-bengali text-[10px] text-gold tracking-widest lang-bn"
+                  >সময় নির্বাচন করুন</label
+                >
+                <input
+                  type="time"
+                  id="b-time"
+                  required
+                  class="form-input cursor-hover mt-2"
+                />
+              </div>
+            </div>
+
+            <div class="form-anim opacity-0 translate-y-10">
+              <textarea
+                id="b-msg"
+                rows="1"
+                class="form-input cursor-hover resize-none"
+                placeholder="Any specific requirements or concerns?"
+              ></textarea>
+            </div>
+
+            <div class="pt-6 form-anim opacity-0 translate-y-10">
+              <button
+                type="submit"
+                class="btn-solid-luxe cursor-hover rounded-sm shadow-[0_10px_30px_rgba(212,175,55,0.15)]"
+              >
+                <span
+                  class="font-sans text-xs uppercase tracking-[0.2em] font-bold flex items-center gap-3 lang-en"
+                >
+                  Confirm on WhatsApp <i class="fab fa-whatsapp text-xl"></i>
+                </span>
+                <span
+                  class="font-bengali text-sm font-bold flex items-center gap-3 lang-bn"
+                >
+                  হোয়াটসঅ্যাপে নিশ্চিত করুন
+                  <i class="fab fa-whatsapp text-xl"></i>
+                </span>
+              </button>
+            </div>
+          </form>
+
+          <div
+            class="mt-12 pt-8 border-t border-white/5 flex items-center justify-between form-anim opacity-0 translate-y-10"
+          >
+            <p
+              class="font-sans text-[10px] text-white/40 uppercase tracking-widest lang-en"
+            >
+              Secured Reservation
+            </p>
+            <p
+              class="font-bengali text-xs text-white/40 tracking-widest lang-bn"
+            >
+              নিরাপদ রিজার্ভেশন
+            </p>
+            <p class="font-sans text-xs text-gold flex items-center gap-2">
+              <i class="fas fa-lock"></i> Rol & Ross
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Standard Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <script>
+      // 1. Dynamic Cursor Logic
+      if (window.innerWidth > 1024) {
+        const cursorDot = document.querySelector(".cursor-dot");
+        const cursorOutline = document.querySelector(".cursor-outline");
+
+        let xToDot = gsap.quickTo(cursorDot, "x", {
+          duration: 0.1,
+          ease: "power3",
+        });
+        let yToDot = gsap.quickTo(cursorDot, "y", {
+          duration: 0.1,
+          ease: "power3",
+        });
+        let xToOutline = gsap.quickTo(cursorOutline, "x", {
+          duration: 0.5,
+          ease: "power3",
+        });
+        let yToOutline = gsap.quickTo(cursorOutline, "y", {
+          duration: 0.5,
+          ease: "power3",
+        });
+
+        window.addEventListener("mousemove", (e) => {
+          xToDot(e.clientX);
+          yToDot(e.clientY);
+          xToOutline(e.clientX);
+          yToOutline(e.clientY);
+        });
+
+        document.querySelectorAll(".cursor-hover").forEach((el) => {
+          el.addEventListener("mouseenter", () =>
+            document.body.classList.add("cursor-hover-link"),
+          );
+          el.addEventListener("mouseleave", () =>
+            document.body.classList.remove("cursor-hover-link"),
+          );
+        });
+      }
+
+      // 2. Language Toggle Logic
+      const langBtns = document.querySelectorAll(".lang-btn");
+      langBtns.forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          const selectedLang = e.target.getAttribute("data-lang");
+          document.body.setAttribute("data-lang", selectedLang);
+          langBtns.forEach((b) => {
+            if (b.getAttribute("data-lang") === selectedLang) {
+              b.classList.add("text-gold");
+              b.classList.remove("hover:text-gold", "text-white/50");
+            } else {
+              b.classList.remove("text-gold");
+              b.classList.add("hover:text-gold");
+            }
+          });
+        });
+      });
+
+      // 3. Preloader & Staggered Reveal Animation
+      const tlLoader = gsap.timeline();
+      tlLoader
+        .to(".loader-logo", { opacity: 1, duration: 1, ease: "power2.out" })
+        .to(
+          ".loader-line",
+          { width: "200px", duration: 1.5, ease: "power4.inOut" },
+          "-=0.5",
+        )
+        .to("#loader", {
+          yPercent: -100,
+          duration: 1.2,
+          ease: "expo.inOut",
+          delay: 0.2,
+        })
+        .to(
+          ".form-anim",
+          { y: 0, opacity: 1, duration: 1, stagger: 0.1, ease: "power4.out" },
+          "-=0.5",
+        );
+
+      // 4. Dual-Language WhatsApp Submit Logic
+      document
+        .getElementById("whatsapp-booking-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const name = document.getElementById("b-name").value;
+          const phone = document.getElementById("b-phone").value;
+          const service = document.getElementById("b-service").value;
+          const date = document.getElementById("b-date").value;
+          const time = document.getElementById("b-time").value;
+          const msg = document.getElementById("b-msg").value;
+          const currentLang = document.body.getAttribute("data-lang");
+
+          let textMessage = "";
+          if (currentLang === "bn") {
+            textMessage = `*রোল অ্যান্ড রস | রিজার্ভেশন*\n\n*নাম:* ${name}\n*ফোন:* ${phone}\n*সেবা:* ${service}\n*তারিখ:* ${date}\n*সময়:* ${time}\n*বিস্তারিত:* ${
+              msg ? msg : "নেই"
+            }\n\n_অনুগ্রহ করে আমার বুকিং নিশ্চিত করুন।_`;
+          } else {
+            textMessage = `*Rol & Ross | Priority Reservation*\n\n*Name:* ${name}\n*Phone:* ${phone}\n*Service:* ${service}\n*Date:* ${date}\n*Time:* ${time}\n*Requirements:* ${
+              msg ? msg : "None"
+            }\n\n_Please confirm my luxury appointment._`;
+          }
+          window.open(
+            `https://wa.me/8801750087889?text=${encodeURIComponent(
+              textMessage,
+            )}`,
+            "_blank",
+          );
+        });
+    </script>
+
+    <!-- FIREBASE INTEGRATION FOR DYNAMIC DROPDOWN -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+      import {
+        getFirestore,
+        collection,
+        getDocs,
+      } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyCBUFaTPfpF_MbC-hGFtVUKGdk3zxmrBfk",
+        authDomain: "rolandross-7d223.firebaseapp.com",
+        projectId: "rolandross-7d223",
+        storageBucket: "rolandross-7d223.firebasestorage.app",
+        messagingSenderId: "811915815605",
+        appId: "1:811915815605:web:56bfa051b4a33afccbecfc",
+        measurementId: "G-YCHZTT3ZW1",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      async function loadServicesIntoDropdown() {
+        try {
+          const querySnapshot = await getDocs(collection(db, "services"));
+          const serviceSelect = document.getElementById("b-service");
+
+          // Keep the default placeholder option
+          const defaultOption = serviceSelect.options[0];
+          serviceSelect.innerHTML = "";
+          serviceSelect.appendChild(defaultOption);
+
+          // Populate options from Firebase
+          querySnapshot.forEach((doc) => {
+            const data = doc.data();
+            const option = document.createElement("option");
+            option.value = data.enName; // Value sent to WhatsApp
+            option.textContent = `${data.enName} / ${data.bnName}`; // Visible label for users
+            serviceSelect.appendChild(option);
+          });
+
+          // Append permanent generic 'Consultation' option at the end
+          const consultationOption = document.createElement("option");
+          consultationOption.value = "Aesthetic Consultation";
+          consultationOption.textContent =
+            "Aesthetic Consultation / অ্যাসথেটিক কনসালটেশন";
+          serviceSelect.appendChild(consultationOption);
+
+          // URL Parameter Logic (Executes ONLY after options are populated)
+          const urlParams = new URLSearchParams(window.location.search);
+          const selectedService = urlParams.get("service");
+
+          if (selectedService) {
+            const decodedService = decodeURIComponent(selectedService);
+            for (let i = 0; i < serviceSelect.options.length; i++) {
+              if (serviceSelect.options[i].value === decodedService) {
+                serviceSelect.selectedIndex = i;
+
+                // Visual Highlight effect
+                serviceSelect.style.borderBottomColor = "#d4af37";
+                setTimeout(() => {
+                  serviceSelect.style.borderBottomColor = "";
+                }, 1500);
+                break;
+              }
+            }
+          }
+        } catch (error) {
+          console.error("Error fetching services for dropdown:", error);
+        }
+      }
+
+      // Execute on load
+      loadServicesIntoDropdown();
+    </script>
+  </body>
+</html>

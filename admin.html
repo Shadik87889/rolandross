@@ -1,0 +1,2053 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Rol & Ross | Executive Command Center</title>
+    <link
+      rel="shortcut icon"
+      href="https://image2url.com/r2/default/images/1772645168831-3c6d4695-b910-48ea-81db-bbd83a5094e3.png"
+      type="image/x-icon"
+    />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              black: "#050505",
+              dark: "#0a0a0a",
+              darker: "#080808",
+              gold: "#d4af37",
+              goldlight: "#f9df9f",
+              golddark: "#aa7c11",
+            },
+            fontFamily: {
+              serif: ['"Playfair Display"', "serif"],
+              sans: ["Montserrat", "sans-serif"],
+              bengali: ['"Hind Siliguri"', "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- GSAP, Chart.js & SweetAlert2 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+      /* Premium Resets & Scrollbar */
+      body {
+        background-color: #050505;
+        color: #ffffff;
+        overflow-x: hidden;
+        margin: 0;
+        padding: 0;
+      }
+      ::-webkit-scrollbar {
+        width: 4px;
+        height: 4px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #050505;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #aa7c11;
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #d4af37;
+      }
+
+      /* Luxury UI Components */
+      .text-gold-gradient {
+        background: linear-gradient(
+          to right,
+          #bf953f,
+          #fcf6ba,
+          #b38728,
+          #fbf5b7,
+          #aa771c
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .glass-panel {
+        background: rgba(10, 10, 10, 0.4);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border: 1px solid rgba(212, 175, 55, 0.08);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+      }
+      .glass-card {
+        background: linear-gradient(
+          145deg,
+          rgba(20, 20, 20, 0.6) 0%,
+          rgba(5, 5, 5, 0.8) 100%
+        );
+        border: 1px solid rgba(255, 255, 255, 0.03);
+        border-top: 1px solid rgba(212, 175, 55, 0.15);
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+      }
+      .glass-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(212, 175, 55, 0.05);
+        border-top: 1px solid rgba(212, 175, 55, 0.4);
+      }
+
+      /* Inputs & Buttons */
+      .premium-input {
+        width: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #fff;
+        padding: 14px 20px;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+        outline: none;
+        font-family: "Montserrat", sans-serif;
+        font-size: 13px;
+        font-weight: 300;
+      }
+      .premium-input:focus {
+        border-color: #d4af37;
+        box-shadow: inset 0 0 15px rgba(212, 175, 55, 0.05),
+          0 0 20px rgba(212, 175, 55, 0.1);
+      }
+
+      /* Custom Styling for Selects to match premium-input */
+      select.premium-input option {
+        background-color: #080808;
+        color: #ffffff;
+      }
+
+      .btn-gold {
+        position: relative;
+        background: linear-gradient(135deg, #bf953f, #b38728);
+        color: #000;
+        font-weight: 700;
+        padding: 14px 28px;
+        border-radius: 2px;
+        transition: all 0.4s ease;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 11px;
+        cursor: pointer;
+        border: none;
+        overflow: hidden;
+        z-index: 1;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+      }
+      .btn-gold::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.4),
+          transparent
+        );
+        transition: left 0.5s ease;
+        z-index: -1;
+      }
+      .btn-gold:hover::before {
+        left: 100%;
+      }
+      .btn-gold:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 15px 30px rgba(212, 175, 55, 0.2);
+      }
+
+      .btn-outline {
+        background: transparent;
+        border: 1px solid rgba(212, 175, 55, 0.5);
+        color: #d4af37;
+        padding: 14px 28px;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 11px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .btn-outline:hover {
+        background: rgba(212, 175, 55, 0.1);
+        border-color: #d4af37;
+      }
+
+      /* Sidebar Links */
+      .nav-item {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+      .nav-item::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 3px;
+        background: #d4af37;
+        transform: scaleY(0);
+        transition: transform 0.3s ease;
+        transform-origin: bottom;
+      }
+      .nav-item.active {
+        background: linear-gradient(
+          90deg,
+          rgba(212, 175, 55, 0.1) 0%,
+          transparent 100%
+        );
+        color: #d4af37;
+      }
+      .nav-item.active::before {
+        transform: scaleY(1);
+      }
+      .nav-item:hover:not(.active) {
+        background: rgba(255, 255, 255, 0.03);
+        color: #fff;
+      }
+
+      /* Animated Background & Loader */
+      .ambient-orb {
+        position: fixed;
+        border-radius: 50%;
+        filter: blur(100px);
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.4;
+        animation: floatOrb 20s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      @keyframes floatOrb {
+        0% {
+          transform: translate(0, 0) scale(1);
+        }
+        100% {
+          transform: translate(100px, 150px) scale(1.5);
+        }
+      }
+
+      #global-loader {
+        position: fixed;
+        inset: 0;
+        background: #050505;
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      .loader-line {
+        width: 0%;
+        height: 1px;
+        background: #d4af37;
+        margin-top: 20px;
+      }
+
+      /* Modal Styling */
+      .modal-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(10px);
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+      .modal-overlay.active {
+        display: flex;
+        opacity: 1;
+      }
+      .modal-content {
+        transform: scale(0.95) translateY(20px);
+        transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        width: 100%;
+      }
+      .modal-overlay.active .modal-content {
+        transform: scale(1) translateY(0);
+      }
+
+      /* Service & Gallery Image Preview */
+      .image-preview-box {
+        width: 100%;
+        aspect-ratio: 4/3;
+        background: #080808;
+        border: 1px dashed rgba(212, 175, 55, 0.3);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        position: relative;
+        border-radius: 2px;
+      }
+      .image-preview-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        filter: grayscale(20%);
+      }
+
+      /* Table styling for services & gallery */
+      .service-row {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        transition: background 0.3s ease;
+      }
+      .service-row:hover {
+        background: rgba(212, 175, 55, 0.05);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Preloader -->
+    <div id="global-loader">
+      <h1
+        class="font-serif text-3xl md:text-5xl font-bold tracking-widest text-gold-gradient uppercase"
+      >
+        Rol & Ross
+      </h1>
+      <p class="font-sans text-gold tracking-[0.4em] text-[8px] uppercase mt-4">
+        Initializing Security
+      </p>
+      <div class="loader-line"></div>
+    </div>
+
+    <!-- Ambient Glows -->
+    <div
+      class="ambient-orb bg-gold/10 w-[600px] h-[600px]"
+      style="top: -200px; left: -200px;"
+    ></div>
+    <div
+      class="ambient-orb bg-gold/5 w-[800px] h-[800px]"
+      style="bottom: -300px; right: -300px; animation-delay: -10s;"
+    ></div>
+
+    <!-- ==================== AUTHENTICATION VIEW ==================== -->
+    <div
+      id="auth-view"
+      class="min-h-screen w-full flex items-center justify-center relative z-10 p-4 transition-opacity duration-500"
+    >
+      <div
+        class="glass-panel p-10 md:p-16 rounded-sm w-full max-w-lg relative overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.9)]"
+      >
+        <!-- Decorative Elements -->
+        <div
+          class="absolute top-0 left-1/2 transform -translate-x-1/2 w-[200px] h-[1px] bg-gradient-to-r from-transparent via-gold to-transparent"
+        ></div>
+        <div
+          class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-[200px] h-[1px] bg-gradient-to-r from-transparent via-gold to-transparent"
+        ></div>
+
+        <div class="text-center mb-10">
+          <i class="fas fa-fingerprint text-4xl text-gold/50 mb-4"></i>
+          <h1
+            class="font-serif text-4xl font-bold mb-2 text-white tracking-wide"
+          >
+            Rol & Ross
+          </h1>
+          <p class="text-gold tracking-[0.3em] text-[10px] uppercase">
+            Executive Command Center
+          </p>
+        </div>
+
+        <form id="login-form" class="space-y-6">
+          <div class="relative group">
+            <label
+              class="block text-[9px] uppercase tracking-widest text-gray-400 mb-2 ml-1"
+              >Secure Identity (Email)</label
+            >
+            <div class="relative">
+              <i
+                class="fas fa-envelope absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 group-focus-within:text-gold transition"
+              ></i>
+              <input
+                type="email"
+                id="email"
+                class="premium-input pl-12"
+                placeholder="admin@rolandross.com"
+                required
+              />
+            </div>
+          </div>
+          <div class="relative group">
+            <label
+              class="block text-[9px] uppercase tracking-widest text-gray-400 mb-2 ml-1"
+              >Access Cipher (Password)</label
+            >
+            <div class="relative">
+              <i
+                class="fas fa-lock absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 group-focus-within:text-gold transition"
+              ></i>
+              <input
+                type="password"
+                id="password"
+                class="premium-input pl-12"
+                placeholder="••••••••"
+                required
+              />
+            </div>
+          </div>
+          <button type="submit" class="btn-gold w-full mt-8 py-5">
+            Establish Connection <i class="fas fa-arrow-right ml-2 text-sm"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- ==================== MAIN DASHBOARD LAYOUT ==================== -->
+    <div
+      id="app-view"
+      class="min-h-screen w-full flex relative z-10 hidden transition-opacity duration-500"
+    >
+      <!-- Sidebar / Mobile Menu Overlay -->
+      <div
+        id="mobile-sidebar-overlay"
+        class="fixed inset-0 bg-black/80 backdrop-blur-sm z-40 hidden lg:hidden"
+      ></div>
+
+      <aside
+        id="sidebar"
+        class="w-72 shrink-0 glass-panel border-r border-y-0 border-l-0 h-screen fixed lg:relative z-50 transform -translate-x-full lg:translate-x-0 transition-transform duration-500 flex flex-col"
+      >
+        <div
+          class="p-8 border-b border-white/5 relative flex justify-between items-center"
+        >
+          <div>
+            <h2
+              class="font-serif text-2xl font-bold text-white tracking-widest"
+            >
+              R&R
+            </h2>
+            <p class="text-gold tracking-[0.2em] text-[8px] uppercase mt-1">
+              Command Center
+            </p>
+          </div>
+          <button
+            id="close-sidebar"
+            class="lg:hidden text-gray-400 hover:text-white"
+          >
+            <i class="fas fa-times text-xl"></i>
+          </button>
+          <div
+            class="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gold/30 to-transparent"
+          ></div>
+        </div>
+
+        <nav class="flex-grow py-8 flex flex-col gap-2">
+          <button
+            data-target="dashboard"
+            class="nav-btn nav-item active w-full text-left px-8 py-4 text-[11px] tracking-[0.15em] uppercase font-semibold text-gray-400 flex items-center gap-4"
+          >
+            <i class="fas fa-chart-line w-5 text-center"></i> Analytics Hub
+          </button>
+          <button
+            data-target="services"
+            class="nav-btn nav-item w-full text-left px-8 py-4 text-[11px] tracking-[0.15em] uppercase font-semibold text-gray-400 flex items-center gap-4"
+          >
+            <i class="fas fa-spa w-5 text-center"></i> The Vault (Services)
+          </button>
+          <button
+            data-target="gallery"
+            class="nav-btn nav-item w-full text-left px-8 py-4 text-[11px] tracking-[0.15em] uppercase font-semibold text-gray-400 flex items-center gap-4"
+          >
+            <i class="fas fa-images w-5 text-center"></i> The Gallery
+          </button>
+          <button
+            data-target="security"
+            class="nav-btn nav-item w-full text-left px-8 py-4 text-[11px] tracking-[0.15em] uppercase font-semibold text-gray-400 flex items-center gap-4"
+          >
+            <i class="fas fa-shield-alt w-5 text-center"></i> Security Protocol
+          </button>
+        </nav>
+
+        <div class="p-8 border-t border-white/5">
+          <button
+            id="logout-btn"
+            class="w-full text-left px-4 py-3 text-red-500/80 hover:text-red-400 rounded-sm text-[10px] tracking-widest uppercase flex items-center gap-3 transition hover:bg-red-500/10 group"
+          >
+            <i
+              class="fas fa-power-off group-hover:rotate-180 transition duration-500"
+            ></i>
+            Terminate Session
+          </button>
+        </div>
+      </aside>
+
+      <!-- Main Content Area -->
+      <main
+        class="flex-grow flex flex-col h-screen overflow-hidden w-full relative z-10 bg-[#050505]"
+      >
+        <!-- Top Header -->
+        <header
+          class="h-20 border-b border-white/5 flex items-center justify-between px-6 md:px-12 shrink-0 bg-black/50 backdrop-blur-md z-30"
+        >
+          <div class="flex items-center gap-4">
+            <button id="open-sidebar" class="lg:hidden text-gold text-xl">
+              <i class="fas fa-bars"></i>
+            </button>
+            <div>
+              <h3
+                class="font-sans text-white text-sm font-semibold tracking-wider"
+              >
+                Welcome, Executive
+              </h3>
+              <p
+                id="live-clock"
+                class="text-gold font-sans text-[10px] tracking-widest uppercase mt-1 font-light"
+              >
+                Loading Time...
+              </p>
+            </div>
+          </div>
+        </header>
+
+        <!-- Scrollable Container -->
+        <div
+          class="flex-grow overflow-y-auto p-6 md:p-12 relative"
+          id="main-scroll-area"
+        >
+          <!-- === SECTION: DASHBOARD (Analytics) === -->
+          <div id="section-dashboard" class="dashboard-section block">
+            <div class="mb-10 reveal-anim">
+              <h1 class="font-serif text-3xl md:text-5xl text-white mb-2">
+                Executive Overview
+              </h1>
+              <p
+                class="text-gray-400 text-xs font-light tracking-widest uppercase"
+              >
+                Real-time Luxury Metrics
+              </p>
+            </div>
+
+            <!-- Stats Grid -->
+            <div
+              class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 reveal-anim"
+            >
+              <div class="glass-card p-6 rounded-sm relative overflow-hidden">
+                <i
+                  class="fas fa-gem absolute -right-4 -bottom-4 text-7xl text-gold/5"
+                ></i>
+                <p
+                  class="text-[10px] uppercase tracking-widest text-gray-400 mb-2"
+                >
+                  Active Services
+                </p>
+                <h2 id="stat-services" class="font-serif text-4xl text-white">
+                  0
+                </h2>
+                <p class="text-[9px] text-green-400 tracking-widest mt-3">
+                  <i class="fas fa-arrow-up mr-1"></i> Live in Vault
+                </p>
+              </div>
+              <div class="glass-card p-6 rounded-sm relative overflow-hidden">
+                <i
+                  class="fas fa-images absolute -right-4 -bottom-4 text-7xl text-gold/5"
+                ></i>
+                <p
+                  class="text-[10px] uppercase tracking-widest text-gray-400 mb-2"
+                >
+                  Visual Assets
+                </p>
+                <h2 id="stat-gallery" class="font-serif text-4xl text-white">
+                  0
+                </h2>
+                <p class="text-[9px] text-green-400 tracking-widest mt-3">
+                  <i class="fas fa-arrow-up mr-1"></i> Live in Gallery
+                </p>
+              </div>
+              <div class="glass-card p-6 rounded-sm relative overflow-hidden">
+                <i
+                  class="fas fa-database absolute -right-4 -bottom-4 text-7xl text-gold/5"
+                ></i>
+                <p
+                  class="text-[10px] uppercase tracking-widest text-gray-400 mb-2"
+                >
+                  Total System Records
+                </p>
+                <h2 id="stat-total" class="font-serif text-4xl text-white">
+                  0
+                </h2>
+                <p class="text-[9px] text-gold tracking-widest mt-3">
+                  <i class="fas fa-bolt mr-1"></i> Vault + Gallery
+                </p>
+              </div>
+            </div>
+
+            <!-- Charts Area -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 reveal-anim">
+              <div class="lg:col-span-2 glass-card p-6 rounded-sm">
+                <h3
+                  class="font-sans text-[11px] uppercase tracking-widest text-gold mb-6 border-b border-white/5 pb-4"
+                >
+                  Asset Growth Timeline (Real-time)
+                </h3>
+                <div class="h-[300px] w-full relative">
+                  <canvas id="growthChart"></canvas>
+                </div>
+              </div>
+              <div class="glass-card p-6 rounded-sm flex flex-col">
+                <h3
+                  class="font-sans text-[11px] uppercase tracking-widest text-gold mb-6 border-b border-white/5 pb-4"
+                >
+                  System Health
+                </h3>
+                <div class="flex-grow flex flex-col justify-center gap-6">
+                  <div>
+                    <div
+                      class="flex justify-between text-[10px] uppercase tracking-widest mb-2"
+                    >
+                      <span class="text-gray-400">Database Load</span
+                      ><span class="text-white" id="db-load-text">0%</span>
+                    </div>
+                    <div
+                      class="w-full h-1 bg-white/10 rounded-full overflow-hidden"
+                    >
+                      <div
+                        id="db-load-bar"
+                        class="h-full bg-gold w-[0%] transition-all duration-1000"
+                      ></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div
+                      class="flex justify-between text-[10px] uppercase tracking-widest mb-2"
+                    >
+                      <span class="text-gray-400">Asset Storage Usage</span
+                      ><span class="text-white" id="storage-load-text">0%</span>
+                    </div>
+                    <div
+                      class="w-full h-1 bg-white/10 rounded-full overflow-hidden"
+                    >
+                      <div
+                        id="storage-load-bar"
+                        class="h-full bg-gold w-[0%] transition-all duration-1000"
+                      ></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div
+                      class="flex justify-between text-[10px] uppercase tracking-widest mb-2"
+                    >
+                      <span class="text-gray-400">Security Status</span
+                      ><span class="text-green-400">Optimal</span>
+                    </div>
+                    <div
+                      class="w-full h-1 bg-white/10 rounded-full overflow-hidden"
+                    >
+                      <div
+                        class="h-full bg-green-500 w-[100%] shadow-[0_0_10px_#22c55e]"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- === SECTION: SERVICES (CRUD) === -->
+          <div id="section-services" class="dashboard-section hidden">
+            <div
+              class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-6 reveal-anim"
+            >
+              <div>
+                <h1 class="font-serif text-3xl md:text-5xl text-white mb-2">
+                  The Vault
+                </h1>
+                <p
+                  class="text-gray-400 text-xs font-light tracking-widest uppercase"
+                >
+                  Manage Signature Treatments
+                </p>
+              </div>
+              <button
+                onclick="openModal('service-modal')"
+                class="btn-gold shrink-0 shadow-[0_10px_30px_rgba(212,175,55,0.15)]"
+              >
+                <i class="fas fa-plus"></i> Inject New Service
+              </button>
+            </div>
+
+            <div
+              class="glass-card rounded-sm overflow-hidden reveal-anim w-full"
+            >
+              <div
+                class="p-6 border-b border-white/5 bg-[#080808] flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
+              >
+                <h3
+                  class="font-sans text-[11px] uppercase tracking-widest text-gold"
+                >
+                  Database Records
+                </h3>
+                <div class="relative w-full md:w-64">
+                  <i
+                    class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-[10px]"
+                  ></i>
+                  <input
+                    type="text"
+                    id="search-service"
+                    placeholder="Search entries..."
+                    class="w-full bg-black/50 border border-white/10 text-white text-[10px] uppercase tracking-widest py-3 pl-9 pr-3 outline-none focus:border-gold transition rounded-sm"
+                  />
+                </div>
+              </div>
+
+              <div class="overflow-x-auto w-full">
+                <table class="w-full text-left border-collapse min-w-[700px]">
+                  <thead>
+                    <tr
+                      class="bg-[#0a0a0a] text-[9px] uppercase tracking-[0.2em] text-gray-500"
+                    >
+                      <th class="p-5 font-medium border-b border-white/5 w-24">
+                        Media
+                      </th>
+                      <th class="p-5 font-medium border-b border-white/5">
+                        Nomenclature (EN)
+                      </th>
+                      <th class="p-5 font-medium border-b border-white/5">
+                        Nomenclature (BN)
+                      </th>
+                      <th
+                        class="p-5 font-medium border-b border-white/5 w-40 text-right"
+                      >
+                        Directives
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody id="services-table-body">
+                    <tr>
+                      <td colspan="4" class="p-10 text-center">
+                        <i
+                          class="fas fa-spinner fa-spin text-gold text-2xl"
+                        ></i>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- Services Pagination -->
+              <div
+                id="services-pagination"
+                class="p-4 border-t border-white/5 flex justify-end items-center gap-2 bg-[#080808]"
+              ></div>
+            </div>
+          </div>
+
+          <!-- === SECTION: GALLERY (CRUD) === -->
+          <div id="section-gallery" class="dashboard-section hidden">
+            <div
+              class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-6 reveal-anim"
+            >
+              <div>
+                <h1 class="font-serif text-3xl md:text-5xl text-white mb-2">
+                  The Gallery
+                </h1>
+                <p
+                  class="text-gray-400 text-xs font-light tracking-widest uppercase"
+                >
+                  Manage Visual Assets
+                </p>
+              </div>
+              <button
+                onclick="openModal('gallery-modal')"
+                class="btn-gold shrink-0 shadow-[0_10px_30px_rgba(212,175,55,0.15)]"
+              >
+                <i class="fas fa-plus"></i> Inject New Image
+              </button>
+            </div>
+
+            <div
+              class="glass-card rounded-sm overflow-hidden reveal-anim w-full"
+            >
+              <div
+                class="p-6 border-b border-white/5 bg-[#080808] flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
+              >
+                <h3
+                  class="font-sans text-[11px] uppercase tracking-widest text-gold"
+                >
+                  Visual Vault Records
+                </h3>
+                <div class="relative w-full md:w-64">
+                  <i
+                    class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-[10px]"
+                  ></i>
+                  <input
+                    type="text"
+                    id="search-gallery"
+                    placeholder="Search visuals..."
+                    class="w-full bg-black/50 border border-white/10 text-white text-[10px] uppercase tracking-widest py-3 pl-9 pr-3 outline-none focus:border-gold transition rounded-sm"
+                  />
+                </div>
+              </div>
+
+              <div class="overflow-x-auto w-full">
+                <table class="w-full text-left border-collapse min-w-[700px]">
+                  <thead>
+                    <tr
+                      class="bg-[#0a0a0a] text-[9px] uppercase tracking-[0.2em] text-gray-500"
+                    >
+                      <th class="p-5 font-medium border-b border-white/5 w-24">
+                        Media
+                      </th>
+                      <th class="p-5 font-medium border-b border-white/5">
+                        Title (EN/BN)
+                      </th>
+                      <th class="p-5 font-medium border-b border-white/5">
+                        Category & Filter
+                      </th>
+                      <th
+                        class="p-5 font-medium border-b border-white/5 w-40 text-right"
+                      >
+                        Directives
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody id="gallery-table-body">
+                    <tr>
+                      <td colspan="4" class="p-10 text-center">
+                        <i
+                          class="fas fa-spinner fa-spin text-gold text-2xl"
+                        ></i>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- Gallery Pagination -->
+              <div
+                id="gallery-pagination"
+                class="p-4 border-t border-white/5 flex justify-end items-center gap-2 bg-[#080808]"
+              ></div>
+            </div>
+          </div>
+
+          <!-- === SECTION: SECURITY === -->
+          <div id="section-security" class="dashboard-section hidden">
+            <div class="mb-10 reveal-anim">
+              <h1 class="font-serif text-3xl md:text-5xl text-white mb-2">
+                Security Protocol
+              </h1>
+              <p
+                class="text-gray-400 text-xs font-light tracking-widest uppercase"
+              >
+                Access Management
+              </p>
+            </div>
+
+            <div
+              class="glass-card p-8 md:p-12 rounded-sm max-w-2xl reveal-anim"
+            >
+              <div
+                class="flex items-center gap-4 mb-8 pb-6 border-b border-white/5"
+              >
+                <div
+                  class="w-12 h-12 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center text-gold text-xl shrink-0"
+                >
+                  <i class="fas fa-key"></i>
+                </div>
+                <div>
+                  <h3 class="text-lg text-white font-serif">
+                    Modify Master Key
+                  </h3>
+                  <p
+                    class="text-[10px] text-gray-400 tracking-widest uppercase mt-1"
+                  >
+                    Update authentication cipher
+                  </p>
+                </div>
+              </div>
+
+              <form id="password-form" class="space-y-6">
+                <div>
+                  <label
+                    class="block text-[9px] uppercase tracking-widest text-gray-400 mb-2 ml-1"
+                    >New Master Cipher</label
+                  >
+                  <input
+                    type="password"
+                    id="new-password"
+                    class="premium-input"
+                    placeholder="Enter highly secure password"
+                    required
+                    minlength="6"
+                  />
+                </div>
+                <button type="submit" class="btn-gold">
+                  Execute Override <i class="fas fa-shield-check ml-2"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- ==================== MODALS ==================== -->
+
+    <!-- Add/Edit Service Modal -->
+    <div id="service-modal" class="modal-overlay">
+      <div
+        class="modal-content glass-panel p-0 rounded-sm max-w-5xl max-h-[90vh] flex flex-col overflow-hidden border border-gold/20 shadow-[0_0_100px_rgba(212,175,55,0.1)]"
+      >
+        <div
+          class="p-6 border-b border-white/10 bg-[#080808] flex justify-between items-center shrink-0"
+        >
+          <div>
+            <h2 id="modal-title" class="font-serif text-2xl text-white">
+              Inject New Service
+            </h2>
+            <p class="text-gold text-[9px] tracking-[0.2em] uppercase mt-1">
+              Database Modification
+            </p>
+          </div>
+          <button
+            onclick="closeModal('service-modal')"
+            class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:border-white transition group shrink-0"
+          >
+            <i
+              class="fas fa-times group-hover:rotate-90 transition duration-300"
+            ></i>
+          </button>
+        </div>
+
+        <div class="p-6 md:p-8 overflow-y-auto flex-grow bg-[#050505]/50">
+          <form
+            id="service-form"
+            class="grid grid-cols-1 lg:grid-cols-12 gap-8"
+          >
+            <input type="hidden" id="service-id" />
+
+            <div class="lg:col-span-5 space-y-6">
+              <h3
+                class="font-sans text-[11px] uppercase tracking-widest text-gold border-b border-white/5 pb-3"
+              >
+                <i class="fas fa-image mr-2"></i> Media Asset
+              </h3>
+              <div>
+                <label
+                  class="block text-[9px] uppercase tracking-widest text-gray-400 mb-2 ml-1"
+                  >Direct Image URL</label
+                >
+                <input
+                  type="url"
+                  id="s-image"
+                  class="premium-input"
+                  placeholder="Paste high-res image link..."
+                  required
+                />
+              </div>
+              <div class="mt-4">
+                <label
+                  class="block text-[9px] uppercase tracking-widest text-gray-400 mb-2 ml-1"
+                  >Live Asset Preview</label
+                >
+                <div class="image-preview-box group">
+                  <i
+                    class="fas fa-camera text-3xl text-white/10 group-hover:scale-110 transition duration-500"
+                  ></i>
+                  <img id="preview-img" src="" alt="Preview" />
+                  <div
+                    class="absolute inset-0 border border-gold/0 group-hover:border-gold/30 transition duration-500 pointer-events-none"
+                  ></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="lg:col-span-7 space-y-8">
+              <div>
+                <h3
+                  class="font-sans text-[11px] uppercase tracking-widest text-gold border-b border-white/5 pb-3 mb-5"
+                >
+                  <i class="fas fa-globe mr-2"></i> Global Nomenclature
+                  (English)
+                </h3>
+                <div class="space-y-4">
+                  <div>
+                    <label
+                      class="block text-[9px] uppercase tracking-widest text-gray-400 mb-2 ml-1"
+                      >Treatment Title</label
+                    >
+                    <input
+                      type="text"
+                      id="s-enName"
+                      class="premium-input text-lg font-serif"
+                      placeholder="e.g., Advanced Hydra Facial"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label
+                      class="block text-[9px] uppercase tracking-widest text-gray-400 mb-2 ml-1"
+                      >Opulent Description</label
+                    >
+                    <textarea
+                      id="s-enDesc"
+                      rows="3"
+                      class="premium-input resize-none leading-relaxed"
+                      placeholder="Describe the luxury experience..."
+                      required
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h3
+                  class="font-sans text-[11px] uppercase tracking-widest text-gold border-b border-white/5 pb-3 mb-5"
+                >
+                  <i class="fas fa-language mr-2"></i> Localized Data (Bengali)
+                </h3>
+                <div class="space-y-4">
+                  <div>
+                    <label
+                      class="block text-[9px] uppercase tracking-widest text-gray-400 mb-2 ml-1"
+                      >Treatment Title (BN)</label
+                    >
+                    <input
+                      type="text"
+                      id="s-bnName"
+                      class="premium-input text-lg font-bengali"
+                      placeholder="সার্ভিসের নাম"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label
+                      class="block text-[9px] uppercase tracking-widest text-gray-400 mb-2 ml-1"
+                      >Opulent Description (BN)</label
+                    >
+                    <textarea
+                      id="s-bnDesc"
+                      rows="3"
+                      class="premium-input resize-none font-bengali leading-relaxed"
+                      placeholder="বিলাসবহুল অভিজ্ঞতা বর্ণনা করুন..."
+                      required
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" id="hidden-submit" class="hidden"></button>
+          </form>
+        </div>
+
+        <div
+          class="p-6 border-t border-white/10 bg-[#080808] flex justify-end gap-4 shrink-0"
+        >
+          <button
+            type="button"
+            onclick="closeModal('service-modal')"
+            class="btn-outline border-white/20 text-white hover:border-white/50 hover:bg-white/5"
+          >
+            Abort
+          </button>
+          <button
+            type="button"
+            onclick="document.getElementById('hidden-submit').click()"
+            class="btn-gold shadow-[0_5px_20px_rgba(212,175,55,0.2)]"
+          >
+            Commit to Vault <i class="fas fa-check ml-2"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add/Edit Gallery Modal -->
+    <div id="gallery-modal" class="modal-overlay">
+      <div
+        class="modal-content glass-panel p-0 rounded-sm max-w-5xl max-h-[90vh] flex flex-col overflow-hidden border border-gold/20 shadow-[0_0_100px_rgba(212,175,55,0.1)]"
+      >
+        <div
+          class="p-6 border-b border-white/10 bg-[#080808] flex justify-between items-center shrink-0"
+        >
+          <div>
+            <h2 id="gallery-modal-title" class="font-serif text-2xl text-white">
+              Inject Visual Asset
+            </h2>
+            <p class="text-gold text-[9px] tracking-[0.2em] uppercase mt-1">
+              Gallery Database Modification
+            </p>
+          </div>
+          <button
+            onclick="closeModal('gallery-modal')"
+            class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:border-white transition group shrink-0"
+          >
+            <i
+              class="fas fa-times group-hover:rotate-90 transition duration-300"
+            ></i>
+          </button>
+        </div>
+
+        <div class="p-6 md:p-8 overflow-y-auto flex-grow bg-[#050505]/50">
+          <form
+            id="gallery-form"
+            class="grid grid-cols-1 lg:grid-cols-12 gap-8"
+          >
+            <input type="hidden" id="gallery-id" />
+
+            <div class="lg:col-span-5 space-y-6">
+              <h3
+                class="font-sans text-[11px] uppercase tracking-widest text-gold border-b border-white/5 pb-3"
+              >
+                <i class="fas fa-image mr-2"></i> High-Res Media
+              </h3>
+              <div>
+                <label
+                  class="block text-[9px] uppercase tracking-widest text-gray-400 mb-2 ml-1"
+                  >Direct Image URL</label
+                >
+                <input
+                  type="url"
+                  id="g-image"
+                  class="premium-input"
+                  placeholder="Paste high-res image link..."
+                  required
+                />
+              </div>
+              <div class="mt-4">
+                <label
+                  class="block text-[9px] uppercase tracking-widest text-gray-400 mb-2 ml-1"
+                  >Live Asset Preview</label
+                >
+                <div class="image-preview-box group">
+                  <i
+                    class="fas fa-camera text-3xl text-white/10 group-hover:scale-110 transition duration-500"
+                  ></i>
+                  <img id="preview-img-gallery" src="" alt="Preview" />
+                  <div
+                    class="absolute inset-0 border border-gold/0 group-hover:border-gold/30 transition duration-500 pointer-events-none"
+                  ></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="lg:col-span-7 space-y-8">
+              <div>
+                <h3
+                  class="font-sans text-[11px] uppercase tracking-widest text-gold border-b border-white/5 pb-3 mb-5"
+                >
+                  <i class="fas fa-globe mr-2"></i> Global Properties (English)
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label
+                      class="block text-[9px] uppercase tracking-widest text-gray-400 mb-2 ml-1"
+                      >Image Title</label
+                    >
+                    <input
+                      type="text"
+                      id="g-enName"
+                      class="premium-input font-serif"
+                      placeholder="e.g. Serene Sanctuaries"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label
+                      class="block text-[9px] uppercase tracking-widest text-gray-400 mb-2 ml-1"
+                      >Category Subtitle</label
+                    >
+                    <input
+                      type="text"
+                      id="g-enCat"
+                      class="premium-input"
+                      placeholder="e.g. Luxury Spa"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h3
+                  class="font-sans text-[11px] uppercase tracking-widest text-gold border-b border-white/5 pb-3 mb-5"
+                >
+                  <i class="fas fa-language mr-2"></i> Localized Properties
+                  (Bengali)
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label
+                      class="block text-[9px] uppercase tracking-widest text-gray-400 mb-2 ml-1"
+                      >Image Title (BN)</label
+                    >
+                    <input
+                      type="text"
+                      id="g-bnName"
+                      class="premium-input font-bengali"
+                      placeholder="ছবির নাম"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label
+                      class="block text-[9px] uppercase tracking-widest text-gray-400 mb-2 ml-1"
+                      >Category Subtitle (BN)</label
+                    >
+                    <input
+                      type="text"
+                      id="g-bnCat"
+                      class="premium-input font-bengali"
+                      placeholder="বিভাগ"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h3
+                  class="font-sans text-[11px] uppercase tracking-widest text-gold border-b border-white/5 pb-3 mb-5"
+                >
+                  <i class="fas fa-filter mr-2"></i> System Filter Mapping
+                </h3>
+                <div>
+                  <label
+                    class="block text-[9px] uppercase tracking-widest text-gray-400 mb-2 ml-1"
+                    >Frontend Category Filter</label
+                  >
+                  <select
+                    id="g-filter"
+                    class="premium-input appearance-none bg-black/50"
+                    required
+                  >
+                    <option value="" disabled selected
+                      >Assign a filter class...</option
+                    >
+                    <option value="clinic">Aesthetic Clinic</option>
+                    <option value="spa">Luxury Spa</option>
+                    <option value="products">Formulations / Products</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              id="hidden-submit-gallery"
+              class="hidden"
+            ></button>
+          </form>
+        </div>
+
+        <div
+          class="p-6 border-t border-white/10 bg-[#080808] flex justify-end gap-4 shrink-0"
+        >
+          <button
+            type="button"
+            onclick="closeModal('gallery-modal')"
+            class="btn-outline border-white/20 text-white hover:border-white/50 hover:bg-white/5"
+          >
+            Abort
+          </button>
+          <button
+            type="button"
+            onclick="document.getElementById('hidden-submit-gallery').click()"
+            class="btn-gold shadow-[0_5px_20px_rgba(212,175,55,0.2)]"
+          >
+            Commit Visual <i class="fas fa-check ml-2"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== FIREBASE & APPLICATION LOGIC ==================== -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+      import {
+        getAuth,
+        signInWithEmailAndPassword,
+        onAuthStateChanged,
+        signOut,
+        updatePassword,
+      } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+      import {
+        getFirestore,
+        collection,
+        addDoc,
+        updateDoc,
+        deleteDoc,
+        doc,
+        onSnapshot,
+      } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyCBUFaTPfpF_MbC-hGFtVUKGdk3zxmrBfk",
+        authDomain: "rolandross-7d223.firebaseapp.com",
+        projectId: "rolandross-7d223",
+        storageBucket: "rolandross-7d223.firebasestorage.app",
+        messagingSenderId: "811915815605",
+        appId: "1:811915815605:web:56bfa051b4a33afccbecfc",
+        measurementId: "G-YCHZTT3ZW1",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const db = getFirestore(app);
+
+      // Globals for Real-time Dashboard Sync & Pagination
+      let globalServices = [];
+      let globalGallery = [];
+      let myChart;
+
+      // Pagination State
+      let servicesCurrentPage = 1;
+      let galleryCurrentPage = 1;
+      const ITEMS_PER_PAGE = 5;
+      let currentFilteredServices = [];
+      let currentFilteredGallery = [];
+
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        background: "#0a0a0a",
+        color: "#fff",
+        customClass: {
+          popup: "border border-gold/30 shadow-[0_10px_30px_rgba(0,0,0,0.8)]",
+        },
+      });
+
+      const loader = document.getElementById("global-loader");
+      const loaderLine = document.querySelector(".loader-line");
+
+      function animateLoader(callback) {
+        gsap.to(loaderLine, {
+          width: "100%",
+          duration: 1.5,
+          ease: "power4.inOut",
+        });
+        gsap.to(loader, {
+          yPercent: -100,
+          duration: 1,
+          ease: "expo.inOut",
+          delay: 1.2,
+          onComplete: () => {
+            loaderLine.style.width = "0%";
+            loader.style.transform = "translateY(0)";
+            loader.style.display = "none";
+            if (callback) callback();
+          },
+        });
+      }
+
+      setInterval(() => {
+        const now = new Date();
+        document.getElementById(
+          "live-clock",
+        ).innerText = now.toLocaleString("en-US", {
+          weekday: "short",
+          month: "short",
+          day: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+        });
+      }, 1000);
+
+      const authView = document.getElementById("auth-view");
+      const appView = document.getElementById("app-view");
+
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          authView.classList.add("hidden");
+          appView.classList.remove("hidden");
+          loader.style.display = "flex";
+          animateLoader(() => triggerEntryAnimations());
+          fetchServices();
+          fetchGallery();
+        } else {
+          appView.classList.add("hidden");
+          authView.classList.remove("hidden");
+          setTimeout(() => (loader.style.display = "none"), 500);
+        }
+      });
+
+      document
+        .getElementById("login-form")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const btn = e.target.querySelector("button");
+          btn.innerHTML =
+            '<i class="fas fa-circle-notch fa-spin"></i> Authenticating...';
+          try {
+            await signInWithEmailAndPassword(
+              auth,
+              document.getElementById("email").value,
+              document.getElementById("password").value,
+            );
+            Toast.fire({ icon: "success", title: "Access Granted" });
+          } catch (error) {
+            Toast.fire({ icon: "error", title: "Invalid Credentials" });
+          }
+          btn.innerHTML =
+            'Establish Connection <i class="fas fa-arrow-right ml-2 text-sm"></i>';
+        });
+
+      document.getElementById("logout-btn").addEventListener("click", () => {
+        signOut(auth);
+        Toast.fire({ icon: "info", title: "Session Terminated" });
+      });
+
+      const navBtns = document.querySelectorAll(".nav-btn");
+      const sections = document.querySelectorAll(".dashboard-section");
+
+      function triggerEntryAnimations() {
+        gsap.fromTo(
+          ".reveal-anim",
+          { y: 15, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.5,
+            stagger: 0.05,
+            ease: "power2.out",
+          },
+        );
+      }
+
+      navBtns.forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          navBtns.forEach((b) => b.classList.remove("active"));
+          e.currentTarget.classList.add("active");
+
+          const targetId = `section-${e.currentTarget.dataset.target}`;
+
+          sections.forEach((sec) => {
+            if (sec.id === targetId) {
+              sec.classList.remove("hidden");
+              sec.classList.add("block");
+              gsap.fromTo(
+                sec,
+                { opacity: 0, y: 10 },
+                { opacity: 1, y: 0, duration: 0.4 },
+              );
+              triggerEntryAnimations();
+            } else {
+              sec.classList.remove("block");
+              sec.classList.add("hidden");
+            }
+          });
+
+          if (window.innerWidth < 1024) closeMobileSidebar();
+        });
+      });
+
+      const sidebar = document.getElementById("sidebar");
+      const overlay = document.getElementById("mobile-sidebar-overlay");
+      document.getElementById("open-sidebar").addEventListener("click", () => {
+        sidebar.classList.remove("-translate-x-full");
+        overlay.classList.remove("hidden");
+      });
+      function closeMobileSidebar() {
+        sidebar.classList.add("-translate-x-full");
+        overlay.classList.add("hidden");
+      }
+      document
+        .getElementById("close-sidebar")
+        .addEventListener("click", closeMobileSidebar);
+      overlay.addEventListener("click", closeMobileSidebar);
+
+      // INITIALIZE CHART
+      const ctx = document.getElementById("growthChart").getContext("2d");
+      let gradient = ctx.createLinearGradient(0, 0, 0, 300);
+      gradient.addColorStop(0, "rgba(212, 175, 55, 0.4)");
+      gradient.addColorStop(1, "rgba(212, 175, 55, 0)");
+
+      myChart = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: [],
+          datasets: [
+            {
+              label: "Total Active Records",
+              data: [],
+              borderColor: "#d4af37",
+              backgroundColor: gradient,
+              borderWidth: 2,
+              pointBackgroundColor: "#050505",
+              pointBorderColor: "#d4af37",
+              pointBorderWidth: 2,
+              pointRadius: 4,
+              fill: true,
+              tension: 0.4,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            y: {
+              grid: { color: "rgba(255,255,255,0.05)" },
+              ticks: { color: "#666", stepSize: 1 },
+            },
+            x: { grid: { display: false }, ticks: { color: "#666" } },
+          },
+        },
+      });
+
+      // UPDATE DASHBOARD BASED ON REAL DATA
+      function updateDashboardStats() {
+        const sCount = globalServices.length;
+        const gCount = globalGallery.length;
+
+        const statServices = document.getElementById("stat-services");
+        const statGallery = document.getElementById("stat-gallery");
+        const statTotal = document.getElementById("stat-total");
+
+        if (statServices) statServices.innerText = sCount;
+        if (statGallery) statGallery.innerText = gCount;
+        if (statTotal) statTotal.innerText = sCount + gCount;
+
+        const dbPercentage = Math.min(100, (sCount + gCount) * 2).toFixed(1);
+        const storagePercentage = Math.min(100, gCount * 3).toFixed(1);
+
+        document.getElementById("db-load-text").innerText = dbPercentage + "%";
+        document.getElementById("db-load-bar").style.width = dbPercentage + "%";
+
+        document.getElementById("storage-load-text").innerText =
+          storagePercentage + "%";
+        document.getElementById("storage-load-bar").style.width =
+          storagePercentage + "%";
+
+        const last7Days = [];
+        for (let i = 6; i >= 0; i--) {
+          let d = new Date();
+          d.setDate(d.getDate() - i);
+          last7Days.push(
+            d.toLocaleDateString("en-US", { month: "short", day: "numeric" }),
+          );
+        }
+
+        let dailyCounts = new Array(7).fill(0);
+        let today = new Date();
+        today.setHours(23, 59, 59, 999);
+        [...globalServices, ...globalGallery].forEach((item) => {
+          let d = item.createdAt ? new Date(item.createdAt) : new Date();
+          let diffTime = today - d;
+          let diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+          if (diffDays >= 0 && diffDays < 7) {
+            dailyCounts[6 - diffDays]++;
+          }
+        });
+
+        let cumulativeData = [];
+        let currentTotal =
+          sCount + gCount - dailyCounts.reduce((a, b) => a + b, 0);
+        for (let i = 0; i < 7; i++) {
+          currentTotal += dailyCounts[i];
+          cumulativeData.push(currentTotal);
+        }
+
+        if (myChart) {
+          myChart.data.labels = last7Days;
+          myChart.data.datasets[0].data = cumulativeData;
+          myChart.update();
+        }
+      }
+
+      // --- PAGINATION LOGIC ---
+      window.changePage = function (type, page) {
+        if (type === "services") {
+          servicesCurrentPage = page;
+          renderTable(currentFilteredServices);
+        } else if (type === "gallery") {
+          galleryCurrentPage = page;
+          renderGalleryTable(currentFilteredGallery);
+        }
+      };
+
+      function renderPaginationControls(
+        containerId,
+        totalItems,
+        currentPage,
+        type,
+      ) {
+        const container = document.getElementById(containerId);
+        const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
+
+        if (totalPages <= 1) {
+          container.innerHTML = "";
+          return;
+        }
+
+        let html = "";
+        for (let i = 1; i <= totalPages; i++) {
+          const activeClass =
+            i === currentPage
+              ? "bg-gold text-black border-gold"
+              : "bg-transparent text-gray-400 border-white/10 hover:border-gold hover:text-gold";
+
+          html += `<button onclick="changePage('${type}', ${i})" class="w-8 h-8 flex items-center justify-center rounded-sm border transition text-[10px] font-sans ${activeClass}">${i}</button>`;
+        }
+        container.innerHTML = html;
+      }
+
+      const tbody = document.getElementById("services-table-body");
+      const galleryTbody = document.getElementById("gallery-table-body");
+
+      // --- SERVICES LIST RENDERING ---
+      function renderTable(dataArray) {
+        currentFilteredServices = dataArray;
+        const totalPages = Math.ceil(dataArray.length / ITEMS_PER_PAGE);
+        if (servicesCurrentPage > totalPages)
+          servicesCurrentPage = totalPages || 1;
+
+        const startIndex = (servicesCurrentPage - 1) * ITEMS_PER_PAGE;
+        const paginatedData = dataArray.slice(
+          startIndex,
+          startIndex + ITEMS_PER_PAGE,
+        );
+
+        if (paginatedData.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="4" class="p-10 text-center text-gray-500 font-sans text-xs tracking-widest uppercase">No Records Found in Vault</td></tr>`;
+          document.getElementById("services-pagination").innerHTML = "";
+          return;
+        }
+
+        let html = "";
+        paginatedData.forEach((data) => {
+          html += `
+          <tr class="service-row group">
+            <td class="p-4 border-b border-white/5">
+              <div class="w-16 h-12 rounded-sm overflow-hidden border border-white/10 relative">
+                <img src="${data.image}" class="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition duration-500">
+              </div>
+            </td>
+            <td class="p-4 border-b border-white/5">
+              <p class="font-serif text-white text-base">${data.enName}</p>
+              <p class="font-sans text-[9px] text-gray-500 tracking-widest uppercase truncate max-w-[200px] mt-1">${data.enDesc}</p>
+            </td>
+            <td class="p-4 border-b border-white/5">
+              <p class="font-bengali text-white text-sm">${data.bnName}</p>
+            </td>
+            <td class="p-4 border-b border-white/5 text-right space-x-2">
+              <button onclick="editService('${data.id}')" class="w-8 h-8 rounded border border-gold/30 text-gold hover:bg-gold hover:text-black transition inline-flex justify-center items-center"><i class="fas fa-pen text-xs"></i></button>
+              <button onclick="deleteService('${data.id}')" class="w-8 h-8 rounded border border-red-900/50 text-red-500 hover:bg-red-600 hover:text-white transition inline-flex justify-center items-center"><i class="fas fa-trash text-xs"></i></button>
+            </td>
+          </tr>
+        `;
+        });
+        tbody.innerHTML = html;
+        renderPaginationControls(
+          "services-pagination",
+          dataArray.length,
+          servicesCurrentPage,
+          "services",
+        );
+      }
+
+      async function fetchServices() {
+        onSnapshot(collection(db, "services"), (snapshot) => {
+          globalServices = [];
+          snapshot.forEach((doc) => {
+            globalServices.push({ id: doc.id, ...doc.data() });
+          });
+
+          // Preserve active search filter when DB updates
+          const term = document
+            .getElementById("search-service")
+            .value.toLowerCase();
+          const filtered = term
+            ? globalServices.filter(
+                (s) =>
+                  s.enName.toLowerCase().includes(term) ||
+                  s.bnName.includes(term),
+              )
+            : globalServices;
+
+          renderTable(filtered);
+          updateDashboardStats();
+        });
+      }
+
+      document
+        .getElementById("search-service")
+        .addEventListener("input", (e) => {
+          servicesCurrentPage = 1; // Reset pagination to page 1 on search
+          const term = e.target.value.toLowerCase();
+          const filtered = globalServices.filter(
+            (s) =>
+              s.enName.toLowerCase().includes(term) || s.bnName.includes(term),
+          );
+          renderTable(filtered);
+        });
+
+      const imgInput = document.getElementById("s-image");
+      const previewImg = document.getElementById("preview-img");
+      imgInput.addEventListener("input", (e) => {
+        const url = e.target.value;
+        if (
+          url.match(/\.(jpeg|jpg|gif|png|webp)/) ||
+          url.includes("images.unsplash.com") ||
+          url.includes("images.pexels.com") ||
+          url.includes("postimg.cc")
+        ) {
+          previewImg.src = url;
+          previewImg.style.opacity = "1";
+        } else {
+          previewImg.style.opacity = "0";
+        }
+      });
+
+      document
+        .getElementById("service-form")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const id = document.getElementById("service-id").value;
+          const data = {
+            image: document.getElementById("s-image").value,
+            enName: document.getElementById("s-enName").value,
+            enDesc: document.getElementById("s-enDesc").value,
+            bnName: document.getElementById("s-bnName").value,
+            bnDesc: document.getElementById("s-bnDesc").value,
+            updatedAt: new Date().toISOString(),
+          };
+
+          try {
+            if (id) {
+              await updateDoc(doc(db, "services", id), data);
+              Toast.fire({
+                icon: "success",
+                title: "Data Mutated Successfully",
+              });
+            } else {
+              data.createdAt = new Date().toISOString();
+              await addDoc(collection(db, "services"), data);
+              Toast.fire({ icon: "success", title: "Asset Injected to Vault" });
+            }
+            closeModal("service-modal");
+          } catch (error) {
+            Toast.fire({ icon: "error", title: "System Error" });
+          }
+        });
+
+      window.editService = function (id) {
+        const service = globalServices.find((s) => s.id === id);
+        document.getElementById("modal-title").innerText =
+          "Mutate Service Data";
+        document.getElementById("service-id").value = service.id;
+
+        const imgInp = document.getElementById("s-image");
+        imgInp.value = service.image;
+        imgInp.dispatchEvent(new Event("input"));
+
+        document.getElementById("s-enName").value = service.enName;
+        document.getElementById("s-enDesc").value = service.enDesc;
+        document.getElementById("s-bnName").value = service.bnName;
+        document.getElementById("s-bnDesc").value = service.bnDesc;
+        openModal("service-modal");
+      };
+
+      window.deleteService = async function (id) {
+        Swal.fire({
+          title:
+            '<h2 class="font-serif text-2xl text-white">Eradicate Asset?</h2>',
+          html:
+            '<p class="text-[10px] tracking-widest uppercase text-red-400">This action causes irreversible data loss.</p>',
+          icon: "warning",
+          showCancelButton: true,
+          background: "#0a0a0a",
+          customClass: { popup: "border border-red-900/50" },
+          confirmButtonColor: "#b38728",
+          cancelButtonColor: "#1a1a1a",
+          confirmButtonText: "CONFIRM ERADICATION",
+          cancelButtonText: "ABORT",
+        }).then(async (result) => {
+          if (result.isConfirmed) {
+            await deleteDoc(doc(db, "services", id));
+            Toast.fire({ icon: "success", title: "Asset Eradicated" });
+          }
+        });
+      };
+
+      // --- GALLERY LIST RENDERING ---
+      function renderGalleryTable(dataArray) {
+        currentFilteredGallery = dataArray;
+        const totalPages = Math.ceil(dataArray.length / ITEMS_PER_PAGE);
+        if (galleryCurrentPage > totalPages)
+          galleryCurrentPage = totalPages || 1;
+
+        const startIndex = (galleryCurrentPage - 1) * ITEMS_PER_PAGE;
+        const paginatedData = dataArray.slice(
+          startIndex,
+          startIndex + ITEMS_PER_PAGE,
+        );
+
+        if (paginatedData.length === 0) {
+          galleryTbody.innerHTML = `<tr><td colspan="4" class="p-10 text-center text-gray-500 font-sans text-xs tracking-widest uppercase">No Visuals Found in Gallery</td></tr>`;
+          document.getElementById("gallery-pagination").innerHTML = "";
+          return;
+        }
+
+        let html = "";
+        paginatedData.forEach((data) => {
+          html += `
+          <tr class="service-row group">
+            <td class="p-4 border-b border-white/5">
+              <div class="w-16 h-12 rounded-sm overflow-hidden border border-white/10 relative">
+                <img src="${data.image}" class="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition duration-500">
+              </div>
+            </td>
+            <td class="p-4 border-b border-white/5">
+              <p class="font-serif text-white text-base">${data.enName}</p>
+              <p class="font-bengali text-gray-400 text-sm mt-1">${data.bnName}</p>
+            </td>
+            <td class="p-4 border-b border-white/5">
+              <p class="font-sans text-[10px] text-white tracking-widest uppercase">${data.enCat} / <span class="font-bengali capitalize">${data.bnCat}</span></p>
+              <p class="font-sans text-[8px] text-gold tracking-widest uppercase mt-1 border border-gold/30 bg-gold/5 rounded px-2 py-0.5 inline-block">Filter: ${data.filter}</p>
+            </td>
+            <td class="p-4 border-b border-white/5 text-right space-x-2">
+              <button onclick="editGallery('${data.id}')" class="w-8 h-8 rounded border border-gold/30 text-gold hover:bg-gold hover:text-black transition inline-flex justify-center items-center"><i class="fas fa-pen text-xs"></i></button>
+              <button onclick="deleteGallery('${data.id}')" class="w-8 h-8 rounded border border-red-900/50 text-red-500 hover:bg-red-600 hover:text-white transition inline-flex justify-center items-center"><i class="fas fa-trash text-xs"></i></button>
+            </td>
+          </tr>
+        `;
+        });
+        galleryTbody.innerHTML = html;
+        renderPaginationControls(
+          "gallery-pagination",
+          dataArray.length,
+          galleryCurrentPage,
+          "gallery",
+        );
+      }
+
+      async function fetchGallery() {
+        onSnapshot(collection(db, "gallery"), (snapshot) => {
+          globalGallery = [];
+          snapshot.forEach((doc) => {
+            globalGallery.push({ id: doc.id, ...doc.data() });
+          });
+
+          // Preserve active search filter when DB updates
+          const term = document
+            .getElementById("search-gallery")
+            .value.toLowerCase();
+          const filtered = term
+            ? globalGallery.filter(
+                (g) =>
+                  g.enName.toLowerCase().includes(term) ||
+                  g.bnName.includes(term) ||
+                  g.enCat.toLowerCase().includes(term),
+              )
+            : globalGallery;
+
+          renderGalleryTable(filtered);
+          updateDashboardStats();
+        });
+      }
+
+      document
+        .getElementById("search-gallery")
+        .addEventListener("input", (e) => {
+          galleryCurrentPage = 1; // Reset pagination to page 1 on search
+          const term = e.target.value.toLowerCase();
+          const filtered = globalGallery.filter(
+            (g) =>
+              g.enName.toLowerCase().includes(term) ||
+              g.bnName.includes(term) ||
+              g.enCat.toLowerCase().includes(term),
+          );
+          renderGalleryTable(filtered);
+        });
+
+      const galleryImgInput = document.getElementById("g-image");
+      const previewGalleryImg = document.getElementById("preview-img-gallery");
+      galleryImgInput.addEventListener("input", (e) => {
+        const url = e.target.value;
+        if (
+          url.match(/\.(jpeg|jpg|gif|png|webp)/) ||
+          url.includes("images.unsplash.com") ||
+          url.includes("images.pexels.com") ||
+          url.includes("postimg.cc")
+        ) {
+          previewGalleryImg.src = url;
+          previewGalleryImg.style.opacity = "1";
+        } else {
+          previewGalleryImg.style.opacity = "0";
+        }
+      });
+
+      document
+        .getElementById("gallery-form")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const id = document.getElementById("gallery-id").value;
+          const data = {
+            image: document.getElementById("g-image").value,
+            enName: document.getElementById("g-enName").value,
+            bnName: document.getElementById("g-bnName").value,
+            enCat: document.getElementById("g-enCat").value,
+            bnCat: document.getElementById("g-bnCat").value,
+            filter: document.getElementById("g-filter").value,
+            updatedAt: new Date().toISOString(),
+          };
+
+          try {
+            if (id) {
+              await updateDoc(doc(db, "gallery", id), data);
+              Toast.fire({ icon: "success", title: "Visual Data Mutated" });
+            } else {
+              data.createdAt = new Date().toISOString();
+              await addDoc(collection(db, "gallery"), data);
+              Toast.fire({
+                icon: "success",
+                title: "Visual Injected to Gallery",
+              });
+            }
+            closeModal("gallery-modal");
+          } catch (error) {
+            Toast.fire({ icon: "error", title: "System Error" });
+          }
+        });
+
+      window.editGallery = function (id) {
+        const galleryItem = globalGallery.find((g) => g.id === id);
+        document.getElementById("gallery-modal-title").innerText =
+          "Mutate Visual Asset";
+        document.getElementById("gallery-id").value = galleryItem.id;
+
+        const imgInp = document.getElementById("g-image");
+        imgInp.value = galleryItem.image;
+        imgInp.dispatchEvent(new Event("input"));
+
+        document.getElementById("g-enName").value = galleryItem.enName;
+        document.getElementById("g-bnName").value = galleryItem.bnName;
+        document.getElementById("g-enCat").value = galleryItem.enCat;
+        document.getElementById("g-bnCat").value = galleryItem.bnCat;
+        document.getElementById("g-filter").value = galleryItem.filter;
+        openModal("gallery-modal");
+      };
+
+      window.deleteGallery = async function (id) {
+        Swal.fire({
+          title:
+            '<h2 class="font-serif text-2xl text-white">Eradicate Visual?</h2>',
+          html:
+            '<p class="text-[10px] tracking-widest uppercase text-red-400">This action causes irreversible data loss.</p>',
+          icon: "warning",
+          showCancelButton: true,
+          background: "#0a0a0a",
+          customClass: { popup: "border border-red-900/50" },
+          confirmButtonColor: "#b38728",
+          cancelButtonColor: "#1a1a1a",
+          confirmButtonText: "CONFIRM ERADICATION",
+          cancelButtonText: "ABORT",
+        }).then(async (result) => {
+          if (result.isConfirmed) {
+            await deleteDoc(doc(db, "gallery", id));
+            Toast.fire({ icon: "success", title: "Visual Eradicated" });
+          }
+        });
+      };
+
+      document
+        .getElementById("password-form")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const newPass = document.getElementById("new-password").value;
+          const btn = e.target.querySelector("button");
+          btn.innerHTML =
+            '<i class="fas fa-circle-notch fa-spin"></i> Processing...';
+
+          try {
+            await updatePassword(auth.currentUser, newPass);
+            Toast.fire({ icon: "success", title: "Master Cipher Updated" });
+            e.target.reset();
+          } catch (error) {
+            Toast.fire({
+              icon: "error",
+              title: "Error: Re-authentication required",
+            });
+          }
+          btn.innerHTML =
+            'Execute Override <i class="fas fa-shield-check ml-2"></i>';
+        });
+
+      window.openModal = function (id) {
+        const modal = document.getElementById(id);
+
+        if (
+          id === "service-modal" &&
+          !document.getElementById("service-id").value
+        ) {
+          document.getElementById("modal-title").innerText =
+            "Inject New Service";
+          document.getElementById("service-form").reset();
+          document.getElementById("preview-img").style.opacity = "0";
+        }
+
+        if (
+          id === "gallery-modal" &&
+          !document.getElementById("gallery-id").value
+        ) {
+          document.getElementById("gallery-modal-title").innerText =
+            "Inject Visual Asset";
+          document.getElementById("gallery-form").reset();
+          document.getElementById("preview-img-gallery").style.opacity = "0";
+        }
+
+        modal.style.display = "flex";
+        setTimeout(() => modal.classList.add("active"), 10);
+      };
+
+      window.closeModal = function (id) {
+        const modal = document.getElementById(id);
+        modal.classList.remove("active");
+        setTimeout(() => {
+          modal.style.display = "none";
+          if (id === "service-modal") {
+            document.getElementById("service-form").reset();
+            document.getElementById("service-id").value = "";
+          }
+          if (id === "gallery-modal") {
+            document.getElementById("gallery-form").reset();
+            document.getElementById("gallery-id").value = "";
+          }
+        }, 400);
+      };
+    </script>
+  </body>
+</html>
