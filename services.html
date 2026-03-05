@@ -305,7 +305,7 @@
         position: fixed;
         bottom: 30px;
         right: 30px;
-        z-index: 9990; /* High z-index to stay above everything */
+        z-index: 9990;
         width: 60px;
         height: 60px;
         background: #25d366;
@@ -409,11 +409,27 @@
       <div
         class="container mx-auto px-6 md:px-12 flex justify-between items-center"
       >
-        <a
-          href="home.html"
-          class="font-serif text-2xl md:text-3xl font-bold tracking-[0.15em] text-gold-gradient uppercase z-50 cursor-hover"
-          >Rol & Ross</a
-        >
+        <!-- Creative Typographic Logo with Subtitle -->
+        <a href="" class="z-50 cursor-hover flex flex-col group relative">
+          <!-- Main Brand Name -->
+          <span
+            class="font-serif text-2xl md:text-3xl font-bold tracking-[0.15em] text-gold-gradient uppercase leading-none"
+          >
+            Rol & Ross
+          </span>
+          <!-- Smart Subtitle Lockup -->
+          <div class="flex items-center mt-1.5 ml-[2px]">
+            <!-- Elegant extending line on hover -->
+            <div
+              class="h-[1px] w-3 bg-gold/50 mr-2 transition-all duration-500 group-hover:w-6 group-hover:bg-gold"
+            ></div>
+            <span
+              class="font-sans text-[7px] md:text-[8px] font-medium uppercase tracking-[0.35em] text-gray-400 transition-colors duration-500 group-hover:text-goldlight"
+            >
+              Beauty Salon & Makeover
+            </span>
+          </div>
+        </a>
         <nav
           class="hidden lg:flex space-x-10 font-sans text-[11px] uppercase tracking-widest text-gray-300 font-medium"
         >
@@ -604,860 +620,22 @@
           </div>
         </section>
 
-        <!-- 2. Complete Services Grid -->
+        <!-- 2. Dynamic Services Grid -->
         <section class="py-16 md:py-24 bg-[#050505] relative">
           <div class="container mx-auto px-6 md:px-12 relative z-10">
+            <!-- Grid Container where Firebase data will be injected -->
             <div
+              id="services-grid"
               class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 lg:gap-10"
             >
-              <!-- 1. Advance Hydra Facial -->
-              <div class="glow-card p-6 solid-stagger opacity-0">
-                <div class="glow-card-content cursor-hover">
-                  <div
-                    class="card-img-container shadow-[0_10px_20px_rgba(0,0,0,0.5)]"
-                  >
-                    <img
-                      src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?q=80&w=600&auto=format&fit=crop"
-                      alt="Advance Hydra Facial"
-                    />
-                  </div>
-                  <h3 class="font-serif text-xl text-white mb-3 lang-en">
-                    Advance Hydra Facial
-                  </h3>
-                  <h3 class="font-bengali text-xl text-white mb-3 lang-bn">
-                    অ্যাডভান্স হাইড্রা ফেসিয়াল
-                  </h3>
-                  <p
-                    class="font-sans text-gray-400 text-[11px] font-light mb-8 flex-grow lang-en"
-                  >
-                    Medical-grade deep cleansing, exfoliation, and supreme
-                    hydration for an instant radiant glow.
-                  </p>
-                  <p
-                    class="font-bengali text-gray-400 text-xs font-light mb-8 flex-grow lang-bn"
-                  >
-                    উজ্জ্বল ত্বকের জন্য মেডিকেল-গ্রেড গভীর পরিচ্ছন্নতা এবং
-                    হাইড্রেশন।
-                  </p>
-                  <div
-                    class="flex items-center justify-between border-t border-white/10 pt-4 mt-auto"
-                  >
-                    <a
-                      href="booking.html?service=Advance+Hydra+Facial"
-                      class="btn-card-line text-[9px] uppercase tracking-widest font-bold lang-en z-20 cursor-hover"
-                      >Book Now</a
-                    >
-                    <a
-                      href="booking.html?service=Advance+Hydra+Facial"
-                      class="btn-card-line font-bengali text-xs font-bold lang-bn z-20 cursor-hover"
-                      >বুক করুন</a
-                    >
-                    <button
-                      onclick="openWA('Advance Hydra Facial', 'অ্যাডভান্স হাইড্রা ফেসিয়াল')"
-                      class="text-gray-400 hover:text-white border border-white/20 hover:border-gold px-3 py-2 text-[9px] uppercase tracking-widest transition-all duration-300 rounded-sm z-20 cursor-hover"
-                    >
-                      <span class="lang-en">Details</span
-                      ><span class="lang-bn font-bengali">বিস্তারিত</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- 2. BB Glow Facial -->
-              <div class="glow-card p-6 solid-stagger opacity-0">
-                <div class="glow-card-content cursor-hover">
-                  <div
-                    class="card-img-container shadow-[0_10px_20px_rgba(0,0,0,0.5)]"
-                  >
-                    <img
-                      src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=600&auto=format&fit=crop"
-                      alt="BB Glow Facial"
-                    />
-                  </div>
-                  <h3 class="font-serif text-xl text-white mb-3 lang-en">
-                    BB Glow Facial
-                  </h3>
-                  <h3 class="font-bengali text-xl text-white mb-3 lang-bn">
-                    বিবি গ্লো ফেসিয়াল
-                  </h3>
-                  <p
-                    class="font-sans text-gray-400 text-[11px] font-light mb-8 flex-grow lang-en"
-                  >
-                    A flawless, semi-permanent foundation treatment achieving
-                    glass-skin perfection.
-                  </p>
-                  <p
-                    class="font-bengali text-gray-400 text-xs font-light mb-8 flex-grow lang-bn"
-                  >
-                    নিখুঁত, আধা-স্থায়ী ফাউন্ডেশন ট্রিটমেন্ট গ্লাস-স্কিন অর্জনের
-                    জন্য।
-                  </p>
-                  <div
-                    class="flex items-center justify-between border-t border-white/10 pt-4 mt-auto"
-                  >
-                    <a
-                      href="booking.html?service=BB+Glow+Facial"
-                      class="btn-card-line text-[9px] uppercase tracking-widest font-bold lang-en z-20 cursor-hover"
-                      >Book Now</a
-                    >
-                    <a
-                      href="booking.html?service=BB+Glow+Facial"
-                      class="btn-card-line font-bengali text-xs font-bold lang-bn z-20 cursor-hover"
-                      >বুক করুন</a
-                    >
-                    <button
-                      onclick="openWA('BB Glow Facial', 'বিবি গ্লো ফেসিয়াল')"
-                      class="text-gray-400 hover:text-white border border-white/20 hover:border-gold px-3 py-2 text-[9px] uppercase tracking-widest transition-all duration-300 rounded-sm z-20 cursor-hover"
-                    >
-                      <span class="lang-en">Details</span
-                      ><span class="lang-bn font-bengali">বিস্তারিত</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- 3. Micro Needling -->
-              <div class="glow-card p-6 solid-stagger opacity-0">
-                <div class="glow-card-content cursor-hover">
-                  <div
-                    class="card-img-container shadow-[0_10px_20px_rgba(0,0,0,0.5)]"
-                  >
-                    <img
-                      src="https://images.pexels.com/photos/29648626/pexels-photo-29648626.jpeg"
-                      alt="Micro Needling"
-                    />
-                  </div>
-                  <h3 class="font-serif text-xl text-white mb-3 lang-en">
-                    Micro Needling
-                  </h3>
-                  <h3 class="font-bengali text-xl text-white mb-3 lang-bn">
-                    মাইক্রো নিডলিং
-                  </h3>
-                  <p
-                    class="font-sans text-gray-400 text-[11px] font-light mb-8 flex-grow lang-en"
-                  >
-                    Advanced collagen induction therapy designed to diminish
-                    scars and restore youth.
-                  </p>
-                  <p
-                    class="font-bengali text-gray-400 text-xs font-light mb-8 flex-grow lang-bn"
-                  >
-                    দাগ কমানো এবং তারুণ্য ফিরিয়ে আনার জন্য উন্নত কোলাজেন
-                    থেরাপি।
-                  </p>
-                  <div
-                    class="flex items-center justify-between border-t border-white/10 pt-4 mt-auto"
-                  >
-                    <a
-                      href="booking.html?service=Micro+Needling"
-                      class="btn-card-line text-[9px] uppercase tracking-widest font-bold lang-en z-20 cursor-hover"
-                      >Book Now</a
-                    >
-                    <a
-                      href="booking.html?service=Micro+Needling"
-                      class="btn-card-line font-bengali text-xs font-bold lang-bn z-20 cursor-hover"
-                      >বুক করুন</a
-                    >
-                    <button
-                      onclick="openWA('Micro Needling', 'মাইক্রো নিডলিং')"
-                      class="text-gray-400 hover:text-white border border-white/20 hover:border-gold px-3 py-2 text-[9px] uppercase tracking-widest transition-all duration-300 rounded-sm z-20 cursor-hover"
-                    >
-                      <span class="lang-en">Details</span
-                      ><span class="lang-bn font-bengali">বিস্তারিত</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- 4. Micro Dermabrasion -->
-              <div class="glow-card p-6 solid-stagger opacity-0">
-                <div class="glow-card-content cursor-hover">
-                  <div
-                    class="card-img-container shadow-[0_10px_20px_rgba(0,0,0,0.5)]"
-                  >
-                    <img
-                      src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?q=80&w=600&auto=format&fit=crop"
-                      alt="Micro Dermabrasion"
-                    />
-                  </div>
-                  <h3 class="font-serif text-xl text-white mb-3 lang-en">
-                    Micro Dermabrasion
-                  </h3>
-                  <h3 class="font-bengali text-xl text-white mb-3 lang-bn">
-                    মাইক্রো ডার্মাব্রেশন
-                  </h3>
-                  <p
-                    class="font-sans text-gray-400 text-[11px] font-light mb-8 flex-grow lang-en"
-                  >
-                    A minimally invasive procedure used to renew overall skin
-                    tone and texture.
-                  </p>
-                  <p
-                    class="font-bengali text-gray-400 text-xs font-light mb-8 flex-grow lang-bn"
-                  >
-                    ত্বকের টোন এবং টেক্সচার পুনর্নবীকরণ করার একটি এক্সফোলিয়েটিং
-                    ট্রিটমেন্ট।
-                  </p>
-                  <div
-                    class="flex items-center justify-between border-t border-white/10 pt-4 mt-auto"
-                  >
-                    <a
-                      href="booking.html?service=Micro+Dermabrasion"
-                      class="btn-card-line text-[9px] uppercase tracking-widest font-bold lang-en z-20 cursor-hover"
-                      >Book Now</a
-                    >
-                    <a
-                      href="booking.html?service=Micro+Dermabrasion"
-                      class="btn-card-line font-bengali text-xs font-bold lang-bn z-20 cursor-hover"
-                      >বুক করুন</a
-                    >
-                    <button
-                      onclick="openWA('Micro Dermabrasion', 'মাইক্রো ডার্মাব্রেশন')"
-                      class="text-gray-400 hover:text-white border border-white/20 hover:border-gold px-3 py-2 text-[9px] uppercase tracking-widest transition-all duration-300 rounded-sm z-20 cursor-hover"
-                    >
-                      <span class="lang-en">Details</span
-                      ><span class="lang-bn font-bengali">বিস্তারিত</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- 5. Advanced Korean Flow Facial -->
-              <div class="glow-card p-6 solid-stagger opacity-0">
-                <div class="glow-card-content cursor-hover">
-                  <div
-                    class="card-img-container shadow-[0_10px_20px_rgba(0,0,0,0.5)]"
-                  >
-                    <img
-                      src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?q=80&w=600&auto=format&fit=crop"
-                      alt="Advanced Korean Flow Facial"
-                    />
-                  </div>
-                  <h3 class="font-serif text-xl text-white mb-3 lang-en">
-                    Korean Flow Facial
-                  </h3>
-                  <h3 class="font-bengali text-xl text-white mb-3 lang-bn">
-                    কোরিয়ান ফ্লো ফেসিয়াল
-                  </h3>
-                  <p
-                    class="font-sans text-gray-400 text-[11px] font-light mb-8 flex-grow lang-en"
-                  >
-                    Exclusive Korean aesthetics techniques to achieve the
-                    ultimate glass-skin radiance.
-                  </p>
-                  <p
-                    class="font-bengali text-gray-400 text-xs font-light mb-8 flex-grow lang-bn"
-                  >
-                    চূড়ান্ত গ্লাস-স্কিনের উজ্জ্বলতা অর্জনের জন্য এক্সক্লুসিভ
-                    কোরিয়ান কৌশল।
-                  </p>
-                  <div
-                    class="flex items-center justify-between border-t border-white/10 pt-4 mt-auto"
-                  >
-                    <a
-                      href="booking.html?service=Advanced+Korean+Flow+Facial"
-                      class="btn-card-line text-[9px] uppercase tracking-widest font-bold lang-en z-20 cursor-hover"
-                      >Book Now</a
-                    >
-                    <a
-                      href="booking.html?service=Advanced+Korean+Flow+Facial"
-                      class="btn-card-line font-bengali text-xs font-bold lang-bn z-20 cursor-hover"
-                      >বুক করুন</a
-                    >
-                    <button
-                      onclick="openWA('Advanced Korean Flow Facial', 'অ্যাডভান্সড কোরিয়ান ফ্লো ফেসিয়াল')"
-                      class="text-gray-400 hover:text-white border border-white/20 hover:border-gold px-3 py-2 text-[9px] uppercase tracking-widest transition-all duration-300 rounded-sm z-20 cursor-hover"
-                    >
-                      <span class="lang-en">Details</span
-                      ><span class="lang-bn font-bengali">বিস্তারিত</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- 6. D-Tan Facial -->
-              <div class="glow-card p-6 solid-stagger opacity-0">
-                <div class="glow-card-content cursor-hover">
-                  <div
-                    class="card-img-container shadow-[0_10px_20px_rgba(0,0,0,0.5)]"
-                  >
-                    <img
-                      src="https://images.unsplash.com/photo-1506452814418-2c1bf878d655?q=80&w=600&auto=format&fit=crop"
-                      alt="D-Tan Facial"
-                    />
-                  </div>
-                  <h3 class="font-serif text-xl text-white mb-3 lang-en">
-                    D-Tan Facial
-                  </h3>
-                  <h3 class="font-bengali text-xl text-white mb-3 lang-bn">
-                    ডি-ট্যান ফেসিয়াল
-                  </h3>
-                  <p
-                    class="font-sans text-gray-400 text-[11px] font-light mb-8 flex-grow lang-en"
-                  >
-                    Instantly removes sun damage and pigmentation, restoring
-                    your natural bright complexion.
-                  </p>
-                  <p
-                    class="font-bengali text-gray-400 text-xs font-light mb-8 flex-grow lang-bn"
-                  >
-                    রোদে পোড়া দাগ দূর করে আপনার স্বাভাবিক উজ্জ্বল গাত্রবর্ণ
-                    ফিরিয়ে আনে।
-                  </p>
-                  <div
-                    class="flex items-center justify-between border-t border-white/10 pt-4 mt-auto"
-                  >
-                    <a
-                      href="booking.html?service=D-Tan+Facial"
-                      class="btn-card-line text-[9px] uppercase tracking-widest font-bold lang-en z-20 cursor-hover"
-                      >Book Now</a
-                    >
-                    <a
-                      href="booking.html?service=D-Tan+Facial"
-                      class="btn-card-line font-bengali text-xs font-bold lang-bn z-20 cursor-hover"
-                      >বুক করুন</a
-                    >
-                    <button
-                      onclick="openWA('D-Tan Facial', 'ডি-ট্যান ফেসিয়াল')"
-                      class="text-gray-400 hover:text-white border border-white/20 hover:border-gold px-3 py-2 text-[9px] uppercase tracking-widest transition-all duration-300 rounded-sm z-20 cursor-hover"
-                    >
-                      <span class="lang-en">Details</span
-                      ><span class="lang-bn font-bengali">বিস্তারিত</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- 7. Hair Styling & Hair Cutting -->
-              <div class="glow-card p-6 solid-stagger opacity-0">
-                <div class="glow-card-content cursor-hover">
-                  <div
-                    class="card-img-container shadow-[0_10px_20px_rgba(0,0,0,0.5)]"
-                  >
-                    <img
-                      src="https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=600&auto=format&fit=crop"
-                      alt="Hair Styling"
-                    />
-                  </div>
-                  <h3 class="font-serif text-xl text-white mb-3 lang-en">
-                    Styling & Cutting
-                  </h3>
-                  <h3 class="font-bengali text-xl text-white mb-3 lang-bn">
-                    হেয়ার স্টাইলিং ও কাটিং
-                  </h3>
-                  <p
-                    class="font-sans text-gray-400 text-[11px] font-light mb-8 flex-grow lang-en"
-                  >
-                    Precision cuts and modern bespoke styling tailored by our
-                    master hair artisans.
-                  </p>
-                  <p
-                    class="font-bengali text-gray-400 text-xs font-light mb-8 flex-grow lang-bn"
-                  >
-                    আমাদের মাস্টার হেয়ার আর্টিজানদের দ্বারা নিপুণ কাট এবং
-                    আধুনিক স্টাইলিং।
-                  </p>
-                  <div
-                    class="flex items-center justify-between border-t border-white/10 pt-4 mt-auto"
-                  >
-                    <!-- UPDATED LINK HERE -->
-                    <a
-                      href="booking.html?service=Hair+Styling+%26+Hair+Cutting"
-                      class="btn-card-line text-[9px] uppercase tracking-widest font-bold lang-en z-20 cursor-hover"
-                      >Book Now</a
-                    >
-                    <a
-                      href="booking.html?service=Hair+Styling+%26+Hair+Cutting"
-                      class="btn-card-line font-bengali text-xs font-bold lang-bn z-20 cursor-hover"
-                      >বুক করুন</a
-                    >
-                    <button
-                      onclick="openWA('Hair Styling & Cutting', 'হেয়ার স্টাইলিং এবং হেয়ার কাটিং')"
-                      class="text-gray-400 hover:text-white border border-white/20 hover:border-gold px-3 py-2 text-[9px] uppercase tracking-widest transition-all duration-300 rounded-sm z-20 cursor-hover"
-                    >
-                      <span class="lang-en">Details</span
-                      ><span class="lang-bn font-bengali">বিস্তারিত</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- 8. Permanent Hair Removal (Laser) -->
-              <div class="glow-card p-6 solid-stagger opacity-0">
-                <div class="glow-card-content cursor-hover">
-                  <div
-                    class="card-img-container shadow-[0_10px_20px_rgba(0,0,0,0.5)]"
-                  >
-                    <img
-                      src="https://images.pexels.com/photos/19239114/pexels-photo-19239114.jpeg"
-                      alt="Laser Hair Removal"
-                    />
-                  </div>
-                  <h3 class="font-serif text-xl text-white mb-3 lang-en">
-                    Laser Hair Removal
-                  </h3>
-                  <h3 class="font-bengali text-xl text-white mb-3 lang-bn">
-                    লেজার হেয়ার রিমুভাল
-                  </h3>
-                  <p
-                    class="font-sans text-gray-400 text-[11px] font-light mb-8 flex-grow lang-en"
-                  >
-                    State-of-the-art diode laser technology for painless,
-                    permanent hair reduction.
-                  </p>
-                  <p
-                    class="font-bengali text-gray-400 text-xs font-light mb-8 flex-grow lang-bn"
-                  >
-                    ব্যথামুক্ত, স্থায়ী চুল কমানোর জন্য অত্যাধুনিক ডায়োড লেজার
-                    প্রযুক্তি।
-                  </p>
-                  <div
-                    class="flex items-center justify-between border-t border-white/10 pt-4 mt-auto"
-                  >
-                    <!-- UPDATED LINK HERE -->
-                    <a
-                      href="booking.html?service=Permanent+Hair+Removal+(Laser)"
-                      class="btn-card-line text-[9px] uppercase tracking-widest font-bold lang-en z-20 cursor-hover"
-                      >Book Now</a
-                    >
-                    <a
-                      href="booking.html?service=Permanent+Hair+Removal+(Laser)"
-                      class="btn-card-line font-bengali text-xs font-bold lang-bn z-20 cursor-hover"
-                      >বুক করুন</a
-                    >
-                    <button
-                      onclick="openWA('Laser Hair Removal', 'লেজার হেয়ার রিমুভাল')"
-                      class="text-gray-400 hover:text-white border border-white/20 hover:border-gold px-3 py-2 text-[9px] uppercase tracking-widest transition-all duration-300 rounded-sm z-20 cursor-hover"
-                    >
-                      <span class="lang-en">Details</span
-                      ><span class="lang-bn font-bengali">বিস্তারিত</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- 9. Rol & Rose Special Hair Spa -->
-              <div class="glow-card p-6 solid-stagger opacity-0">
-                <div class="glow-card-content cursor-hover">
-                  <div
-                    class="card-img-container shadow-[0_10px_20px_rgba(0,0,0,0.5)]"
-                  >
-                    <img
-                      src="https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=600&auto=format&fit=crop"
-                      alt="Special Hair Spa"
-                    />
-                  </div>
-                  <h3 class="font-serif text-xl text-white mb-3 lang-en">
-                    Rol & Rose Hair Spa
-                  </h3>
-                  <h3 class="font-bengali text-xl text-white mb-3 lang-bn">
-                    রোল অ্যান্ড রোজ স্পেশাল স্পা
-                  </h3>
-                  <p
-                    class="font-sans text-gray-400 text-[11px] font-light mb-8 flex-grow lang-en"
-                  >
-                    An exclusive formulation to deeply nourish the scalp and
-                    restore absolute hair vitality.
-                  </p>
-                  <p
-                    class="font-bengali text-gray-400 text-xs font-light mb-8 flex-grow lang-bn"
-                  >
-                    মাথার ত্বককে গভীরভাবে পুষ্ট করতে এবং চুলের প্রাণবন্ততা
-                    ফিরিয়ে আনার স্পা।
-                  </p>
-                  <div
-                    class="flex items-center justify-between border-t border-white/10 pt-4 mt-auto"
-                  >
-                    <!-- UPDATED LINK HERE -->
-                    <a
-                      href="booking.html?service=Rol+%26+Rose+Special+Hair+Spa"
-                      class="btn-card-line text-[9px] uppercase tracking-widest font-bold lang-en z-20 cursor-hover"
-                      >Book Now</a
-                    >
-                    <a
-                      href="booking.html?service=Rol+%26+Rose+Special+Hair+Spa"
-                      class="btn-card-line font-bengali text-xs font-bold lang-bn z-20 cursor-hover"
-                      >বুক করুন</a
-                    >
-                    <button
-                      onclick="openWA('Rol & Rose Special Hair Spa', 'রোল অ্যান্ড রোজ স্পেশাল হেয়ার স্পা')"
-                      class="text-gray-400 hover:text-white border border-white/20 hover:border-gold px-3 py-2 text-[9px] uppercase tracking-widest transition-all duration-300 rounded-sm z-20 cursor-hover"
-                    >
-                      <span class="lang-en">Details</span
-                      ><span class="lang-bn font-bengali">বিস্তারিত</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- 10. Anti Dandruff Treatment -->
-              <div class="glow-card p-6 solid-stagger opacity-0">
-                <div class="glow-card-content cursor-hover">
-                  <div
-                    class="card-img-container shadow-[0_10px_20px_rgba(0,0,0,0.5)]"
-                  >
-                    <img
-                      src="https://i.postimg.cc/zX3Y0hyY/Scalp-treatment-in-a-salon.png"
-                      alt="Anti Dandruff"
-                    />
-                  </div>
-                  <h3 class="font-serif text-xl text-white mb-3 lang-en">
-                    Anti Dandruff Treatment
-                  </h3>
-                  <h3 class="font-bengali text-xl text-white mb-3 lang-bn">
-                    অ্যান্টি-ড্যানড্রাফ ট্রিটমেন্ট
-                  </h3>
-                  <p
-                    class="font-sans text-gray-400 text-[11px] font-light mb-8 flex-grow lang-en"
-                  >
-                    Advanced scalp purification to eliminate dandruff and soothe
-                    irritation permanently.
-                  </p>
-                  <p
-                    class="font-bengali text-gray-400 text-xs font-light mb-8 flex-grow lang-bn"
-                  >
-                    খুশকি দূর করতে এবং চুলকানি প্রশমিত করার উন্নত স্কাল্প
-                    পিউরিফিকেশন।
-                  </p>
-                  <div
-                    class="flex items-center justify-between border-t border-white/10 pt-4 mt-auto"
-                  >
-                    <a
-                      href="booking.html?service=Anti+Dandruff+Treatment"
-                      class="btn-card-line text-[9px] uppercase tracking-widest font-bold lang-en z-20 cursor-hover"
-                      >Book Now</a
-                    >
-                    <a
-                      href="booking.html?service=Anti+Dandruff+Treatment"
-                      class="btn-card-line font-bengali text-xs font-bold lang-bn z-20 cursor-hover"
-                      >বুক করুন</a
-                    >
-                    <button
-                      onclick="openWA('Anti Dandruff Treatment', 'অ্যান্টি-ড্যানড্রাফ ট্রিটমেন্ট')"
-                      class="text-gray-400 hover:text-white border border-white/20 hover:border-gold px-3 py-2 text-[9px] uppercase tracking-widest transition-all duration-300 rounded-sm z-20 cursor-hover"
-                    >
-                      <span class="lang-en">Details</span
-                      ><span class="lang-bn font-bengali">বিস্তারিত</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- 11. Keratin & Brazilian Keratin -->
-              <div class="glow-card p-6 solid-stagger opacity-0">
-                <div class="glow-card-content cursor-hover">
-                  <div
-                    class="card-img-container shadow-[0_10px_20px_rgba(0,0,0,0.5)]"
-                  >
-                    <img
-                      src="https://i.postimg.cc/FFMVB5Rv/Keratin-treatment-in-the-salon.png"
-                      alt="Keratin"
-                    />
-                  </div>
-                  <h3 class="font-serif text-xl text-white mb-3 lang-en">
-                    Keratin Treatment
-                  </h3>
-                  <h3 class="font-bengali text-xl text-white mb-3 lang-bn">
-                    কেরাটিন ট্রিটমেন্ট
-                  </h3>
-                  <p
-                    class="font-sans text-gray-400 text-[11px] font-light mb-8 flex-grow lang-en"
-                  >
-                    Premium Brazilian Keratin for impeccably silky, smooth, and
-                    frizz-free elegance.
-                  </p>
-                  <p
-                    class="font-bengali text-gray-400 text-xs font-light mb-8 flex-grow lang-bn"
-                  >
-                    নিখুঁত সিল্কি, মসৃণ এবং ফ্রিজ-মুক্ত আভিজাত্যের জন্য
-                    প্রিমিয়াম ব্রাজিলিয়ান কেরাটিন।
-                  </p>
-                  <div
-                    class="flex items-center justify-between border-t border-white/10 pt-4 mt-auto"
-                  >
-                    <!-- UPDATED LINK HERE -->
-                    <a
-                      href="booking.html?service=Keratin+%26+Brazilian+Keratin"
-                      class="btn-card-line text-[9px] uppercase tracking-widest font-bold lang-en z-20 cursor-hover"
-                      >Book Now</a
-                    >
-                    <a
-                      href="booking.html?service=Keratin+%26+Brazilian+Keratin"
-                      class="btn-card-line font-bengali text-xs font-bold lang-bn z-20 cursor-hover"
-                      >বুক করুন</a
-                    >
-                    <button
-                      onclick="openWA('Keratin & Brazilian Keratin', 'কেরাটিন এবং ব্রাজিলিয়ান কেরাটিন')"
-                      class="text-gray-400 hover:text-white border border-white/20 hover:border-gold px-3 py-2 text-[9px] uppercase tracking-widest transition-all duration-300 rounded-sm z-20 cursor-hover"
-                    >
-                      <span class="lang-en">Details</span
-                      ><span class="lang-bn font-bengali">বিস্তারিত</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- 12. Botox Treatment -->
-              <div class="glow-card p-6 solid-stagger opacity-0">
-                <div class="glow-card-content cursor-hover">
-                  <div
-                    class="card-img-container shadow-[0_10px_20px_rgba(0,0,0,0.5)]"
-                  >
-                    <img
-                      src="https://i.postimg.cc/PrdPx2VD/Relaxing-Botox-treatment-in-a-clinic.png"
-                      alt="Botox Treatment"
-                    />
-                  </div>
-                  <h3 class="font-serif text-xl text-white mb-3 lang-en">
-                    Botox Treatment
-                  </h3>
-                  <h3 class="font-bengali text-xl text-white mb-3 lang-bn">
-                    বোটক্স ট্রিটমেন্ট
-                  </h3>
-                  <p
-                    class="font-sans text-gray-400 text-[11px] font-light mb-8 flex-grow lang-en"
-                  >
-                    Aesthetic youth restoration designed for flawless,
-                    wrinkle-free elegance.
-                  </p>
-                  <p
-                    class="font-bengali text-gray-400 text-xs font-light mb-8 flex-grow lang-bn"
-                  >
-                    নিখুঁত লাবণ্যের জন্য বলিরেখামুক্ত তারুণ্য পুনরুদ্ধার।
-                  </p>
-                  <div
-                    class="flex items-center justify-between border-t border-white/10 pt-4 mt-auto"
-                  >
-                    <a
-                      href="booking.html?service=Botox+Treatment"
-                      class="btn-card-line text-[9px] uppercase tracking-widest font-bold lang-en z-20 cursor-hover"
-                      >Book Now</a
-                    >
-                    <a
-                      href="booking.html?service=Botox+Treatment"
-                      class="btn-card-line font-bengali text-xs font-bold lang-bn z-20 cursor-hover"
-                      >বুক করুন</a
-                    >
-                    <button
-                      onclick="openWA('Botox Treatment', 'বোটক্স ট্রিটমেন্ট')"
-                      class="text-gray-400 hover:text-white border border-white/20 hover:border-gold px-3 py-2 text-[9px] uppercase tracking-widest transition-all duration-300 rounded-sm z-20 cursor-hover"
-                    >
-                      <span class="lang-en">Details</span
-                      ><span class="lang-bn font-bengali">বিস্তারিত</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- 13. Carbon Laser -->
-              <div class="glow-card p-6 solid-stagger opacity-0">
-                <div class="glow-card-content cursor-hover">
-                  <div
-                    class="card-img-container shadow-[0_10px_20px_rgba(0,0,0,0.5)]"
-                  >
-                    <img
-                      src="https://images.unsplash.com/photo-1534063234509-f831c19b0d1e?q=80&w=600&auto=format&fit=crop"
-                      alt="Carbon Laser"
-                    />
-                  </div>
-                  <h3 class="font-serif text-xl text-white mb-3 lang-en">
-                    Carbon Laser
-                  </h3>
-                  <h3 class="font-bengali text-xl text-white mb-3 lang-bn">
-                    কার্বন লেজার
-                  </h3>
-                  <p
-                    class="font-sans text-gray-400 text-[11px] font-light mb-8 flex-grow lang-en"
-                  >
-                    The famous 'Hollywood Peel' for deep pore cleansing and
-                    spectacular skin rejuvenation.
-                  </p>
-                  <p
-                    class="font-bengali text-gray-400 text-xs font-light mb-8 flex-grow lang-bn"
-                  >
-                    গভীর পোর ক্লিনজিং এবং ত্বকের পুনরুজ্জীবনের জন্য বিখ্যাত
-                    'হলিউড পিল'।
-                  </p>
-                  <div
-                    class="flex items-center justify-between border-t border-white/10 pt-4 mt-auto"
-                  >
-                    <a
-                      href="booking.html?service=Carbon+Laser"
-                      class="btn-card-line text-[9px] uppercase tracking-widest font-bold lang-en z-20 cursor-hover"
-                      >Book Now</a
-                    >
-                    <a
-                      href="booking.html?service=Carbon+Laser"
-                      class="btn-card-line font-bengali text-xs font-bold lang-bn z-20 cursor-hover"
-                      >বুক করুন</a
-                    >
-                    <button
-                      onclick="openWA('Carbon Laser', 'কার্বন লেজার')"
-                      class="text-gray-400 hover:text-white border border-white/20 hover:border-gold px-3 py-2 text-[9px] uppercase tracking-widest transition-all duration-300 rounded-sm z-20 cursor-hover"
-                    >
-                      <span class="lang-en">Details</span
-                      ><span class="lang-bn font-bengali">বিস্তারিত</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- 14. Chemical Peeling -->
-              <div class="glow-card p-6 solid-stagger opacity-0">
-                <div class="glow-card-content cursor-hover">
-                  <div
-                    class="card-img-container shadow-[0_10px_20px_rgba(0,0,0,0.5)]"
-                  >
-                    <img
-                      src="https://images.unsplash.com/photo-1608223652613-2be2a28181ba?q=80&w=600&auto=format&fit=crop"
-                      alt="Chemical Peeling"
-                    />
-                  </div>
-                  <h3 class="font-serif text-xl text-white mb-3 lang-en">
-                    Chemical Peeling
-                  </h3>
-                  <h3 class="font-bengali text-xl text-white mb-3 lang-bn">
-                    কেমিক্যাল পিলিং
-                  </h3>
-                  <p
-                    class="font-sans text-gray-400 text-[11px] font-light mb-8 flex-grow lang-en"
-                  >
-                    Advanced skin resurfacing technique revealing a flawlessly
-                    clear and smooth complexion.
-                  </p>
-                  <p
-                    class="font-bengali text-gray-400 text-xs font-light mb-8 flex-grow lang-bn"
-                  >
-                    ত্বক পরিষ্কার এবং মসৃণ করার জন্য উন্নত স্কিন রিসারফেসিং
-                    কৌশল।
-                  </p>
-                  <div
-                    class="flex items-center justify-between border-t border-white/10 pt-4 mt-auto"
-                  >
-                    <a
-                      href="booking.html?service=Chemical+Peeling"
-                      class="btn-card-line text-[9px] uppercase tracking-widest font-bold lang-en z-20 cursor-hover"
-                      >Book Now</a
-                    >
-                    <a
-                      href="booking.html?service=Chemical+Peeling"
-                      class="btn-card-line font-bengali text-xs font-bold lang-bn z-20 cursor-hover"
-                      >বুক করুন</a
-                    >
-                    <button
-                      onclick="openWA('Chemical Peeling', 'কেমিক্যাল পিলিং')"
-                      class="text-gray-400 hover:text-white border border-white/20 hover:border-gold px-3 py-2 text-[9px] uppercase tracking-widest transition-all duration-300 rounded-sm z-20 cursor-hover"
-                    >
-                      <span class="lang-en">Details</span
-                      ><span class="lang-bn font-bengali">বিস্তারিত</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- 15. Nail Extension -->
-              <div class="glow-card p-6 solid-stagger opacity-0">
-                <div class="glow-card-content cursor-hover">
-                  <div
-                    class="card-img-container shadow-[0_10px_20px_rgba(0,0,0,0.5)]"
-                  >
-                    <img
-                      src="https://images.unsplash.com/photo-1519014816548-bf5fe059e98b?q=80&w=600&auto=format&fit=crop"
-                      alt="Nail Extension"
-                    />
-                  </div>
-                  <h3 class="font-serif text-xl text-white mb-3 lang-en">
-                    Nail Extension
-                  </h3>
-                  <h3 class="font-bengali text-xl text-white mb-3 lang-bn">
-                    নখ এক্সটেনশন
-                  </h3>
-                  <p
-                    class="font-sans text-gray-400 text-[11px] font-light mb-8 flex-grow lang-en"
-                  >
-                    Premium acrylic and gel extensions crafted with meticulous
-                    artistic precision.
-                  </p>
-                  <p
-                    class="font-bengali text-gray-400 text-xs font-light mb-8 flex-grow lang-bn"
-                  >
-                    নিখুঁত শৈল্পিকতায় তৈরি প্রিমিয়াম অ্যাক্রিলিক এবং জেল
-                    এক্সটেনশন।
-                  </p>
-                  <div
-                    class="flex items-center justify-between border-t border-white/10 pt-4 mt-auto"
-                  >
-                    <a
-                      href="booking.html?service=Nail+Extension"
-                      class="btn-card-line text-[9px] uppercase tracking-widest font-bold lang-en z-20 cursor-hover"
-                      >Book Now</a
-                    >
-                    <a
-                      href="booking.html?service=Nail+Extension"
-                      class="btn-card-line font-bengali text-xs font-bold lang-bn z-20 cursor-hover"
-                      >বুক করুন</a
-                    >
-                    <button
-                      onclick="openWA('Nail Extension', 'নখ এক্সটেনশন')"
-                      class="text-gray-400 hover:text-white border border-white/20 hover:border-gold px-3 py-2 text-[9px] uppercase tracking-widest transition-all duration-300 rounded-sm z-20 cursor-hover"
-                    >
-                      <span class="lang-en">Details</span
-                      ><span class="lang-bn font-bengali">বিস্তারিত</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- 16. Eyelash Extension -->
-              <div class="glow-card p-6 solid-stagger opacity-0">
-                <div class="glow-card-content cursor-hover">
-                  <div
-                    class="card-img-container shadow-[0_10px_20px_rgba(0,0,0,0.5)]"
-                  >
-                    <img
-                      src="https://images.unsplash.com/photo-1587778082149-bd5b1bf5d3fa?q=80&w=600&auto=format&fit=crop"
-                      alt="Eyelash Extension"
-                    />
-                  </div>
-                  <h3 class="font-serif text-xl text-white mb-3 lang-en">
-                    Eyelash Extension
-                  </h3>
-                  <h3 class="font-bengali text-xl text-white mb-3 lang-bn">
-                    আইল্যাশ এক্সটেনশন
-                  </h3>
-                  <p
-                    class="font-sans text-gray-400 text-[11px] font-light mb-8 flex-grow lang-en"
-                  >
-                    Achieve voluminous, alluring, and perfectly natural-looking
-                    lashes.
-                  </p>
-                  <p
-                    class="font-bengali text-gray-400 text-xs font-light mb-8 flex-grow lang-bn"
-                  >
-                    ঘন, আকর্ষণীয় এবং সম্পূর্ণ প্রাকৃতিক চেহারার পাপড়ি পান।
-                  </p>
-                  <div
-                    class="flex items-center justify-between border-t border-white/10 pt-4 mt-auto"
-                  >
-                    <a
-                      href="booking.html?service=Eyelash+Extension"
-                      class="btn-card-line text-[9px] uppercase tracking-widest font-bold lang-en z-20 cursor-hover"
-                      >Book Now</a
-                    >
-                    <a
-                      href="booking.html?service=Eyelash+Extension"
-                      class="btn-card-line font-bengali text-xs font-bold lang-bn z-20 cursor-hover"
-                      >বুক করুন</a
-                    >
-                    <button
-                      onclick="openWA('Eyelash Extension', 'আইল্যাশ এক্সটেনশন')"
-                      class="text-gray-400 hover:text-white border border-white/20 hover:border-gold px-3 py-2 text-[9px] uppercase tracking-widest transition-all duration-300 rounded-sm z-20 cursor-hover"
-                    >
-                      <span class="lang-en">Details</span
-                      ><span class="lang-bn font-bengali">বিস্তারিত</span>
-                    </button>
-                  </div>
-                </div>
+              <!-- Initial Loading State -->
+              <div
+                class="col-span-full flex flex-col items-center justify-center py-20 text-gold opacity-50"
+              >
+                <i class="fas fa-circle-notch fa-spin text-4xl mb-4"></i>
+                <p class="font-sans text-[10px] tracking-[0.2em] uppercase">
+                  Loading Vault...
+                </p>
               </div>
             </div>
           </div>
@@ -1662,8 +840,30 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
 
-    <script>
-      // Lenis Smooth Scroll
+    <!-- Changed script to type="module" for Firebase -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+      import {
+        getFirestore,
+        collection,
+        onSnapshot,
+      } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+      // 1. Firebase Configuration (Matches Admin Panel)
+      const firebaseConfig = {
+        apiKey: "AIzaSyCBUFaTPfpF_MbC-hGFtVUKGdk3zxmrBfk",
+        authDomain: "rolandross-7d223.firebaseapp.com",
+        projectId: "rolandross-7d223",
+        storageBucket: "rolandross-7d223.firebasestorage.app",
+        messagingSenderId: "811915815605",
+        appId: "1:811915815605:web:56bfa051b4a33afccbecfc",
+        measurementId: "G-YCHZTT3ZW1",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      // --- Original Lenis & GSAP Setup ---
       const lenis = new Lenis({
         duration: 1.2,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -1682,11 +882,64 @@
       gsap.ticker.add((time) => lenis.raf(time * 1000));
       gsap.ticker.lagSmoothing(0);
 
-      // Custom Cursor
+      // --- UI Bind Functions (to be called after dynamic DOM injection) ---
+
+      function bindCursorHover() {
+        if (window.innerWidth > 1024) {
+          const newHovers = document
+            .getElementById("services-grid")
+            .querySelectorAll(".cursor-hover");
+          newHovers.forEach((el) => {
+            el.addEventListener("mouseenter", () =>
+              document.body.classList.add("cursor-hover-link"),
+            );
+            el.addEventListener("mouseleave", () =>
+              document.body.classList.remove("cursor-hover-link"),
+            );
+          });
+        }
+      }
+
+      function bindGlowCards() {
+        document
+          .getElementById("services-grid")
+          .querySelectorAll(".glow-card")
+          .forEach((card) => {
+            card.addEventListener("mousemove", (e) => {
+              const rect = card.getBoundingClientRect();
+              const x = e.clientX - rect.left;
+              const y = e.clientY - rect.top;
+              card.style.setProperty("--mouse-x", `${x}px`);
+              card.style.setProperty("--mouse-y", `${y}px`);
+            });
+          });
+      }
+
+      function initStagger() {
+        // Prepare new elements for stagger
+        gsap.set(".solid-stagger", { y: 60, opacity: 0 });
+
+        // Ensure old scroll triggers attached to ".solid-stagger" are reset cleanly
+        ScrollTrigger.batch(".solid-stagger", {
+          interval: 0.1,
+          onEnter: (batch) =>
+            gsap.to(batch, {
+              opacity: 1,
+              y: 0,
+              stagger: 0.1,
+              duration: 1,
+              ease: "power4.out",
+              overwrite: true,
+            }),
+          start: "top 85%",
+        });
+        ScrollTrigger.refresh();
+      }
+
+      // Existing initial cursor binds for Nav/Header/Footer
       if (window.innerWidth > 1024) {
         const cursorDot = document.querySelector(".cursor-dot");
         const cursorOutline = document.querySelector(".cursor-outline");
-
         let xToDot = gsap.quickTo(cursorDot, "x", {
           duration: 0.1,
           ease: "power3",
@@ -1703,36 +956,98 @@
           duration: 0.5,
           ease: "power3",
         });
-
         window.addEventListener("mousemove", (e) => {
           xToDot(e.clientX);
           yToDot(e.clientY);
           xToOutline(e.clientX);
           yToOutline(e.clientY);
         });
-
         document.querySelectorAll(".cursor-hover").forEach((el) => {
-          el.addEventListener("mouseenter", () =>
-            document.body.classList.add("cursor-hover-link"),
-          );
-          el.addEventListener("mouseleave", () =>
-            document.body.classList.remove("cursor-hover-link"),
-          );
+          if (!el.closest("#services-grid")) {
+            // Bind only non-grid elements initially
+            el.addEventListener("mouseenter", () =>
+              document.body.classList.add("cursor-hover-link"),
+            );
+            el.addEventListener("mouseleave", () =>
+              document.body.classList.remove("cursor-hover-link"),
+            );
+          }
         });
       }
 
-      // Dynamic Glow on Service Cards
-      document.querySelectorAll(".glow-card").forEach((card) => {
-        card.addEventListener("mousemove", (e) => {
-          const rect = card.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          card.style.setProperty("--mouse-x", `${x}px`);
-          card.style.setProperty("--mouse-y", `${y}px`);
+      // --- Live Database Fetching with Reorder Logic ---
+      const servicesGrid = document.getElementById("services-grid");
+
+      onSnapshot(collection(db, "services"), (snapshot) => {
+        if (snapshot.empty) {
+          servicesGrid.innerHTML = `<p class="text-white text-center font-sans tracking-widest text-xs uppercase col-span-full">The vault is currently empty.</p>`;
+          return;
+        }
+
+        // 1. Fetch data and push it to an array
+        let servicesData = [];
+        snapshot.forEach((doc) => {
+          servicesData.push({ id: doc.id, ...doc.data() });
         });
+
+        // 2. Sort the array based on the 'order' field (matches Admin panel sorting logic)
+        servicesData.sort((a, b) => (a.order ?? 9999) - (b.order ?? 9999));
+
+        // 3. Render HTML using the sorted array
+        let html = "";
+        servicesData.forEach((data) => {
+          // Escape single quotes for inline JS function (WA)
+          const enNameSafe = data.enName
+            ? data.enName.replace(/'/g, "\\'")
+            : "";
+          const bnNameSafe = data.bnName
+            ? data.bnName.replace(/'/g, "\\'")
+            : "";
+
+          html += `
+            <div class="glow-card p-6 solid-stagger opacity-0">
+              <div class="glow-card-content cursor-hover">
+                <div class="card-img-container shadow-[0_10px_20px_rgba(0,0,0,0.5)]">
+                  <img src="${data.image}" alt="${data.enName}" />
+                </div>
+                <h3 class="font-serif text-xl text-white mb-3 lang-en">${
+                  data.enName
+                }</h3>
+                <h3 class="font-bengali text-xl text-white mb-3 lang-bn">${
+                  data.bnName
+                }</h3>
+                <p class="font-sans text-gray-400 text-[11px] font-light mb-8 flex-grow lang-en">${
+                  data.enDesc
+                }</p>
+                <p class="font-bengali text-gray-400 text-xs font-light mb-8 flex-grow lang-bn">${
+                  data.bnDesc
+                }</p>
+                <div class="flex items-center justify-between border-t border-white/10 pt-4 mt-auto">
+                  <a href="booking.html?service=${encodeURIComponent(
+                    data.enName,
+                  )}" class="btn-card-line text-[9px] uppercase tracking-widest font-bold lang-en z-20 cursor-hover">Book Now</a>
+                  <a href="booking.html?service=${encodeURIComponent(
+                    data.enName,
+                  )}" class="btn-card-line font-bengali text-xs font-bold lang-bn z-20 cursor-hover">বুক করুন</a>
+                  <button onclick="window.openWA('${enNameSafe}', '${bnNameSafe}')" class="text-gray-400 hover:text-white border border-white/20 hover:border-gold px-3 py-2 text-[9px] uppercase tracking-widest transition-all duration-300 rounded-sm z-20 cursor-hover">
+                    <span class="lang-en">Details</span><span class="lang-bn font-bengali">বিস্তারিত</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+        });
+
+        // Inject the newly generated HTML
+        servicesGrid.innerHTML = html;
+
+        // Re-bind Custom Interactions for the newly loaded cards
+        bindGlowCards();
+        bindCursorHover();
+        initStagger();
       });
 
-      // Bilingual Toggle
+      // --- Rest of your original interactions ---
       const langBtns = document.querySelectorAll(".lang-btn");
       langBtns.forEach((btn) => {
         btn.addEventListener("click", (e) => {
@@ -1755,7 +1070,6 @@
         });
       });
 
-      // Mobile Drawer
       const menuToggle = document.getElementById("menu-toggle");
       const drawer = document.getElementById("mobile-drawer");
       const drawerLinks = document.querySelectorAll(".drawer-link");
@@ -1797,7 +1111,7 @@
         });
       });
 
-      // WhatsApp Function
+      // Exported strictly to global window object since we are in a module
       window.openWA = function (enName, bnName) {
         const currentLang = document.body.getAttribute("data-lang");
         let textMessage =
@@ -1810,7 +1124,6 @@
         );
       };
 
-      // GSAP Reveals
       document.body.style.overflow = "hidden";
       lenis.stop();
       const tlLoader = gsap.timeline();
@@ -1843,21 +1156,6 @@
           },
           "-=0.5",
         );
-
-      gsap.set(".solid-stagger", { y: 60, opacity: 0 });
-      ScrollTrigger.batch(".solid-stagger", {
-        interval: 0.1,
-        onEnter: (batch) =>
-          gsap.to(batch, {
-            opacity: 1,
-            y: 0,
-            stagger: 0.1,
-            duration: 1,
-            ease: "power4.out",
-            overwrite: true,
-          }),
-        start: "top 85%",
-      });
 
       gsap.to(".hero-bg img", {
         scrollTrigger: {

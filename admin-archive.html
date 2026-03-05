@@ -708,6 +708,7 @@
                   Manage Signature Treatments
                 </p>
               </div>
+              <!-- REORDER BUTTON ADDED HERE -->
               <div class="flex flex-wrap gap-4 w-full lg:w-auto">
                 <button
                   onclick="openReorderModal('services')"
@@ -804,6 +805,7 @@
                   Manage Visual Assets
                 </p>
               </div>
+              <!-- REORDER BUTTON ADDED HERE -->
               <div class="flex flex-wrap gap-4 w-full lg:w-auto">
                 <button
                   onclick="openReorderModal('gallery')"
@@ -957,7 +959,7 @@
           class="p-6 border-b border-white/10 bg-[#080808] flex justify-between items-center shrink-0"
         >
           <div>
-            <h2 id="reorder-modal-title" class="font-serif text-2xl text-white">
+            <h2 class="font-serif text-2xl text-white">
               Reorder Sequence
             </h2>
             <p class="text-gold text-[9px] tracking-[0.2em] uppercase mt-1">
@@ -2084,15 +2086,6 @@
         currentReorderType = type;
         const listContainer = document.getElementById("reorder-list");
         const dataList = type === "services" ? globalServices : globalGallery;
-
-        // Dynamic Title Swap
-        const reorderTitle = document.getElementById("reorder-modal-title");
-        if (reorderTitle) {
-          reorderTitle.innerText =
-            type === "services"
-              ? "Reorder Services Sequence"
-              : "Reorder Gallery Sequence";
-        }
 
         // Generate drag-and-drop list items based on existing sorted data
         listContainer.innerHTML = dataList

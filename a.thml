@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>The Gallery | Rol & Ross</title>
+    <link
+      rel="shortcut icon"
+      href="https://image2url.com/r2/default/images/1772645168831-3c6d4695-b910-48ea-81db-bbd83a5094e3.png"
+      type="image/x-icon"
+    />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              black: "#050505",
+              dark: "#0a0a0a",
+              darker: "#080808",
+              gold: "#d4af37",
+              goldlight: "#f9df9f",
+              golddark: "#aa7c11",
+            },
+            fontFamily: {
+              serif:['"Playfair Display"', "serif"],
+              sans: ["Montserrat", "sans-serif"],
+              bengali: ['"Hind Siliguri"', "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Custom CSS -->
+    <style>
+      /* Base & Resets */
+      body {
+        background-color: #050505;
+        color: #ffffff;
+        overflow-x: hidden;
+        scroll-behavior: auto !important;
+      }
+      body[data-lang="en"] .lang-bn { display: none !important; }
+      body[data-lang="bn"] .lang-en { display: none !important; }
+      html.lenis { height: auto; }
+      .lenis.lenis-smooth { scroll-behavior: auto !important; }
+
+      /* Dynamic Premium Cursor */
+      @media (min-width: 1024px) {
+        body, a, button, select, input, textarea { cursor: none !important; }
+        .cursor-dot {
+          position: fixed; top: 0; left: 0; width: 6px; height: 6px;
+          background: #d4af37; border-radius: 50%; z-index: 9999;
+          pointer-events: none; transform: translate(-50%, -50%);
+        }
+        .cursor-outline {
+          position: fixed; top: 0; left: 0; width: 40px; height: 40px;
+          border: 1px solid rgba(212, 175, 55, 0.6); border-radius: 50%;
+          z-index: 9998; pointer-events: none; transform: translate(-50%, -50%);
+          display: flex; justify-content: center; align-items: center;
+          backdrop-filter: blur(2px); transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s;
+        }
+        .cursor-hover-link .cursor-outline { width: 50px; height: 50px; border-color: #d4af37; background-color: rgba(212, 175, 55, 0.1); }
+      }
+      @media (max-width: 1023px) { .cursor-dot, .cursor-outline { display: none !important; } }
+
+      /* Utilities */
+      .text-gold-gradient {
+        background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+        -webkit-background-clip: text; color: transparent;
+      }
+      .nav-link { position: relative; padding-bottom: 4px; }
+      .nav-link::after { content: ""; position: absolute; bottom: 0; left: 50%; width: 0; height: 1px; background: #d4af37; transition: all 0.4s; transform: translateX(-50%); }
+      .nav-link:hover::after { width: 100%; }
+
+      /* Dynamic Glow Cards */
+      .glow-card {
+        background: #080808; position: relative; border-radius: 4px; overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.03); transition: transform 0.5s, box-shadow 0.5s, border-color 0.5s;
+      }
+      @media (max-width: 1023px) { .glow-card { border-color: rgba(212, 175, 55, 0.25); } }
+      .glow-card::before {
+        content: ""; position: absolute; inset: 0;
+        background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(212, 175, 55, 0.1), transparent 40%);
+        opacity: 0; transition: opacity 0.5s ease; pointer-events: none;
+      }
+      .glow-card:hover { transform: translateY(-10px); box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8); border-color: rgba(212, 175, 55, 0.4); }
+      .glow-card:hover::before { opacity: 1; }
+      .card-img-container { width: 100%; aspect-ratio: 4/5; overflow: hidden; position: relative; clip-path: polygon(5% 0, 100% 0, 100% 95%, 95% 100%, 0 100%, 0 5%); margin-bottom: 1.25rem; }
+      .card-img-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s; filter: grayscale(15%); }
+      .glow-card:hover .card-img-container img { transform: scale(1.05); filter: grayscale(0%); }
+
+      /* General */
+      #loader { position: fixed; inset: 0; background: #050505; z-index: 10000; display: flex; justify-content: center; align-items: center; flex-direction: column; }
+      .loader-line { width: 0%; height: 1px; background: #d4af37; margin-top: 20px; }
+      .glass-header { background: rgba(5, 5, 5, 0.75); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(212, 175, 55, 0.05); }
+      #mobile-drawer { transform: translateX(100%); transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1); }
+      #mobile-drawer.active { transform: translateX(0); }
+    </style>
+  </head>
+  <body data-lang="en">
+    <!-- Cursors -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <!-- Preloader -->
+    <div id="loader">
+      <h1 class="font-serif text-4xl md:text-6xl font-bold tracking-widest text-gold-gradient uppercase text-center loader-logo opacity-0">Rol & Ross</h1>
+      <div class="loader-line"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="fixed w-full top-0 z-50 transition-all duration-300 py-4 glass-header" id="navbar">
+      <div class="container mx-auto px-6 md:px-12 flex justify-between items-center">
+        <a href="home.html" class="font-serif text-2xl md:text-3xl font-bold tracking-[0.15em] text-gold-gradient uppercase z-50 cursor-hover">Rol & Ross</a>
+        <nav class="hidden lg:flex space-x-10 font-sans text-[11px] uppercase tracking-widest text-gray-300 font-medium">
+          <a href="home.html" class="nav-link cursor-hover hover:text-white transition-colors"><span class="lang-en">Home</span><span class="lang-bn font-bengali">হোম</span></a>
+          <a href="services.html" class="nav-link cursor-hover hover:text-white transition-colors"><span class="lang-en">Services</span><span class="lang-bn font-bengali">সেবাসমূহ</span></a>
+          <a href="#" class="nav-link cursor-hover text-gold transition-colors"><span class="lang-en">Gallery</span><span class="lang-bn font-bengali">গ্যালারি</span></a>
+        </nav>
+        <div class="hidden lg:flex items-center space-x-8 z-50">
+          <div class="font-sans text-[10px] flex space-x-3 text-gray-500 font-bold tracking-widest">
+            <span class="lang-btn cursor-hover text-gold transition" data-lang="en">EN</span>
+            <span>/</span>
+            <span class="lang-btn cursor-hover hover:text-gold transition" data-lang="bn">BN</span>
+          </div>
+          <a href="booking.html" class="px-7 py-3 border border-gold text-gold hover:bg-gold hover:text-black transition duration-300 font-sans text-[10px] uppercase tracking-widest font-bold rounded-sm cursor-hover">
+            <span class="lang-en">Book Now</span><span class="lang-bn font-bengali font-bold">বুক করুন</span>
+          </a>
+        </div>
+        <div class="lg:hidden text-gold text-2xl cursor-hover z-50 transition-transform duration-300 hover:scale-110" id="menu-toggle"><i class="fas fa-grip-lines"></i></div>
+      </div>
+    </header>
+
+    <!-- Mobile Drawer -->
+    <div id="mobile-drawer" class="fixed top-0 right-0 w-full md:w-[400px] h-screen bg-black/95 backdrop-blur-2xl z-40 border-l border-white/5 flex flex-col justify-center px-10">
+      <nav class="flex flex-col space-y-8 text-left text-xl tracking-widest uppercase">
+        <a href="home.html" class="drawer-link text-white hover:text-gold transition flex items-center gap-4"><span class="w-8 h-[1px] bg-gold/50"></span><span class="lang-en font-serif">Home</span><span class="lang-bn font-bengali">হোম</span></a>
+        <a href="services.html" class="drawer-link text-white hover:text-gold transition flex items-center gap-4"><span class="w-8 h-[1px] bg-gold/50"></span><span class="lang-en font-serif">Services</span><span class="lang-bn font-bengali">সেবাসমূহ</span></a>
+        <a href="#" class="drawer-link text-gold transition flex items-center gap-4"><span class="w-8 h-[1px] bg-gold"></span><span class="lang-en font-serif">Gallery</span><span class="lang-bn font-bengali">গ্যালারি</span></a>
+        <a href="booking.html" class="drawer-link text-white hover:text-gold transition flex items-center gap-4"><span class="w-8 h-[1px] bg-gold/50"></span><span class="lang-en font-serif">Reservation</span><span class="lang-bn font-bengali">রিজার্ভেশন</span></a>
+      </nav>
+      <div class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center drawer-link">
+        <div class="font-sans text-xs font-bold text-gray-500 flex gap-4 tracking-widest">
+          <span class="lang-btn cursor-pointer text-gold" data-lang="en">EN</span>
+          <span class="lang-btn cursor-pointer hover:text-white" data-lang="bn">BN</span>
+        </div>
+      </div>
+    </div>
+
+    <main id="smooth-wrapper">
+      <div id="smooth-content">
+        <!-- 1. Hero Section -->
+        <section class="relative w-full h-[50vh] flex items-center justify-center overflow-hidden pt-20">
+          <div class="absolute inset-0 w-full h-full hero-bg z-0">
+            <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=1920&auto=format&fit=crop" alt="Gallery Hero" class="w-full h-full object-cover opacity-20 filter grayscale-[30%]" />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/60 to-transparent"></div>
+          </div>
+          <div class="relative z-10 text-center px-4 w-full max-w-5xl mx-auto mt-10">
+            <p class="hero-anim font-sans text-gold tracking-[0.4em] text-[10px] uppercase mb-4 lang-en">Visual Aesthetics</p>
+            <p class="hero-anim font-bengali text-gold tracking-widest text-xs mb-4 lang-bn">চাক্ষুষ নান্দনিকতা</p>
+            <h1 class="hero-anim font-serif text-5xl md:text-6xl font-bold text-white mb-6 lang-en">The <span class="text-gold-gradient italic font-light">Gallery</span></h1>
+            <h1 class="hero-anim font-bengali text-4xl md:text-5xl font-bold text-white mb-6 lang-bn">আমাদের <span class="text-gold-gradient">গ্যালারি</span></h1>
+          </div>
+        </section>
+
+        <!-- 2. Dynamic Gallery Grid -->
+        <section class="py-12 md:py-20 bg-[#050505] relative min-h-screen">
+          <div class="container mx-auto px-6 md:px-12 relative z-10">
+            
+            <!-- Filter Options -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12 relative z-10">
+                <button class="filter-btn cursor-hover font-sans text-[10px] uppercase tracking-widest px-6 py-2 border border-gold text-gold bg-gold/5 rounded-sm transition duration-300" data-filter="all">All</button>
+                <button class="filter-btn cursor-hover font-sans text-[10px] uppercase tracking-widest px-6 py-2 border border-white/20 text-white hover:border-gold hover:text-gold rounded-sm transition duration-300" data-filter="clinic">Clinic</button>
+                <button class="filter-btn cursor-hover font-sans text-[10px] uppercase tracking-widest px-6 py-2 border border-white/20 text-white hover:border-gold hover:text-gold rounded-sm transition duration-300" data-filter="spa">Spa</button>
+                <button class="filter-btn cursor-hover font-sans text-[10px] uppercase tracking-widest px-6 py-2 border border-white/20 text-white hover:border-gold hover:text-gold rounded-sm transition duration-300" data-filter="products">Products</button>
+            </div>
+
+            <!-- Grid Container where Firebase data will be injected -->
+            <div id="gallery-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
+              <!-- Initial Loading State -->
+              <div class="col-span-full flex flex-col items-center justify-center py-20 text-gold opacity-50">
+                  <i class="fas fa-circle-notch fa-spin text-4xl mb-4"></i>
+                  <p class="font-sans text-[10px] tracking-[0.2em] uppercase">Loading Visuals...</p>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-dark border-t border-white/10 pt-20 pb-10 relative z-10">
+          <div class="container mx-auto px-6 md:px-12">
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center font-sans text-[9px] md:text-[10px] text-gray-600 uppercase tracking-widest text-center md:text-left">
+              <p>&copy; 2026 Rol & Ross Luxury Aesthetics. All Rights Reserved.</p>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+
+    <!-- Firebase Script -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+      import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+      // 1. Firebase Configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyCBUFaTPfpF_MbC-hGFtVUKGdk3zxmrBfk",
+        authDomain: "rolandross-7d223.firebaseapp.com",
+        projectId: "rolandross-7d223",
+        storageBucket: "rolandross-7d223.firebasestorage.app",
+        messagingSenderId: "811915815605",
+        appId: "1:811915815605:web:56bfa051b4a33afccbecfc",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      // --- Lenis & GSAP Setup ---
+      const lenis = new Lenis({ duration: 1.2, smooth: true });
+      requestAnimationFrame(function raf(time) { lenis.raf(time); requestAnimationFrame(raf); });
+      gsap.registerPlugin(ScrollTrigger);
+      lenis.on("scroll", ScrollTrigger.update);
+      gsap.ticker.add((time) => lenis.raf(time * 1000));
+
+      // Re-trigger visual interaction effects when database fetches logic
+      function bindInteractions() {
+        if (window.innerWidth > 1024) {
+          document.getElementById("gallery-grid").querySelectorAll(".cursor-hover").forEach((el) => {
+            el.addEventListener("mouseenter", () => document.body.classList.add("cursor-hover-link"));
+            el.addEventListener("mouseleave", () => document.body.classList.remove("cursor-hover-link"));
+          });
+        }
+        document.getElementById("gallery-grid").querySelectorAll(".glow-card").forEach((card) => {
+          card.addEventListener("mousemove", (e) => {
+            const rect = card.getBoundingClientRect();
+            card.style.setProperty("--mouse-x", `${e.clientX - rect.left}px`);
+            card.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`);
+          });
+        });
+        
+        gsap.set(".solid-stagger", { y: 50, opacity: 0 });
+        ScrollTrigger.batch(".solid-stagger", {
+          interval: 0.1,
+          onEnter: (batch) => gsap.to(batch, { opacity: 1, y: 0, stagger: 0.1, duration: 1, ease: "power4.out", overwrite: true }),
+          start: "top 90%",
+        });
+        ScrollTrigger.refresh();
+      }
+
+      // Existing initial cursor binds
+      if (window.innerWidth > 1024) {
+        const cursorDot = document.querySelector(".cursor-dot");
+        const cursorOutline = document.querySelector(".cursor-outline");
+        let xToDot = gsap.quickTo(cursorDot, "x", { duration: 0.1, ease: "power3" });
+        let yToDot = gsap.quickTo(cursorDot, "y", { duration: 0.1, ease: "power3" });
+        let xToOutline = gsap.quickTo(cursorOutline, "x", { duration: 0.5, ease: "power3" });
+        let yToOutline = gsap.quickTo(cursorOutline, "y", { duration: 0.5, ease: "power3" });
+        window.addEventListener("mousemove", (e) => {
+          xToDot(e.clientX); yToDot(e.clientY); xToOutline(e.clientX); yToOutline(e.clientY);
+        });
+        document.querySelectorAll(".cursor-hover").forEach((el) => {
+          if(!el.closest("#gallery-grid")) { 
+            el.addEventListener("mouseenter", () => document.body.classList.add("cursor-hover-link"));
+            el.addEventListener("mouseleave", () => document.body.classList.remove("cursor-hover-link"));
+          }
+        });
+      }
+
+      // --- CRITICAL: FETCH, SORT, AND RENDER GALLERY DATA ---
+      const galleryGrid = document.getElementById("gallery-grid");
+      let allGalleryData =[];
+
+      onSnapshot(collection(db, "gallery"), (snapshot) => {
+        allGalleryData =[];
+        snapshot.forEach(doc => allGalleryData.push(doc.data()));
+
+        // SORT ASCENDING based on the drag-and-drop 'order' field added via admin panel
+        allGalleryData.sort((a, b) => (a.order ?? 9999) - (b.order ?? 9999));
+
+        // Render current filter (defaults to 'all' on load)
+        const currentActiveFilter = document.querySelector('.filter-btn.text-gold').dataset.filter;
+        renderGallery(currentActiveFilter);
+      });
+
+      function renderGallery(filterCategory) {
+        // Filter out items based on category selected
+        const itemsToRender = filterCategory === 'all' 
+            ? allGalleryData 
+            : allGalleryData.filter(item => item.filter === filterCategory);
+
+        if (itemsToRender.length === 0) {
+            galleryGrid.innerHTML = `<p class="col-span-full text-center text-gray-500 uppercase tracking-widest text-xs py-10">No visual assets available in this category.</p>`;
+            return;
+        }
+
+        // Generate dynamic HTML
+        galleryGrid.innerHTML = itemsToRender.map(data => `
+          <div class="glow-card p-4 solid-stagger opacity-0 group">
+            <div class="glow-card-content cursor-hover relative h-full flex flex-col">
+              <div class="card-img-container shadow-[0_10px_20px_rgba(0,0,0,0.5)] flex-grow">
+                <img src="${data.image}" alt="${data.enName}" />
+                <!-- Hover Overlay Icon -->
+                <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                   <i class="fas fa-search-plus text-white text-3xl opacity-50"></i>
+                </div>
+              </div>
+              <div class="mt-2 text-center">
+                <h3 class="font-serif text-[15px] text-white lang-en">${data.enName}</h3>
+                <h3 class="font-bengali text-base text-white lang-bn">${data.bnName}</h3>
+                <p class="font-sans text-gold text-[8px] uppercase tracking-widest mt-1 lang-en">${data.enCat}</p>
+                <p class="font-bengali text-gold text-[10px] mt-1 lang-bn">${data.bnCat}</p>
+              </div>
+            </div>
+          </div>
+        `).join("");
+
+        bindInteractions();
+      }
+
+      // Filtering Logic Bindings
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+              // Reset styling for all buttons
+              document.querySelectorAll('.filter-btn').forEach(b => {
+                  b.classList.remove('border-gold', 'text-gold', 'bg-gold/5');
+                  b.classList.add('border-white/20', 'text-white');
+              });
+              
+              // Apply active styling to clicked button
+              e.target.classList.add('border-gold', 'text-gold', 'bg-gold/5');
+              e.target.classList.remove('border-white/20', 'text-white');
+              
+              // Call render function with the selected category data
+              renderGallery(e.target.dataset.filter);
+          });
+      });
+
+      // Bilingual Button Setup
+      const langBtns = document.querySelectorAll(".lang-btn");
+      langBtns.forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          const selectedLang = e.target.getAttribute("data-lang");
+          document.body.setAttribute("data-lang", selectedLang);
+          langBtns.forEach((b) => {
+            if (b.getAttribute("data-lang") === selectedLang) {
+              b.classList.add("text-gold");
+              b.classList.remove("hover:text-gold", "text-gray-500");
+            } else {
+              b.classList.remove("text-gold");
+              b.classList.add("hover:text-gold");
+            }
+          });
+          ScrollTrigger.refresh();
+        });
+      });
+
+      // Mobile Menu Setup
+      const menuToggle = document.getElementById("menu-toggle");
+      const drawer = document.getElementById("mobile-drawer");
+      const drawerLinks = document.querySelectorAll(".drawer-link");
+      let menuOpen = false;
+      menuToggle.addEventListener("click", () => {
+        menuOpen = !menuOpen;
+        if (menuOpen) {
+          drawer.classList.add("active");
+          menuToggle.innerHTML = '<i class="fas fa-times"></i>';
+          menuToggle.classList.add("text-white");
+          lenis.stop();
+        } else {
+          drawer.classList.remove("active");
+          menuToggle.innerHTML = '<i class="fas fa-grip-lines"></i>';
+          menuToggle.classList.remove("text-white");
+          lenis.start();
+        }
+      });
+
+      // Loader Setup
+      document.body.style.overflow = "hidden"; lenis.stop();
+      gsap.timeline()
+        .to(".loader-logo", { opacity: 1, duration: 1 })
+        .to(".loader-line", { width: "200px", duration: 1.5 }, "-=0.5")
+        .to("#loader", { yPercent: -100, duration: 1.2, delay: 0.5, onComplete: () => { document.body.style.overflow = ""; lenis.start(); ScrollTrigger.refresh(); } })
+        .from(".hero-anim", { y: 30, opacity: 0, duration: 1.2, stagger: 0.15 }, "-=0.5");
+
+    </script>
+  </body>
+</html>

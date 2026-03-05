@@ -455,11 +455,30 @@
       <div
         class="container mx-auto px-6 md:px-12 flex justify-between items-center"
       >
+        <!-- Creative Typographic Logo with Subtitle -->
         <a
           href="home.html"
-          class="font-serif text-2xl md:text-3xl font-bold tracking-[0.15em] text-gold-gradient uppercase z-50 cursor-hover"
-          >Rol & Ross</a
+          class="z-50 cursor-hover flex flex-col group relative"
         >
+          <!-- Main Brand Name -->
+          <span
+            class="font-serif text-2xl md:text-3xl font-bold tracking-[0.15em] text-gold-gradient uppercase leading-none"
+          >
+            Rol & Ross
+          </span>
+          <!-- Smart Subtitle Lockup -->
+          <div class="flex items-center mt-1.5 ml-[2px]">
+            <!-- Elegant extending line on hover -->
+            <div
+              class="h-[1px] w-3 bg-gold/50 mr-2 transition-all duration-500 group-hover:w-6 group-hover:bg-gold"
+            ></div>
+            <span
+              class="font-sans text-[7px] md:text-[8px] font-medium uppercase tracking-[0.35em] text-gray-400 transition-colors duration-500 group-hover:text-goldlight"
+            >
+              Beauty Salon & Makeover
+            </span>
+          </div>
+        </a>
 
         <nav
           class="hidden lg:flex space-x-10 font-sans text-[11px] uppercase tracking-widest text-gray-300 font-medium"
@@ -913,9 +932,7 @@
       import {
         getFirestore,
         collection,
-        getDocs,
-        query,
-        orderBy,
+        onSnapshot,
       } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
       // 1. Firebase Init (Matching admin panel setup)
@@ -1094,22 +1111,23 @@
         });
       }
 
-      // 6. Firebase Dynamic Injection & Re-binding
-      async function fetchAndRenderGallery() {
+      // 6. Firebase Dynamic Injection & Live Sorting
+      const grid = document.getElementById("dynamic-gallery-grid");
+
+      onSnapshot(collection(db, "gallery"), (snapshot) => {
         try {
-          const q = query(collection(db, "gallery"));
-          const snapshot = await getDocs(q);
-          const galleryData = [];
+          if (snapshot.empty) {
+            grid.innerHTML = `<div class="w-full py-20 text-center col-span-1 md:col-span-2 lg:col-span-3 text-gray-500 font-sans text-xs tracking-widest uppercase">Vault is currently empty</div>`;
+            return;
+          }
+
+          let galleryData = [];
           snapshot.forEach((doc) => {
             galleryData.push({ id: doc.id, ...doc.data() });
           });
 
-          const grid = document.getElementById("dynamic-gallery-grid");
-
-          if (galleryData.length === 0) {
-            grid.innerHTML = `<div class="w-full py-20 text-center col-span-1 md:col-span-2 lg:col-span-3 text-gray-500 font-sans text-xs tracking-widest uppercase">Vault is currently empty</div>`;
-            return;
-          }
+          // SORT BY ORDER FIELD (Matches Admin Panel Drag & Drop)
+          galleryData.sort((a, b) => (a.order ?? 9999) - (b.order ?? 9999));
 
           let html = "";
           // These classes preserve your original staggered layout architecture dynamically
@@ -1176,11 +1194,9 @@
           ScrollTrigger.refresh();
         } catch (error) {
           console.error("Error connecting to Vault:", error);
-          document.getElementById(
-            "dynamic-gallery-grid",
-          ).innerHTML = `<div class="w-full py-20 text-center col-span-1 md:col-span-2 lg:col-span-3 text-red-500 font-sans text-xs tracking-widest uppercase">Failed to retrieve visuals</div>`;
+          grid.innerHTML = `<div class="w-full py-20 text-center col-span-1 md:col-span-2 lg:col-span-3 text-red-500 font-sans text-xs tracking-widest uppercase">Failed to retrieve visuals</div>`;
         }
-      }
+      });
 
       function initFilters() {
         const filterBtns = document.querySelectorAll(".filter-btn");
@@ -1230,9 +1246,6 @@
           });
         });
       }
-
-      // Initialize DB pull
-      fetchAndRenderGallery();
 
       // 7. Preloader & Hero Header Reveal Animations
       document.body.style.overflow = "hidden";
