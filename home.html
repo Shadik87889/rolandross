@@ -2281,24 +2281,29 @@
       gsap.set(".solid-stagger", { y: 60, opacity: 0 });
       ScrollTrigger.batch(".solid-stagger", {
         interval: 0.1,
-        onEnter: (batch) =>
+        once: true,
+        onEnter: (batch) => {
+          batch.forEach(
+            (el) =>
+              (el.style.transition =
+                "box-shadow 0.5s ease, border-color 0.5s ease"),
+          );
           gsap.to(batch, {
             opacity: 1,
             y: 0,
-            stagger: 0.15,
             duration: 1,
             ease: "power4.out",
             overwrite: true,
-          }),
-        onLeaveBack: (batch) =>
-          gsap.to(batch, {
-            opacity: 0,
-            y: 60,
-            stagger: 0.1,
-            duration: 0.8,
-            ease: "power3.in",
-            overwrite: true,
-          }),
+            stagger: {
+              each: 0.15,
+              onComplete: function () {
+                const el = this.targets()[0];
+                gsap.set(el, { clearProps: "transform" });
+                el.style.transition = "";
+              },
+            },
+          });
+        },
         start: "top 85%",
       });
 
