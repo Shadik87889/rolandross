@@ -1,0 +1,335 @@
+(async () => {
+  console.log("🚀 Initializing Rol & Rose Smart Automator v2.0...");
+
+  // 1. Import Firebase Dynamically into the Console
+  const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js");
+  const { getAuth, signInWithEmailAndPassword } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js");
+  const { getFirestore, collection, doc, writeBatch, getDocs } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
+
+  // 2. Initialize a secure background app
+  const app = initializeApp({
+    apiKey: "AIzaSyCBUFaTPfpF_MbC-hGFtVUKGdk3zxmrBfk",
+    authDomain: "rolandross-7d223.firebaseapp.com",
+    projectId: "rolandross-7d223",
+    storageBucket: "rolandross-7d223.firebasestorage.app",
+    messagingSenderId: "811915815605",
+    appId: "1:811915815605:web:56bfa051b4a33afccbecfc"
+  }, "ConsoleAutomator_" + Date.now());
+
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  // 3. Authenticate to bypass Firestore Security Rules
+  const email = prompt("To execute God Mode, enter your Admin Email:", "admin@rolandross.com");
+  if(!email) return console.log("❌ Operation Aborted.");
+  const pass = prompt("Enter Admin Password:");
+  if(!pass) return console.log("❌ Operation Aborted.");
+
+  console.log("🔐 Authenticating to Vault...");
+  try {
+    await signInWithEmailAndPassword(auth, email, pass);
+    console.log("✅ Authenticated Successfully!");
+  } catch(e) {
+    return console.error("❌ Authentication Failed. Check your password.", e.message);
+  }
+
+  // 4. SMART SWEEPER: Delete old data to prevent duplicates
+  console.log("🧹 Sweeping old vault records to prevent duplicates...");
+  const oldServices = await getDocs(collection(db, "services"));
+  const oldCategories = await getDocs(collection(db, "categories"));
+  
+  const deleteBatch = writeBatch(db);
+  oldServices.forEach(d => deleteBatch.delete(d.ref));
+  oldCategories.forEach(d => deleteBatch.delete(d.ref));
+  await deleteBatch.commit();
+  console.log("🧼 Old Vault cleaned successfully! Ready for fresh injection.");
+
+  // 5. The Master Data Matrix (Perfectly Translated to Bangla Phonetics)
+  const dataMatrix =[
+    {
+      enName: "Hair Artistry & Care", bnName: "হেয়ার আর্টিস্ট্রি অ্যান্ড কেয়ার",
+      enSubtitle: "This category covers everything from expert cuts and styling to advanced chemical treatments and scalp care.",
+      bnSubtitle: "এই বিভাগে বিশেষজ্ঞ কাট এবং স্টাইলিং থেকে শুরু করে উন্নত কেমিক্যাল ট্রিটমেন্ট এবং স্ক্যাল্প কেয়ার পর্যন্ত সবকিছু অন্তর্ভুক্ত রয়েছে।",
+      image: "https://i.postimg.cc/Tw5F35mK/Chat_GPT_Image_Mar_5_2026_12_50_00_PM.png",
+      segments: {
+        "Hair Cuts": { 
+          bn: "হেয়ার কাট", 
+          items:[
+            { en: "Normal Cut", bn: "নরমাল কাট" },
+            { en: "Front Layer/Curtains Bangs", bn: "ফ্রন্ট লেয়ার/কার্টেনস ব্যাংগস" },
+            { en: "U/V Cut", bn: "ইউ/ভি কাট" },
+            { en: "Blunt Cut", bn: "ব্লান্ট কাট" },
+            { en: "Baby Cut", bn: "বেবি কাট" },
+            { en: "Step Layer/Volume Cut", bn: "স্টেপ লেয়ার/ভলিউম কাট" },
+            { en: "Long/Short Bob Cut", bn: "লং/শর্ট বব কাট" },
+            { en: "Butterfly Cut", bn: "বাটারফ্লাই কাট" }
+          ] 
+        },
+        "Styling & Setting": { 
+          bn: "স্টাইলিং এবং সেটিং", 
+          items:[
+            { en: "Normal Blowdry", bn: "নরমাল ব্লো-ড্রাই" },
+            { en: "Hair Iron", bn: "হেয়ার আয়রন" },
+            { en: "Hair Twist & Set", bn: "হেয়ার টুইস্ট অ্যান্ড সেট" },
+            { en: "Normal Bun", bn: "নরমাল বান" },
+            { en: "Massy Bun", bn: "ম্যাসি বান" },
+            { en: "Out Curl & Front Set", bn: "আউট কার্ল অ্যান্ড ফ্রন্ট সেট" },
+            { en: "Front Set & Blowdry", bn: "ফ্রন্ট সেট অ্যান্ড ব্লো-ড্রাই" }
+          ] 
+        },
+        "Permanent Straightening": { 
+          bn: "পারমানেন্ট স্ট্রেইটেনিং", 
+          items:[
+            { en: "Regular Rebounding", bn: "রেগুলার রিবন্ডিং" },
+            { en: "Deep Shine Permanent", bn: "ডিপ শাইন পারমানেন্ট" },
+            { en: "Omega Keratin Permanent", bn: "ওমেগা কেরাটিন পারমানেন্ট" },
+            { en: "Brazilian Keratin Permanent", bn: "ব্রাজিলিয়ান কেরাটিন পারমানেন্ট" },
+            { en: "GlamFreak Special Smooth & Shine", bn: "গ্ল্যামফ্রিক স্পেশাল স্মুথ অ্যান্ড শাইন" },
+            { en: "Hair Botox", bn: "হেয়ার বোটক্স" }
+          ] 
+        },
+        "Treatments": { 
+          bn: "ট্রিটমেন্টস", 
+          items:[
+            { en: "Hair Wash & Dry", bn: "হেয়ার ওয়াশ অ্যান্ড ড্রাই" },
+            { en: "Hot Oil Massage", bn: "হট অয়েল ম্যাসেজ" },
+            { en: "Hair Spa", bn: "হেয়ার স্পা" },
+            { en: "Hair Protein Treatment", bn: "হেয়ার প্রোটিন ট্রিটমেন্ট" },
+            { en: "Hair Keratin Treatment", bn: "হেয়ার কেরাটিন ট্রিটমেন্ট" },
+            { en: "Scalp Treatment", bn: "স্ক্যাল্প ট্রিটমেন্ট" },
+            { en: "Henna Pack", bn: "হেনা প্যাক" },
+            { en: "Bond Fusion Treatment", bn: "বন্ড ফিউশন ট্রিটমেন্ট" },
+            { en: "Anti-Dandruff Treatment", bn: "অ্যান্টি-ড্যানড্রাফ ট্রিটমেন্ট" }
+          ] 
+        }
+      }
+    },
+    {
+      enName: "Skin Radiance & Facials", bnName: "স্কিন রেডিয়েন্স অ্যান্ড ফেসিয়াল",
+      enSubtitle: "From essential herbal refreshes to advanced hydraulic technology, these services are designed for a glowing complexion.",
+      bnSubtitle: "সাধারণ ভেষজ রিফ্রেশ থেকে শুরু করে উন্নত হাইড্রোলিক প্রযুক্তি পর্যন্ত, আমাদের এই পরিষেবাগুলি উজ্জ্বল ত্বকের জন্য বিশেষভাবে ডিজাইন করা হয়েছে।",
+      image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=1080&auto=format&fit=crop",
+      segments: {
+        "Facials": { 
+          bn: "ফেসিয়াল", 
+          items:[
+            { en: "Quick Facial", bn: "কুইক ফেসিয়াল" },
+            { en: "Herbal Facial", bn: "হারবল ফেসিয়াল" },
+            { en: "Glowing Facial", bn: "গ্লোয়িং ফেসিয়াল" },
+            { en: "Advance Bio-Hydraulic Facial", bn: "অ্যাডভান্স বায়ো-হাইড্রলিক ফেসিয়াল" },
+            { en: "Hydra Jelly Facial", bn: "হাইড্রা জেলি ফেসিয়াল" },
+            { en: "Whitening Facial", bn: "হোয়াইটেনিং ফেসিয়াল" },
+            { en: "Gold Facial", bn: "গোল্ড ফেসিয়াল" },
+            { en: "Fruits Facial", bn: "ফ্রুটস ফেসিয়াল" },
+            { en: "High Frequency Facial", bn: "হাই ফ্রিকোয়েন্সি ফেসিয়াল" },
+            { en: "Pearl White Facial", bn: "পার্ল হোয়াইট ফেসিয়াল" },
+            { en: "Aloe Vera/Milk Facial", bn: "অ্যালোভেরা/মিল্ক ফেসিয়াল" },
+            { en: "Anti-Aging Facial", bn: "অ্যান্টি-এজিং ফেসিয়াল" },
+            { en: "Special Bridal Facial", bn: "স্পেশাল ব্রাইডাল ফেসিয়াল" }
+          ] 
+        },
+        "Fair Polish": { 
+          bn: "ফেয়ার পলিশ", 
+          items:[
+            { en: "Only Face", bn: "অনলি ফেস" },
+            { en: "Face with Neck", bn: "ফেস উইথ নেক" },
+            { en: "Face with Neck & Back + Quick Facial", bn: "ফেস উইথ নেক অ্যান্ড ব্যাক + কুইক ফেসিয়াল" },
+            { en: "Fair Polish Full Leg", bn: "ফেয়ার পলিশ ফুল লেগ" },
+            { en: "Fair Polish Half Leg", bn: "ফেয়ার পলিশ হাফ লেগ" },
+            { en: "Fair Polish Full Hand", bn: "ফেয়ার পলিশ ফুল হ্যান্ড" },
+            { en: "Only Upper Lip", bn: "অনলি আপার লিপ" },
+            { en: "Only Back", bn: "অনলি ব্যাক" }
+          ] 
+        }
+      }
+    },
+    {
+      enName: "Pedi-Mani, Nails & Wellness", bnName: "পেডি-মেনি, নখ এবং ওয়েলনেস",
+      enSubtitle: "A complete care destination for your hands and feet, featuring high-end nail enhancements and relaxing massage therapy.",
+      bnSubtitle: "আপনার হাত ও পায়ের জন্য একটি সম্পূর্ণ কেয়ার ডেস্টিনেশন, যেখানে রয়েছে উন্নত নেইল এনহ্যান্সমেন্ট এবং রিল্যাক্সিং ম্যাসেজ থেরাপি।",
+      image: "https://i.postimg.cc/B6PknPDq/Chat_GPT_Image_Mar_7_2026_04_27_44_PM.png",
+      segments: {
+        "Nail Extensions": { 
+          bn: "নেইল এক্সটেনশন", 
+          items:[
+            { en: "Acrylic Extensions (Full Set)", bn: "এক্রাইলিক এক্সটেনশন (ফুল সেট)" },
+            { en: "Acrylic Extensions (Refill)", bn: "এক্রাইলিক এক্সটেনশন (রিফিল)" },
+            { en: "Acrylic Extensions (Removal)", bn: "এক্রাইলিক এক্সটেনশন (রিমুভাল)" },
+            { en: "Gel Extensions (Full Set)", bn: "জেল এক্সটেনশন (ফুল সেট)" },
+            { en: "Gel Extensions (Removal)", bn: "জেল এক্সটেনশন (রিমুভাল)" },
+            { en: "Custom Nail Art", bn: "কাস্টম নেইল আর্ট" }
+          ] 
+        },
+        "Manicure & Pedicure": { 
+          bn: "ম্যানিকিউর ও পেডিকিউর", 
+          items:[
+            { en: "Regular Pedicure", bn: "রেগুলার পেডিকিউর" },
+            { en: "Regular Manicure", bn: "রেগুলার ম্যানিকিউর" },
+            { en: "Herbal Pedicure", bn: "হারবাল পেডিকিউর" },
+            { en: "Herbal Manicure", bn: "হারবাল ম্যানিকিউর" },
+            { en: "Herbal Pedi-Mani", bn: "হারবাল পেডি-মেনি" },
+            { en: "Parrafin Pedicure", bn: "প্যারাফিন পেডিকিউর" },
+            { en: "Parrafin Manicure", bn: "প্যারাফিন ম্যানিকিউর" },
+            { en: "Parrafin Pedi-Mani", bn: "প্যারাফিন পেডি-মেনি" },
+            { en: "Our Signature Russian Pedi-Mani", bn: "আওয়ার সিগনেচার রাশিয়ান পেডি-মেনি" },
+            { en: "Glam Pedicure Manicure", bn: "গ্ল্যাম পেডিকিউর ম্যানিকিউর" }
+          ] 
+        },
+        "Grooming": { 
+          bn: "গ্রুমিং", 
+          items:[
+            { en: "French Trip (Both)", bn: "ফ্রেঞ্চ টিপ (উভয়)" },
+            { en: "Nail Polish Apply (Both)", bn: "নেইল পলিশ অ্যাপ্লাই (উভয়)" },
+            { en: "Nail Filing (Both)", bn: "নেইল ফাইলিং (উভয়)" }
+          ] 
+        },
+        "Wellness Massages": { 
+          bn: "ওয়েলনেস ম্যাসেজ", 
+          items:[
+            { en: "Hot Stone Back Massage", bn: "হট স্টোন ব্যাক ম্যাসেজ" },
+            { en: "Hot Stone Foot Massage", bn: "হট স্টোন ফুট ম্যাসেজ" }
+          ] 
+        }
+      }
+    },
+    {
+      enName: "Professional Makeover & Artistry", bnName: "প্রফেশনাল মেকওভার অ্যান্ড আর্টিস্ট্রি",
+      enSubtitle: "Expert makeup services tailored for every occasion, from standard party looks to high-end signature bridal transformations.",
+      bnSubtitle: "সাধারণ পার্টি লুক থেকে শুরু করে হাই-এন্ড সিগনেচার ব্রাইডাল ট্রান্সফরমেশন পর্যন্ত প্রতিটি অনুষ্ঠানের জন্য আমাদের রয়েছে বিশেষজ্ঞ মেকআপ পরিষেবা।",
+      image: "https://i.postimg.cc/qMFkqpVC/Chat-GPT-Image-Mar-7-2026-08-48-18-PM.png",
+      segments: {
+        "Occasion Makeup": { 
+          bn: "অকেশন মেকআপ", 
+          items:[
+            { en: "Standard Party Makeup", bn: "স্ট্যান্ডার্ড পার্টি মেকআপ" },
+            { en: "Exclusive Party Makeover", bn: "এক্সক্লুসিভ পার্টি মেকওভার" }
+          ] 
+        },
+        "Bridal Artistry": { 
+          bn: "ব্রাইডাল আর্টিস্ট্রি", 
+          items:[
+            { en: "Bridal (Senior Artist)", bn: "ব্রাইডাল (সিনিয়র আর্টিস্ট)" },
+            { en: "Signature Bridal", bn: "সিগনেচার ব্রাইডাল" }
+          ] 
+        }
+      }
+    },
+    {
+      enName: "Precision Grooming & Accents", bnName: "প্রিসিশন গ্রুমিং অ্যান্ড অ্যাকসেন্টস",
+      enSubtitle: "The essential finishing touches, including expert hair removal, traditional draping, and safe piercings.",
+      bnSubtitle: "বিশেষজ্ঞ হেয়ার রিমুভাল, ঐতিহ্যবাহী ড্রেপিং এবং নিরাপদ পিয়ার্সিং সহ আপনার সৌন্দর্যের প্রয়োজনীয় ফিনিশিং টাচ।",
+      image: "https://images.pexels.com/photos/12891485/pexels-photo-12891485.jpeg",
+      segments: {
+        "Threading": { 
+          bn: "থ্রেডিং", 
+          items:[
+            { en: "Eyebrow Threading", bn: "আইব্রো থ্রেডিং" },
+            { en: "Forehead Threading", bn: "ফোরহেড থ্রেডিং" },
+            { en: "Upper/Lower Lip", bn: "আপার/লোয়ার লিপ" },
+            { en: "Chin Threading", bn: "চিন থ্রেডিং" },
+            { en: "Full Face Threading", bn: "ফুল ফেস থ্রেডিং" },
+            { en: "Half Face Threading", bn: "হাফ ফেস থ্রেডিং" }
+          ] 
+        },
+        "Waxing": { 
+          bn: "ওয়াক্সিং", 
+          items:[
+            { en: "Full Body Wax", bn: "ফুল বডি ওয়াক্স" },
+            { en: "Full Leg Wax", bn: "ফুল লেগ ওয়াক্স" },
+            { en: "Full Hand Wax", bn: "ফুল হ্যান্ড ওয়াক্স" },
+            { en: "Half Leg Wax", bn: "হাফ লেগ ওয়াক্স" },
+            { en: "Half Hand Wax", bn: "হাফ হ্যান্ড ওয়াক্স" },
+            { en: "Full Face Wax", bn: "ফুল ফেস ওয়াক্স" },
+            { en: "Half Face Wax", bn: "হাফ ফেস ওয়াক্স" },
+            { en: "Bikini Wax", bn: "বিকিনি ওয়াক্স" },
+            { en: "Underarms Wax", bn: "আন্ডারআর্মস ওয়াক্স" },
+            { en: "Upper Lip Wax", bn: "আপার লিপ ওয়াক্স" },
+            { en: "Chin Wax", bn: "চিন ওয়াক্স" },
+            { en: "Cheek Wax", bn: "চিক ওয়াক্স" }
+          ] 
+        },
+        "Beauty Accents": { 
+          bn: "বিউটি অ্যাকসেন্টস", 
+          items:[
+            { en: "Saree Draping", bn: "শাড়ি ড্রেপিং" },
+            { en: "Styling Saree", bn: "স্টাইলিং শাড়ি" },
+            { en: "Hijab Setting", bn: "হিজাব সেটিং" },
+            { en: "Orna Set", bn: "ওড়না সেট" },
+            { en: "Eyelash (Own)", bn: "আইল্যাশ (নিজস্ব)" },
+            { en: "Eyeliner/Lens (Own)", bn: "আইলাইনার/লেন্স (নিজস্ব)" },
+            { en: "Hair Extension/Wig", bn: "হেয়ার এক্সটেনশন/উইগ" },
+            { en: "Hair Extension & Set", bn: "হেয়ার এক্সটেনশন অ্যান্ড সেট" }
+          ] 
+        },
+        "Piercing": { 
+          bn: "পিয়ার্সিং", 
+          items:[
+            { en: "Nose Piercing", bn: "নোজ পিয়ার্সিং" },
+            { en: "Ear Piercing", bn: "ইয়ার পিয়ার্সিং" }
+          ] 
+        }
+      }
+    }
+  ];
+
+  const batch = writeBatch(db);
+  let catOrder = 0;
+  let srvOrder = 0;
+
+  console.log("⚙️ Processing Data Matrix...");
+
+  for (const cat of dataMatrix) {
+    // A. Generate a Unique Category ID
+    const catRef = doc(collection(db, "categories"));
+    
+    // Format Subcategories for the Category Document
+    const subcategories = Object.keys(cat.segments).map(enKey => ({
+      en: enKey, bn: cat.segments[enKey].bn
+    }));
+
+    // Add Category Document to Batch
+    batch.set(catRef, {
+      enName: cat.enName,
+      bnName: cat.bnName,
+      enSubtitle: cat.enSubtitle,
+      bnSubtitle: cat.bnSubtitle,
+      image: cat.image,
+      subcategories: subcategories,
+      order: catOrder++,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    });
+
+    console.log(`✅ Sector Injected: ${cat.enName}`);
+
+    // B. Generate all Services for this Category
+    for (const [segEn, segData] of Object.entries(cat.segments)) {
+      for (const serviceItem of segData.items) {
+        const srvRef = doc(collection(db, "services"));
+        
+        batch.set(srvRef, {
+          category: catRef.id, 
+          subCategory: segEn,
+          enName: serviceItem.en,
+          bnName: serviceItem.bn, // Correct Bengali Phonetic Translation applied!
+          enDesc: `Experience premium ${serviceItem.en.toLowerCase()} tailored to your luxurious lifestyle.`,
+          bnDesc: `আমাদের প্রিমিয়াম ${serviceItem.bn} পরিষেবার মাধ্যমে আপনার সৌন্দর্য আরও আকর্ষণীয় করে তুলুন।`,
+          image: cat.image, 
+          order: srvOrder++,
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString()
+        });
+      }
+    }
+  }
+
+  console.log("⏳ Committing Database Writes...");
+  try {
+    await batch.commit();
+    console.log("🎉 ALL DATA SUCCESSFULLY INJECTED INTO THE VAULT!");
+    alert("God Mode Complete! Refresh your Admin Panel to see the translated magic.");
+  } catch (error) {
+    console.error("❌ Failed to commit to database.", error);
+  }
+
+})();

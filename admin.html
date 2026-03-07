@@ -136,8 +136,9 @@
         box-shadow: inset 0 0 15px rgba(212, 175, 55, 0.05),
           0 0 20px rgba(212, 175, 55, 0.1);
       }
-
-      /* Custom Styling for Selects to match premium-input */
+      select.premium-input {
+        cursor: pointer;
+      }
       select.premium-input option {
         background-color: #080808;
         color: #ffffff;
@@ -306,14 +307,12 @@
         transform: scale(1) translateY(0);
       }
 
-      /* Drag and Drop Ghost Class */
       .sortable-ghost {
         opacity: 0.4;
         background-color: rgba(212, 175, 55, 0.1) !important;
         border: 1px dashed #d4af37 !important;
       }
 
-      /* Service & Gallery Image Preview */
       .image-preview-box {
         width: 100%;
         aspect-ratio: 4/3;
@@ -336,8 +335,6 @@
         transition: opacity 0.5s ease;
         filter: grayscale(20%);
       }
-
-      /* Table styling for services & gallery */
       .service-row {
         border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         transition: background 0.3s ease;
@@ -361,7 +358,6 @@
       <div class="loader-line"></div>
     </div>
 
-    <!-- Ambient Glows -->
     <div
       class="ambient-orb bg-gold/10 w-[600px] h-[600px]"
       style="top: -200px; left: -200px;"
@@ -371,7 +367,7 @@
       style="bottom: -300px; right: -300px; animation-delay: -10s;"
     ></div>
 
-    <!-- ==================== AUTHENTICATION VIEW ==================== -->
+    <!-- AUTHENTICATION -->
     <div
       id="auth-view"
       class="min-h-screen w-full flex items-center justify-center relative z-10 p-4 transition-opacity duration-500"
@@ -379,14 +375,9 @@
       <div
         class="glass-panel p-10 md:p-16 rounded-sm w-full max-w-lg relative overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.9)]"
       >
-        <!-- Decorative Elements -->
         <div
           class="absolute top-0 left-1/2 transform -translate-x-1/2 w-[200px] h-[1px] bg-gradient-to-r from-transparent via-gold to-transparent"
         ></div>
-        <div
-          class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-[200px] h-[1px] bg-gradient-to-r from-transparent via-gold to-transparent"
-        ></div>
-
         <div class="text-center mb-10">
           <i class="fas fa-fingerprint text-4xl text-gold/50 mb-4"></i>
           <h1
@@ -398,7 +389,6 @@
             Executive Command Center
           </p>
         </div>
-
         <form id="login-form" class="space-y-6">
           <div class="relative group">
             <label
@@ -443,12 +433,11 @@
       </div>
     </div>
 
-    <!-- ==================== MAIN DASHBOARD LAYOUT ==================== -->
+    <!-- MAIN DASHBOARD -->
     <div
       id="app-view"
       class="min-h-screen w-full flex relative z-10 hidden transition-opacity duration-500"
     >
-      <!-- Sidebar / Mobile Menu Overlay -->
       <div
         id="mobile-sidebar-overlay"
         class="fixed inset-0 bg-black/80 backdrop-blur-sm z-40 hidden lg:hidden"
@@ -490,6 +479,12 @@
             <i class="fas fa-chart-line w-5 text-center"></i> Analytics Hub
           </button>
           <button
+            data-target="categories"
+            class="nav-btn nav-item w-full text-left px-8 py-4 text-[11px] tracking-[0.15em] uppercase font-semibold text-gray-400 flex items-center gap-4"
+          >
+            <i class="fas fa-sitemap w-5 text-center"></i> Category Generate
+          </button>
+          <button
             data-target="services"
             class="nav-btn nav-item w-full text-left px-8 py-4 text-[11px] tracking-[0.15em] uppercase font-semibold text-gray-400 flex items-center gap-4"
           >
@@ -522,11 +517,9 @@
         </div>
       </aside>
 
-      <!-- Main Content Area -->
       <main
         class="flex-grow flex flex-col h-screen overflow-hidden w-full relative z-10 bg-[#050505]"
       >
-        <!-- Top Header -->
         <header
           class="h-20 border-b border-white/5 flex items-center justify-between px-6 md:px-12 shrink-0 bg-black/50 backdrop-blur-md z-30"
         >
@@ -550,12 +543,11 @@
           </div>
         </header>
 
-        <!-- Scrollable Container -->
         <div
           class="flex-grow overflow-y-auto p-6 md:p-12 relative"
           id="main-scroll-area"
         >
-          <!-- === SECTION: DASHBOARD (Analytics) === -->
+          <!-- SECTION: DASHBOARD -->
           <div id="section-dashboard" class="dashboard-section block">
             <div class="mb-10 reveal-anim">
               <h1 class="font-serif text-3xl md:text-5xl text-white mb-2">
@@ -567,11 +559,25 @@
                 Real-time Luxury Metrics
               </p>
             </div>
-
-            <!-- Stats Grid -->
             <div
               class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 reveal-anim"
             >
+              <div class="glass-card p-6 rounded-sm relative overflow-hidden">
+                <i
+                  class="fas fa-sitemap absolute -right-4 -bottom-4 text-7xl text-gold/5"
+                ></i>
+                <p
+                  class="text-[10px] uppercase tracking-widest text-gray-400 mb-2"
+                >
+                  Taxonomy Sectors
+                </p>
+                <h2 id="stat-categories" class="font-serif text-4xl text-white">
+                  0
+                </h2>
+                <p class="text-[9px] text-green-400 tracking-widest mt-3">
+                  <i class="fas fa-arrow-up mr-1"></i> Live Framework
+                </p>
+              </div>
               <div class="glass-card p-6 rounded-sm relative overflow-hidden">
                 <i
                   class="fas fa-gem absolute -right-4 -bottom-4 text-7xl text-gold/5"
@@ -600,35 +606,18 @@
                 <h2 id="stat-gallery" class="font-serif text-4xl text-white">
                   0
                 </h2>
-                <p class="text-[9px] text-green-400 tracking-widest mt-3">
-                  <i class="fas fa-arrow-up mr-1"></i> Live in Gallery
-                </p>
-              </div>
-              <div class="glass-card p-6 rounded-sm relative overflow-hidden">
-                <i
-                  class="fas fa-database absolute -right-4 -bottom-4 text-7xl text-gold/5"
-                ></i>
-                <p
-                  class="text-[10px] uppercase tracking-widest text-gray-400 mb-2"
-                >
-                  Total System Records
-                </p>
-                <h2 id="stat-total" class="font-serif text-4xl text-white">
-                  0
-                </h2>
                 <p class="text-[9px] text-gold tracking-widest mt-3">
-                  <i class="fas fa-bolt mr-1"></i> Vault + Gallery
+                  <i class="fas fa-bolt mr-1"></i> Live in Gallery
                 </p>
               </div>
             </div>
 
-            <!-- Charts Area -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 reveal-anim">
               <div class="lg:col-span-2 glass-card p-6 rounded-sm">
                 <h3
                   class="font-sans text-[11px] uppercase tracking-widest text-gold mb-6 border-b border-white/5 pb-4"
                 >
-                  Asset Growth Timeline (Real-time)
+                  System Growth Matrix
                 </h3>
                 <div class="h-[300px] w-full relative">
                   <canvas id="growthChart"></canvas>
@@ -693,7 +682,102 @@
             </div>
           </div>
 
-          <!-- === SECTION: SERVICES (CRUD) === -->
+          <!-- SECTION: CATEGORIES (Taxonomy) -->
+          <div id="section-categories" class="dashboard-section hidden">
+            <div
+              class="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-10 gap-6 reveal-anim"
+            >
+              <div>
+                <h1 class="font-serif text-3xl md:text-5xl text-white mb-2">
+                  Sector Taxonomy
+                </h1>
+                <p
+                  class="text-gray-400 text-xs font-light tracking-widest uppercase"
+                >
+                  Intelligent Category Formation
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-4 w-full lg:w-auto">
+                <button
+                  onclick="openReorderModal('categories')"
+                  class="btn-outline shrink-0 w-full md:w-auto shadow-[0_10px_30px_rgba(212,175,55,0.15)]"
+                >
+                  <i class="fas fa-sort"></i> Reorder Taxonomy
+                </button>
+                <button
+                  onclick="openModal('category-modal')"
+                  class="btn-gold shrink-0 w-full md:w-auto shadow-[0_10px_30px_rgba(212,175,55,0.15)]"
+                >
+                  <i class="fas fa-plus"></i> Formulate Sector
+                </button>
+              </div>
+            </div>
+
+            <div
+              class="glass-card rounded-sm overflow-hidden reveal-anim w-full"
+            >
+              <div
+                class="p-6 border-b border-white/5 bg-[#080808] flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
+              >
+                <h3
+                  class="font-sans text-[11px] uppercase tracking-widest text-gold"
+                >
+                  Structural Records
+                </h3>
+                <div class="relative w-full md:w-64">
+                  <i
+                    class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-[10px]"
+                  ></i>
+                  <input
+                    type="text"
+                    id="search-category"
+                    placeholder="Search sectors..."
+                    class="w-full bg-black/50 border border-white/10 text-white text-[10px] uppercase tracking-widest py-3 pl-9 pr-3 outline-none focus:border-gold transition rounded-sm"
+                  />
+                </div>
+              </div>
+
+              <div class="overflow-x-auto w-full">
+                <table class="w-full text-left border-collapse min-w-[700px]">
+                  <thead>
+                    <tr
+                      class="bg-[#0a0a0a] text-[9px] uppercase tracking-[0.2em] text-gray-500"
+                    >
+                      <th class="p-5 font-medium border-b border-white/5 w-24">
+                        Core Media
+                      </th>
+                      <th class="p-5 font-medium border-b border-white/5">
+                        Sector Nomenclature (EN/BN)
+                      </th>
+                      <th class="p-5 font-medium border-b border-white/5">
+                        Sub-Segments
+                      </th>
+                      <th
+                        class="p-5 font-medium border-b border-white/5 w-40 text-right"
+                      >
+                        Directives
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody id="categories-table-body">
+                    <tr>
+                      <td colspan="4" class="p-10 text-center">
+                        <i
+                          class="fas fa-spinner fa-spin text-gold text-2xl"
+                        ></i>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div
+                id="categories-pagination"
+                class="p-4 border-t border-white/5 flex justify-end items-center gap-2 bg-[#080808]"
+              ></div>
+            </div>
+          </div>
+
+          <!-- SECTION: SERVICES -->
           <div id="section-services" class="dashboard-section hidden">
             <div
               class="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-10 gap-6 reveal-anim"
@@ -747,7 +831,6 @@
                   />
                 </div>
               </div>
-
               <div class="overflow-x-auto w-full">
                 <table class="w-full text-left border-collapse min-w-[700px]">
                   <thead>
@@ -758,7 +841,7 @@
                         Media
                       </th>
                       <th class="p-5 font-medium border-b border-white/5">
-                        Nomenclature (EN)
+                        Classification & Nomenclature (EN)
                       </th>
                       <th class="p-5 font-medium border-b border-white/5">
                         Nomenclature (BN)
@@ -781,7 +864,6 @@
                   </tbody>
                 </table>
               </div>
-              <!-- Services Pagination -->
               <div
                 id="services-pagination"
                 class="p-4 border-t border-white/5 flex justify-end items-center gap-2 bg-[#080808]"
@@ -789,7 +871,7 @@
             </div>
           </div>
 
-          <!-- === SECTION: GALLERY (CRUD) === -->
+          <!-- SECTION: GALLERY -->
           <div id="section-gallery" class="dashboard-section hidden">
             <div
               class="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-10 gap-6 reveal-anim"
@@ -819,7 +901,6 @@
                 </button>
               </div>
             </div>
-
             <div
               class="glass-card rounded-sm overflow-hidden reveal-anim w-full"
             >
@@ -843,7 +924,6 @@
                   />
                 </div>
               </div>
-
               <div class="overflow-x-auto w-full">
                 <table class="w-full text-left border-collapse min-w-[700px]">
                   <thead>
@@ -877,7 +957,6 @@
                   </tbody>
                 </table>
               </div>
-              <!-- Gallery Pagination -->
               <div
                 id="gallery-pagination"
                 class="p-4 border-t border-white/5 flex justify-end items-center gap-2 bg-[#080808]"
@@ -885,7 +964,7 @@
             </div>
           </div>
 
-          <!-- === SECTION: SECURITY === -->
+          <!-- SECTION: SECURITY -->
           <div id="section-security" class="dashboard-section hidden">
             <div class="mb-10 reveal-anim">
               <h1 class="font-serif text-3xl md:text-5xl text-white mb-2">
@@ -897,7 +976,6 @@
                 Access Management
               </p>
             </div>
-
             <div
               class="glass-card p-8 md:p-12 rounded-sm max-w-2xl reveal-anim"
             >
@@ -920,7 +998,6 @@
                   </p>
                 </div>
               </div>
-
               <form id="password-form" class="space-y-6">
                 <div>
                   <label
@@ -946,7 +1023,7 @@
       </main>
     </div>
 
-    <!-- ==================== MODALS ==================== -->
+    <!-- MODALS -->
 
     <!-- Drag & Drop Reorder Modal -->
     <div id="reorder-modal" class="modal-overlay">
@@ -973,13 +1050,9 @@
             ></i>
           </button>
         </div>
-
         <div class="p-6 overflow-y-auto flex-grow bg-[#050505]/50">
-          <ul id="reorder-list" class="space-y-2">
-            <!-- Rendered by JS -->
-          </ul>
+          <ul id="reorder-list" class="space-y-2"></ul>
         </div>
-
         <div
           class="p-6 border-t border-white/10 bg-[#080808] flex justify-end gap-4 shrink-0"
         >
@@ -1001,6 +1074,207 @@
       </div>
     </div>
 
+    <!-- Category (Taxonomy) Modal -->
+    <div id="category-modal" class="modal-overlay">
+      <div
+        class="modal-content glass-panel p-0 rounded-sm max-w-5xl max-h-[90vh] flex flex-col overflow-hidden border border-gold/20 shadow-[0_0_100px_rgba(212,175,55,0.1)]"
+      >
+        <div
+          class="p-6 border-b border-white/10 bg-[#080808] flex justify-between items-center shrink-0"
+        >
+          <div>
+            <h2
+              id="category-modal-title"
+              class="font-serif text-2xl text-white"
+            >
+              Formulate New Sector
+            </h2>
+            <p class="text-gold text-[9px] tracking-[0.2em] uppercase mt-1">
+              System Wide Category & Subcategory Builder
+            </p>
+          </div>
+          <button
+            onclick="closeModal('category-modal')"
+            class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:border-white transition group shrink-0"
+          >
+            <i
+              class="fas fa-times group-hover:rotate-90 transition duration-300"
+            ></i>
+          </button>
+        </div>
+
+        <div class="p-6 md:p-8 overflow-y-auto flex-grow bg-[#050505]/50">
+          <form
+            id="category-form"
+            class="grid grid-cols-1 lg:grid-cols-12 gap-8"
+          >
+            <input type="hidden" id="category-id" />
+
+            <div class="lg:col-span-4 space-y-6">
+              <h3
+                class="font-sans text-[11px] uppercase tracking-widest text-gold border-b border-white/5 pb-3"
+              >
+                <i class="fas fa-image mr-2"></i> Sector Visual Context
+              </h3>
+              <div>
+                <label
+                  class="block text-[9px] uppercase tracking-widest text-gray-400 mb-2 ml-1"
+                  >Direct Image URL</label
+                >
+                <input
+                  type="url"
+                  id="c-image"
+                  class="premium-input"
+                  placeholder="Link high-res banner..."
+                  required
+                />
+              </div>
+              <div class="mt-4">
+                <label
+                  class="block text-[9px] uppercase tracking-widest text-gray-400 mb-2 ml-1"
+                  >Live Asset Preview</label
+                >
+                <div class="image-preview-box group">
+                  <i
+                    class="fas fa-camera text-3xl text-white/10 group-hover:scale-110 transition duration-500"
+                  ></i>
+                  <img id="preview-img-category" src="" alt="Preview" />
+                  <div
+                    class="absolute inset-0 border border-gold/0 group-hover:border-gold/30 transition duration-500 pointer-events-none"
+                  ></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="lg:col-span-8 space-y-8">
+              <div>
+                <h3
+                  class="font-sans text-[11px] uppercase tracking-widest text-gold border-b border-white/5 pb-3 mb-5"
+                >
+                  <i class="fas fa-globe mr-2"></i> Master Identity
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <!-- English -->
+                  <div class="space-y-4">
+                    <div>
+                      <label
+                        class="block text-[9px] uppercase tracking-widest text-gray-400 mb-2 ml-1"
+                        >Taxonomy Root (EN)</label
+                      >
+                      <input
+                        type="text"
+                        id="c-enName"
+                        class="premium-input font-serif text-lg"
+                        placeholder="e.g. Hair Artistry"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label
+                        class="block text-[9px] uppercase tracking-widest text-gray-400 mb-2 ml-1"
+                        >Sector Subtitle (EN)</label
+                      >
+                      <input
+                        type="text"
+                        id="c-enSubtitle"
+                        class="premium-input text-xs"
+                        placeholder="e.g. Discover elegant transformations..."
+                        required
+                      />
+                    </div>
+                  </div>
+                  <!-- Bengali -->
+                  <div class="space-y-4">
+                    <div>
+                      <label
+                        class="block text-[9px] uppercase tracking-widest text-gray-400 mb-2 ml-1"
+                        >Taxonomy Root (BN)</label
+                      >
+                      <input
+                        type="text"
+                        id="c-bnName"
+                        class="premium-input font-bengali text-lg"
+                        placeholder="হেয়ার আর্টিস্ট্রি"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label
+                        class="block text-[9px] uppercase tracking-widest text-gray-400 mb-2 ml-1"
+                        >Sector Subtitle (BN)</label
+                      >
+                      <input
+                        type="text"
+                        id="c-bnSubtitle"
+                        class="premium-input font-bengali text-xs"
+                        placeholder="আপনার সৌন্দর্যের রূপান্তর..."
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <div
+                  class="flex justify-between items-center border-b border-white/5 pb-3 mb-5"
+                >
+                  <h3
+                    class="font-sans text-[11px] uppercase tracking-widest text-gold"
+                  >
+                    <i class="fas fa-code-branch mr-2"></i> Vault Segments
+                    (Sub-Categories)
+                  </h3>
+                  <button
+                    type="button"
+                    onclick="addSubcategoryRow()"
+                    class="text-gold text-[10px] tracking-widest uppercase hover:text-white transition"
+                  >
+                    <i class="fas fa-plus mr-1"></i> Add Segment
+                  </button>
+                </div>
+
+                <div id="subcategories-container" class="space-y-3">
+                  <!-- Dynamic Segment Inputs injected here -->
+                </div>
+                <p
+                  id="subcat-empty-msg"
+                  class="text-gray-500 text-[10px] uppercase tracking-widest text-center py-4 italic"
+                >
+                  No segments assigned. Root behaves as standalone.
+                </p>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              id="hidden-submit-category"
+              class="hidden"
+            ></button>
+          </form>
+        </div>
+
+        <div
+          class="p-6 border-t border-white/10 bg-[#080808] flex justify-end gap-4 shrink-0"
+        >
+          <button
+            type="button"
+            onclick="closeModal('category-modal')"
+            class="btn-outline border-white/20 text-white hover:border-white/50 hover:bg-white/5"
+          >
+            Abort
+          </button>
+          <button
+            type="button"
+            onclick="document.getElementById('hidden-submit-category').click()"
+            class="btn-gold shadow-[0_5px_20px_rgba(212,175,55,0.2)]"
+          >
+            Establish Sector <i class="fas fa-check ml-2"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
     <!-- Add/Edit Service Modal -->
     <div id="service-modal" class="modal-overlay">
       <div
@@ -1014,7 +1288,7 @@
               Inject New Service
             </h2>
             <p class="text-gold text-[9px] tracking-[0.2em] uppercase mt-1">
-              Database Modification
+              Vault Classification & Registration
             </p>
           </div>
           <button
@@ -1034,6 +1308,7 @@
           >
             <input type="hidden" id="service-id" />
 
+            <!-- Media Section -->
             <div class="lg:col-span-5 space-y-6">
               <h3
                 class="font-sans text-[11px] uppercase tracking-widest text-gold border-b border-white/5 pb-3"
@@ -1075,33 +1350,73 @@
                 <h3
                   class="font-sans text-[11px] uppercase tracking-widest text-gold border-b border-white/5 pb-3 mb-5"
                 >
-                  <i class="fas fa-globe mr-2"></i> Global Nomenclature
-                  (English)
+                  <i class="fas fa-sitemap mr-2"></i> System Classification
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label
+                      class="block text-[9px] uppercase tracking-widest text-gray-400 mb-2 ml-1"
+                      >Primary Vault Sector</label
+                    >
+                    <select
+                      id="s-category"
+                      class="premium-input bg-[#080808]"
+                      required
+                      onchange="window.updateSubcats(this.value)"
+                    >
+                      <option value="" disabled selected
+                        >Assign Sector...</option
+                      >
+                      <!-- Populated via Firebase -->
+                    </select>
+                  </div>
+                  <div>
+                    <label
+                      class="block text-[9px] uppercase tracking-widest text-gray-400 mb-2 ml-1"
+                      >Treatment Core Segment</label
+                    >
+                    <select
+                      id="s-subCategory"
+                      class="premium-input bg-[#080808]"
+                    >
+                      <option value="" disabled selected
+                        >Lock Segment Level...</option
+                      >
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h3
+                  class="font-sans text-[11px] uppercase tracking-widest text-gold border-b border-white/5 pb-3 mb-5"
+                >
+                  <i class="fas fa-globe mr-2"></i> Service Identity (English)
                 </h3>
                 <div class="space-y-4">
                   <div>
                     <label
                       class="block text-[9px] uppercase tracking-widest text-gray-400 mb-2 ml-1"
-                      >Treatment Title</label
+                      >Signature Identifier</label
                     >
                     <input
                       type="text"
                       id="s-enName"
                       class="premium-input text-lg font-serif"
-                      placeholder="e.g., Advanced Hydra Facial"
+                      placeholder="e.g. Front Layer Curtain Cut"
                       required
                     />
                   </div>
                   <div>
                     <label
                       class="block text-[9px] uppercase tracking-widest text-gray-400 mb-2 ml-1"
-                      >Opulent Description</label
+                      >Experience Directives</label
                     >
                     <textarea
                       id="s-enDesc"
                       rows="3"
                       class="premium-input resize-none leading-relaxed"
-                      placeholder="Describe the luxury experience..."
+                      placeholder="Input the luxurious specifics defining the treatment..."
                       required
                     ></textarea>
                   </div>
@@ -1112,13 +1427,14 @@
                 <h3
                   class="font-sans text-[11px] uppercase tracking-widest text-gold border-b border-white/5 pb-3 mb-5"
                 >
-                  <i class="fas fa-language mr-2"></i> Localized Data (Bengali)
+                  <i class="fas fa-language mr-2"></i> Localized Identity
+                  (Bengali)
                 </h3>
                 <div class="space-y-4">
                   <div>
                     <label
                       class="block text-[9px] uppercase tracking-widest text-gray-400 mb-2 ml-1"
-                      >Treatment Title (BN)</label
+                      >Signature Identifier (BN)</label
                     >
                     <input
                       type="text"
@@ -1131,7 +1447,7 @@
                   <div>
                     <label
                       class="block text-[9px] uppercase tracking-widest text-gray-400 mb-2 ml-1"
-                      >Opulent Description (BN)</label
+                      >Experience Directives (BN)</label
                     >
                     <textarea
                       id="s-bnDesc"
@@ -1202,7 +1518,6 @@
             class="grid grid-cols-1 lg:grid-cols-12 gap-8"
           >
             <input type="hidden" id="gallery-id" />
-
             <div class="lg:col-span-5 space-y-6">
               <h3
                 class="font-sans text-[11px] uppercase tracking-widest text-gold border-b border-white/5 pb-3"
@@ -1238,7 +1553,6 @@
                 </div>
               </div>
             </div>
-
             <div class="lg:col-span-7 space-y-8">
               <div>
                 <h3
@@ -1275,7 +1589,6 @@
                   </div>
                 </div>
               </div>
-
               <div>
                 <h3
                   class="font-sans text-[11px] uppercase tracking-widest text-gold border-b border-white/5 pb-3 mb-5"
@@ -1312,7 +1625,6 @@
                   </div>
                 </div>
               </div>
-
               <div>
                 <h3
                   class="font-sans text-[11px] uppercase tracking-widest text-gold border-b border-white/5 pb-3 mb-5"
@@ -1326,7 +1638,7 @@
                   >
                   <select
                     id="g-filter"
-                    class="premium-input appearance-none bg-black/50"
+                    class="premium-input bg-[#080808]"
                     required
                   >
                     <option value="" disabled selected
@@ -1339,7 +1651,6 @@
                 </div>
               </div>
             </div>
-
             <button
               type="submit"
               id="hidden-submit-gallery"
@@ -1347,7 +1658,6 @@
             ></button>
           </form>
         </div>
-
         <div
           class="p-6 border-t border-white/10 bg-[#080808] flex justify-end gap-4 shrink-0"
         >
@@ -1379,8 +1689,6 @@
         signOut,
         updatePassword,
       } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-
-      // *** IMPORTED writeBatch FOR MASS REORDERING ***
       import {
         getFirestore,
         collection,
@@ -1406,15 +1714,18 @@
       const auth = getAuth(app);
       const db = getFirestore(app);
 
-      // Globals for Real-time Dashboard Sync & Pagination
+      // Globals
+      let globalCategories = [];
       let globalServices = [];
       let globalGallery = [];
       let myChart;
 
-      // Pagination State
+      let categoriesCurrentPage = 1;
       let servicesCurrentPage = 1;
       let galleryCurrentPage = 1;
       const ITEMS_PER_PAGE = 5;
+
+      let currentFilteredCategories = [];
       let currentFilteredServices = [];
       let currentFilteredGallery = [];
 
@@ -1454,34 +1765,30 @@
       }
 
       setInterval(() => {
-        const now = new Date();
-        document.getElementById("live-clock").innerText = now.toLocaleString(
-          "en-US",
-          {
-            weekday: "short",
-            month: "short",
-            day: "numeric",
-            hour: "2-digit",
-            minute: "2-digit",
-            second: "2-digit",
-          },
-        );
+        document.getElementById(
+          "live-clock",
+        ).innerText = new Date().toLocaleString("en-US", {
+          weekday: "short",
+          month: "short",
+          day: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+        });
       }, 1000);
-
-      const authView = document.getElementById("auth-view");
-      const appView = document.getElementById("app-view");
 
       onAuthStateChanged(auth, (user) => {
         if (user) {
-          authView.classList.add("hidden");
-          appView.classList.remove("hidden");
+          document.getElementById("auth-view").classList.add("hidden");
+          document.getElementById("app-view").classList.remove("hidden");
           loader.style.display = "flex";
           animateLoader(() => triggerEntryAnimations());
+          fetchCategories();
           fetchServices();
           fetchGallery();
         } else {
-          appView.classList.add("hidden");
-          authView.classList.remove("hidden");
+          document.getElementById("app-view").classList.add("hidden");
+          document.getElementById("auth-view").classList.remove("hidden");
           setTimeout(() => (loader.style.display = "none"), 500);
         }
       });
@@ -1533,7 +1840,6 @@
         btn.addEventListener("click", (e) => {
           navBtns.forEach((b) => b.classList.remove("active"));
           e.currentTarget.classList.add("active");
-
           const targetId = `section-${e.currentTarget.dataset.target}`;
           sections.forEach((sec) => {
             if (sec.id === targetId) {
@@ -1569,12 +1875,11 @@
         .addEventListener("click", closeMobileSidebar);
       overlay.addEventListener("click", closeMobileSidebar);
 
-      // INITIALIZE CHART
+      // CHART INITIALIZATION
       const ctx = document.getElementById("growthChart").getContext("2d");
       let gradient = ctx.createLinearGradient(0, 0, 0, 300);
       gradient.addColorStop(0, "rgba(212, 175, 55, 0.4)");
       gradient.addColorStop(1, "rgba(212, 175, 55, 0)");
-
       myChart = new Chart(ctx, {
         type: "line",
         data: {
@@ -1588,8 +1893,6 @@
               borderWidth: 2,
               pointBackgroundColor: "#050505",
               pointBorderColor: "#d4af37",
-              pointBorderWidth: 2,
-              pointRadius: 4,
               fill: true,
               tension: 0.4,
             },
@@ -1610,65 +1913,30 @@
       });
 
       function updateDashboardStats() {
+        const cCount = globalCategories.length;
         const sCount = globalServices.length;
         const gCount = globalGallery.length;
+        document.getElementById("stat-categories").innerText = cCount;
+        document.getElementById("stat-services").innerText = sCount;
+        document.getElementById("stat-gallery").innerText = gCount;
 
-        const statServices = document.getElementById("stat-services");
-        const statGallery = document.getElementById("stat-gallery");
-        const statTotal = document.getElementById("stat-total");
-
-        if (statServices) statServices.innerText = sCount;
-        if (statGallery) statGallery.innerText = gCount;
-        if (statTotal) statTotal.innerText = sCount + gCount;
-
-        const dbPercentage = Math.min(100, (sCount + gCount) * 2).toFixed(1);
-        const storagePercentage = Math.min(100, gCount * 3).toFixed(1);
+        const dbPercentage = Math.min(
+          100,
+          (cCount + sCount + gCount) * 1.5,
+        ).toFixed(1);
+        const storagePercentage = Math.min(
+          100,
+          (cCount + gCount) * 2.5,
+        ).toFixed(1);
 
         document.getElementById("db-load-text").innerText = dbPercentage + "%";
         document.getElementById("db-load-bar").style.width = dbPercentage + "%";
-
         document.getElementById("storage-load-text").innerText =
           storagePercentage + "%";
         document.getElementById("storage-load-bar").style.width =
           storagePercentage + "%";
-
-        const last7Days = [];
-        for (let i = 6; i >= 0; i--) {
-          let d = new Date();
-          d.setDate(d.getDate() - i);
-          last7Days.push(
-            d.toLocaleDateString("en-US", { month: "short", day: "numeric" }),
-          );
-        }
-
-        let dailyCounts = new Array(7).fill(0);
-        let today = new Date();
-        today.setHours(23, 59, 59, 999);
-        [...globalServices, ...globalGallery].forEach((item) => {
-          let d = item.createdAt ? new Date(item.createdAt) : new Date();
-          let diffTime = today - d;
-          let diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-          if (diffDays >= 0 && diffDays < 7) {
-            dailyCounts[6 - diffDays]++;
-          }
-        });
-
-        let cumulativeData = [];
-        let currentTotal =
-          sCount + gCount - dailyCounts.reduce((a, b) => a + b, 0);
-        for (let i = 0; i < 7; i++) {
-          currentTotal += dailyCounts[i];
-          cumulativeData.push(currentTotal);
-        }
-
-        if (myChart) {
-          myChart.data.labels = last7Days;
-          myChart.data.datasets[0].data = cumulativeData;
-          myChart.update();
-        }
       }
 
-      // --- PAGINATION LOGIC ---
       window.changePage = function (type, page) {
         if (type === "services") {
           servicesCurrentPage = page;
@@ -1676,6 +1944,9 @@
         } else if (type === "gallery") {
           galleryCurrentPage = page;
           renderGalleryTable(currentFilteredGallery);
+        } else if (type === "categories") {
+          categoriesCurrentPage = page;
+          renderCategoryTable(currentFilteredCategories);
         }
       };
 
@@ -1687,12 +1958,10 @@
       ) {
         const container = document.getElementById(containerId);
         const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
-
         if (totalPages <= 1) {
           container.innerHTML = "";
           return;
         }
-
         let html = "";
         for (let i = 1; i <= totalPages; i++) {
           const activeClass =
@@ -1704,16 +1973,260 @@
         container.innerHTML = html;
       }
 
-      const tbody = document.getElementById("services-table-body");
-      const galleryTbody = document.getElementById("gallery-table-body");
+      /* ==================== TAXONOMY (CATEGORIES) ENGINE ==================== */
 
-      // --- SERVICES LIST RENDERING ---
+      const categoryTbody = document.getElementById("categories-table-body");
+
+      function renderCategoryTable(dataArray) {
+        currentFilteredCategories = dataArray;
+        const totalPages = Math.ceil(dataArray.length / ITEMS_PER_PAGE);
+        if (categoriesCurrentPage > totalPages)
+          categoriesCurrentPage = totalPages || 1;
+        const startIndex = (categoriesCurrentPage - 1) * ITEMS_PER_PAGE;
+        const paginatedData = dataArray.slice(
+          startIndex,
+          startIndex + ITEMS_PER_PAGE,
+        );
+
+        if (paginatedData.length === 0) {
+          categoryTbody.innerHTML = `<tr><td colspan="4" class="p-10 text-center text-gray-500 font-sans text-xs tracking-widest uppercase">Taxonomy Database Empty</td></tr>`;
+          document.getElementById("categories-pagination").innerHTML = "";
+          return;
+        }
+
+        let html = "";
+        paginatedData.forEach((data) => {
+          let subsHTML = "";
+          if (data.subcategories && data.subcategories.length > 0) {
+            subsHTML = data.subcategories
+              .map(
+                (s) =>
+                  `<span class="bg-gold/10 text-gold border border-gold/20 rounded px-2 py-1 text-[8px] tracking-widest uppercase inline-block m-0.5">${s.en} / <span class="font-bengali text-[9px] capitalize">${s.bn}</span></span>`,
+              )
+              .join("");
+          } else {
+            subsHTML = `<span class="text-gray-600 text-[9px] italic uppercase tracking-widest">No Segments</span>`;
+          }
+
+          html += `
+          <tr class="service-row group">
+            <td class="p-4 border-b border-white/5">
+              <div class="w-16 h-12 rounded-sm overflow-hidden border border-white/10 relative"><img src="${data.image}" class="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition duration-500"></div>
+            </td>
+            <td class="p-4 border-b border-white/5">
+              <p class="font-serif text-white text-base leading-snug">${data.enName} <span class="font-sans text-gray-500 text-[10px] ml-2 block sm:inline">${data.enSubtitle}</span></p>
+              <p class="font-bengali text-gray-400 text-sm mt-1">${data.bnName} <span class="text-gray-600 text-xs ml-2">${data.bnSubtitle}</span></p>
+            </td>
+            <td class="p-4 border-b border-white/5 max-w-[250px]">${subsHTML}</td>
+            <td class="p-4 border-b border-white/5 text-right space-x-2">
+              <button onclick="editCategory('${data.id}')" class="w-8 h-8 rounded border border-gold/30 text-gold hover:bg-gold hover:text-black transition inline-flex justify-center items-center"><i class="fas fa-pen text-xs"></i></button>
+              <button onclick="deleteCategory('${data.id}')" class="w-8 h-8 rounded border border-red-900/50 text-red-500 hover:bg-red-600 hover:text-white transition inline-flex justify-center items-center"><i class="fas fa-trash text-xs"></i></button>
+            </td>
+          </tr>`;
+        });
+        categoryTbody.innerHTML = html;
+        renderPaginationControls(
+          "categories-pagination",
+          dataArray.length,
+          categoriesCurrentPage,
+          "categories",
+        );
+      }
+
+      function populateServiceCategoryDropdown() {
+        const select = document.getElementById("s-category");
+        const currentVal = select.value;
+        select.innerHTML =
+          '<option value="" disabled selected>Assign Sector...</option>';
+        globalCategories.forEach((c) => {
+          select.innerHTML += `<option value="${c.id}">${c.enName} / ${c.bnName}</option>`;
+        });
+        if (currentVal) select.value = currentVal;
+      }
+
+      window.updateSubcats = function (categoryId) {
+        const subSelect = document.getElementById("s-subCategory");
+        subSelect.innerHTML =
+          '<option value="" disabled selected>Lock Segment Level...</option>';
+        const cat = globalCategories.find((c) => c.id === categoryId);
+        if (cat && cat.subcategories) {
+          cat.subcategories.forEach((sub) => {
+            subSelect.innerHTML += `<option value="${sub.en}">${sub.en} / ${sub.bn}</option>`;
+          });
+        }
+      };
+
+      async function fetchCategories() {
+        onSnapshot(collection(db, "categories"), (snapshot) => {
+          globalCategories = [];
+          snapshot.forEach((doc) => {
+            globalCategories.push({ id: doc.id, ...doc.data() });
+          });
+          globalCategories.sort(
+            (a, b) => (a.order ?? 9999) - (b.order ?? 9999),
+          );
+          const term = document
+            .getElementById("search-category")
+            .value.toLowerCase();
+          const filtered = term
+            ? globalCategories.filter(
+                (c) =>
+                  c.enName.toLowerCase().includes(term) ||
+                  c.bnName.includes(term),
+              )
+            : globalCategories;
+          renderCategoryTable(filtered);
+          populateServiceCategoryDropdown();
+          updateDashboardStats();
+        });
+      }
+
+      document
+        .getElementById("search-category")
+        .addEventListener("input", (e) => {
+          categoriesCurrentPage = 1;
+          const term = e.target.value.toLowerCase();
+          const filtered = globalCategories.filter(
+            (c) =>
+              c.enName.toLowerCase().includes(term) || c.bnName.includes(term),
+          );
+          renderCategoryTable(filtered);
+        });
+
+      // Category Form Logic
+      const cImgInput = document.getElementById("c-image");
+      const cPreviewImg = document.getElementById("preview-img-category");
+      cImgInput.addEventListener("input", (e) => {
+        const url = e.target.value;
+        if (url.match(/\.(jpeg|jpg|gif|png|webp)/) || url.includes("http")) {
+          cPreviewImg.src = url;
+          cPreviewImg.style.opacity = "1";
+        } else {
+          cPreviewImg.style.opacity = "0";
+        }
+      });
+
+      window.addSubcategoryRow = function (en = "", bn = "") {
+        const container = document.getElementById("subcategories-container");
+        document.getElementById("subcat-empty-msg").style.display = "none";
+
+        const row = document.createElement("div");
+        row.className = "flex gap-2 items-center group subcat-row reveal-anim";
+        row.innerHTML = `
+          <input type="text" class="premium-input flex-1 sub-en" placeholder="EN Nomenclature" value="${en}" required>
+          <input type="text" class="premium-input font-bengali flex-1 sub-bn" placeholder="BN Nomenclature" value="${bn}" required>
+          <button type="button" onclick="this.parentElement.remove(); checkEmptySubcats();" class="w-10 h-10 shrink-0 border border-red-900/50 text-red-500 rounded hover:bg-red-600 hover:text-white transition flex justify-center items-center"><i class="fas fa-minus"></i></button>
+        `;
+        container.appendChild(row);
+        gsap.fromTo(
+          row,
+          { opacity: 0, y: -10 },
+          { opacity: 1, y: 0, duration: 0.3 },
+        );
+      };
+
+      window.checkEmptySubcats = function () {
+        if (document.querySelectorAll(".subcat-row").length === 0) {
+          document.getElementById("subcat-empty-msg").style.display = "block";
+        }
+      };
+
+      document
+        .getElementById("category-form")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const id = document.getElementById("category-id").value;
+
+          const subcategories = Array.from(
+            document.querySelectorAll(".subcat-row"),
+          ).map((row) => ({
+            en: row.querySelector(".sub-en").value,
+            bn: row.querySelector(".sub-bn").value,
+          }));
+
+          const data = {
+            image: document.getElementById("c-image").value,
+            enName: document.getElementById("c-enName").value,
+            enSubtitle: document.getElementById("c-enSubtitle").value,
+            bnName: document.getElementById("c-bnName").value,
+            bnSubtitle: document.getElementById("c-bnSubtitle").value,
+            subcategories: subcategories,
+            updatedAt: new Date().toISOString(),
+          };
+
+          try {
+            if (id) {
+              await updateDoc(doc(db, "categories", id), data);
+              Toast.fire({ icon: "success", title: "Taxonomy Modified" });
+            } else {
+              data.createdAt = new Date().toISOString();
+              data.order = globalCategories.length;
+              await addDoc(collection(db, "categories"), data);
+              Toast.fire({ icon: "success", title: "Sector Established" });
+            }
+            closeModal("category-modal");
+          } catch (error) {
+            Toast.fire({ icon: "error", title: "Architecture Fracture" });
+          }
+        });
+
+      window.editCategory = function (id) {
+        const cat = globalCategories.find((c) => c.id === id);
+        document.getElementById("category-modal-title").innerText =
+          "Modify Existing Sector";
+        document.getElementById("category-id").value = cat.id;
+
+        const imgInp = document.getElementById("c-image");
+        imgInp.value = cat.image;
+        imgInp.dispatchEvent(new Event("input"));
+
+        document.getElementById("c-enName").value = cat.enName || "";
+        document.getElementById("c-enSubtitle").value = cat.enSubtitle || "";
+        document.getElementById("c-bnName").value = cat.bnName || "";
+        document.getElementById("c-bnSubtitle").value = cat.bnSubtitle || "";
+
+        const subContainer = document.getElementById("subcategories-container");
+        subContainer.innerHTML = "";
+        if (cat.subcategories && cat.subcategories.length > 0) {
+          document.getElementById("subcat-empty-msg").style.display = "none";
+          cat.subcategories.forEach((sub) => addSubcategoryRow(sub.en, sub.bn));
+        } else {
+          document.getElementById("subcat-empty-msg").style.display = "block";
+        }
+
+        openModal("category-modal");
+      };
+
+      window.deleteCategory = async function (id) {
+        Swal.fire({
+          title:
+            '<h2 class="font-serif text-2xl text-white">Sever Sector Root?</h2>',
+          html:
+            '<p class="text-[10px] tracking-widest uppercase text-red-400">Vault linkages will be orphaned permanently.</p>',
+          icon: "warning",
+          showCancelButton: true,
+          background: "#0a0a0a",
+          customClass: { popup: "border border-red-900/50" },
+          confirmButtonColor: "#b38728",
+          cancelButtonColor: "#1a1a1a",
+          confirmButtonText: "AUTHORIZE AMPUTATION",
+          cancelButtonText: "CANCEL",
+        }).then(async (result) => {
+          if (result.isConfirmed) {
+            await deleteDoc(doc(db, "categories", id));
+            Toast.fire({ icon: "success", title: "Sector Eradicated" });
+          }
+        });
+      };
+
+      /* ==================== THE VAULT (SERVICES) ENGINE ==================== */
+      const tbody = document.getElementById("services-table-body");
+
       function renderTable(dataArray) {
         currentFilteredServices = dataArray;
         const totalPages = Math.ceil(dataArray.length / ITEMS_PER_PAGE);
         if (servicesCurrentPage > totalPages)
           servicesCurrentPage = totalPages || 1;
-
         const startIndex = (servicesCurrentPage - 1) * ITEMS_PER_PAGE;
         const paginatedData = dataArray.slice(
           startIndex,
@@ -1728,26 +2241,48 @@
 
         let html = "";
         paginatedData.forEach((data) => {
+          // Dynamic category name lookup (supports old string logic or new ID logic)
+          const catObj = globalCategories.find((c) => c.id === data.category);
+          const catDisplay = catObj
+            ? catObj.enName
+            : data.category || "Uncategorized";
+
           html += `
           <tr class="service-row group">
             <td class="p-4 border-b border-white/5">
               <div class="w-16 h-12 rounded-sm overflow-hidden border border-white/10 relative">
-                <img src="${data.image}" class="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition duration-500">
+                <img src="${
+                  data.image
+                }" class="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition duration-500">
               </div>
             </td>
             <td class="p-4 border-b border-white/5">
-              <p class="font-serif text-white text-base">${data.enName}</p>
-              <p class="font-sans text-[9px] text-gray-500 tracking-widest uppercase truncate max-w-[200px] mt-1">${data.enDesc}</p>
+              <p class="font-serif text-white text-base leading-snug">${
+                data.enName
+              }</p>
+              ${
+                data.category
+                  ? `<div class="font-sans text-[8px] bg-gold/10 text-gold tracking-widest uppercase mt-1 inline-flex items-center px-2 py-0.5 border border-gold/20 rounded gap-1"><i class="fas fa-layer-group opacity-60"></i> <span>${catDisplay} &nbsp;> &nbsp;${
+                      data.subCategory || "Root"
+                    }</span></div>`
+                  : ""
+              }
+              <p class="font-sans text-[9px] text-gray-500 tracking-widest uppercase truncate max-w-[200px] mt-1">${
+                data.enDesc
+              }</p>
             </td>
-            <td class="p-4 border-b border-white/5">
-              <p class="font-bengali text-white text-sm">${data.bnName}</p>
-            </td>
+            <td class="p-4 border-b border-white/5"><p class="font-bengali text-white text-sm">${
+              data.bnName
+            }</p></td>
             <td class="p-4 border-b border-white/5 text-right space-x-2">
-              <button onclick="editService('${data.id}')" class="w-8 h-8 rounded border border-gold/30 text-gold hover:bg-gold hover:text-black transition inline-flex justify-center items-center"><i class="fas fa-pen text-xs"></i></button>
-              <button onclick="deleteService('${data.id}')" class="w-8 h-8 rounded border border-red-900/50 text-red-500 hover:bg-red-600 hover:text-white transition inline-flex justify-center items-center"><i class="fas fa-trash text-xs"></i></button>
+              <button onclick="editService('${
+                data.id
+              }')" class="w-8 h-8 rounded border border-gold/30 text-gold hover:bg-gold hover:text-black transition inline-flex justify-center items-center"><i class="fas fa-pen text-xs"></i></button>
+              <button onclick="deleteService('${
+                data.id
+              }')" class="w-8 h-8 rounded border border-red-900/50 text-red-500 hover:bg-red-600 hover:text-white transition inline-flex justify-center items-center"><i class="fas fa-trash text-xs"></i></button>
             </td>
-          </tr>
-        `;
+          </tr>`;
         });
         tbody.innerHTML = html;
         renderPaginationControls(
@@ -1764,21 +2299,17 @@
           snapshot.forEach((doc) => {
             globalServices.push({ id: doc.id, ...doc.data() });
           });
-
-          // SORT BY ORDER FIELD (Ascending)
           globalServices.sort((a, b) => (a.order ?? 9999) - (b.order ?? 9999));
-
           const term = document
             .getElementById("search-service")
             .value.toLowerCase();
           const filtered = term
             ? globalServices.filter(
                 (s) =>
-                  s.enName.toLowerCase().includes(term) ||
-                  s.bnName.includes(term),
+                  (s.enName && s.enName.toLowerCase().includes(term)) ||
+                  (s.bnName && s.bnName.includes(term)),
               )
             : globalServices;
-
           renderTable(filtered);
           updateDashboardStats();
         });
@@ -1791,7 +2322,8 @@
           const term = e.target.value.toLowerCase();
           const filtered = globalServices.filter(
             (s) =>
-              s.enName.toLowerCase().includes(term) || s.bnName.includes(term),
+              (s.enName && s.enName.toLowerCase().includes(term)) ||
+              (s.bnName && s.bnName.includes(term)),
           );
           renderTable(filtered);
         });
@@ -1800,12 +2332,7 @@
       const previewImg = document.getElementById("preview-img");
       imgInput.addEventListener("input", (e) => {
         const url = e.target.value;
-        if (
-          url.match(/\.(jpeg|jpg|gif|png|webp)/) ||
-          url.includes("images.unsplash.com") ||
-          url.includes("images.pexels.com") ||
-          url.includes("postimg.cc")
-        ) {
+        if (url.match(/\.(jpeg|jpg|gif|png|webp)/) || url.includes("http")) {
           previewImg.src = url;
           previewImg.style.opacity = "1";
         } else {
@@ -1820,6 +2347,8 @@
           const id = document.getElementById("service-id").value;
           const data = {
             image: document.getElementById("s-image").value,
+            category: document.getElementById("s-category").value, // stores the ID or name
+            subCategory: document.getElementById("s-subCategory").value,
             enName: document.getElementById("s-enName").value,
             enDesc: document.getElementById("s-enDesc").value,
             bnName: document.getElementById("s-bnName").value,
@@ -1832,68 +2361,91 @@
               await updateDoc(doc(db, "services", id), data);
               Toast.fire({
                 icon: "success",
-                title: "Data Mutated Successfully",
+                title: "Segment Signature Mutated",
               });
             } else {
               data.createdAt = new Date().toISOString();
-              // ALWAYS ADD NEW ITEMS TO THE END OF THE SEQUENCE
               data.order = globalServices.length;
-
               await addDoc(collection(db, "services"), data);
-              Toast.fire({ icon: "success", title: "Asset Injected to Vault" });
+              Toast.fire({
+                icon: "success",
+                title: "Signature Deployed to Vault",
+              });
             }
             closeModal("service-modal");
           } catch (error) {
-            Toast.fire({ icon: "error", title: "System Error" });
+            Toast.fire({
+              icon: "error",
+              title: "Hierarchical Core Disconnected",
+            });
           }
         });
 
       window.editService = function (id) {
         const service = globalServices.find((s) => s.id === id);
         document.getElementById("modal-title").innerText =
-          "Mutate Service Data";
+          "Modify Vault Identity";
         document.getElementById("service-id").value = service.id;
 
         const imgInp = document.getElementById("s-image");
         imgInp.value = service.image;
         imgInp.dispatchEvent(new Event("input"));
 
+        // Match Category (either by ID or legacy name)
+        const catSelect = document.getElementById("s-category");
+        let matchedVal = "";
+        for (let opt of catSelect.options) {
+          if (
+            opt.value === service.category ||
+            opt.text.includes(service.category)
+          ) {
+            matchedVal = opt.value;
+            break;
+          }
+        }
+        catSelect.value = matchedVal || service.category || "";
+
+        if (catSelect.value) window.updateSubcats(catSelect.value);
+        document.getElementById("s-subCategory").value =
+          service.subCategory || "";
+
         document.getElementById("s-enName").value = service.enName;
         document.getElementById("s-enDesc").value = service.enDesc;
         document.getElementById("s-bnName").value = service.bnName;
         document.getElementById("s-bnDesc").value = service.bnDesc;
+
         openModal("service-modal");
       };
 
       window.deleteService = async function (id) {
         Swal.fire({
           title:
-            '<h2 class="font-serif text-2xl text-white">Eradicate Asset?</h2>',
+            '<h2 class="font-serif text-2xl text-white">Eradicate Execution?</h2>',
           html:
-            '<p class="text-[10px] tracking-widest uppercase text-red-400">This action causes irreversible data loss.</p>',
+            '<p class="text-[10px] tracking-widest uppercase text-red-400">Irreversible sequence disruption follows.</p>',
           icon: "warning",
           showCancelButton: true,
           background: "#0a0a0a",
           customClass: { popup: "border border-red-900/50" },
           confirmButtonColor: "#b38728",
           cancelButtonColor: "#1a1a1a",
-          confirmButtonText: "CONFIRM ERADICATION",
-          cancelButtonText: "ABORT",
+          confirmButtonText: "AUTHORIZE DELETION",
+          cancelButtonText: "CANCEL",
         }).then(async (result) => {
           if (result.isConfirmed) {
             await deleteDoc(doc(db, "services", id));
-            Toast.fire({ icon: "success", title: "Asset Eradicated" });
+            Toast.fire({ icon: "success", title: "Record Neutralized" });
           }
         });
       };
 
-      // --- GALLERY LIST RENDERING ---
+      /* ==================== GALLERY ENGINE ==================== */
+      const galleryTbody = document.getElementById("gallery-table-body");
       function renderGalleryTable(dataArray) {
         currentFilteredGallery = dataArray;
         const totalPages = Math.ceil(dataArray.length / ITEMS_PER_PAGE);
         if (galleryCurrentPage > totalPages)
           galleryCurrentPage = totalPages || 1;
-
         const startIndex = (galleryCurrentPage - 1) * ITEMS_PER_PAGE;
         const paginatedData = dataArray.slice(
           startIndex,
@@ -1901,34 +2453,27 @@
         );
 
         if (paginatedData.length === 0) {
-          galleryTbody.innerHTML = `<tr><td colspan="4" class="p-10 text-center text-gray-500 font-sans text-xs tracking-widest uppercase">No Visuals Found in Gallery</td></tr>`;
+          galleryTbody.innerHTML = `<tr><td colspan="4" class="p-10 text-center text-gray-500 font-sans text-xs tracking-widest uppercase">Visual Environment Vacant</td></tr>`;
           document.getElementById("gallery-pagination").innerHTML = "";
           return;
         }
-
         let html = "";
         paginatedData.forEach((data) => {
           html += `
           <tr class="service-row group">
             <td class="p-4 border-b border-white/5">
-              <div class="w-16 h-12 rounded-sm overflow-hidden border border-white/10 relative">
-                <img src="${data.image}" class="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition duration-500">
-              </div>
+              <div class="w-16 h-12 rounded-sm overflow-hidden border border-white/10 relative"><img src="${data.image}" class="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition duration-500"></div>
             </td>
-            <td class="p-4 border-b border-white/5">
-              <p class="font-serif text-white text-base">${data.enName}</p>
-              <p class="font-bengali text-gray-400 text-sm mt-1">${data.bnName}</p>
-            </td>
+            <td class="p-4 border-b border-white/5"><p class="font-serif text-white text-base">${data.enName}</p><p class="font-bengali text-gray-400 text-sm mt-1">${data.bnName}</p></td>
             <td class="p-4 border-b border-white/5">
               <p class="font-sans text-[10px] text-white tracking-widest uppercase">${data.enCat} / <span class="font-bengali capitalize">${data.bnCat}</span></p>
-              <p class="font-sans text-[8px] text-gold tracking-widest uppercase mt-1 border border-gold/30 bg-gold/5 rounded px-2 py-0.5 inline-block">Filter: ${data.filter}</p>
+              <p class="font-sans text-[8px] text-gold tracking-widest uppercase mt-1 border border-gold/30 bg-gold/5 rounded px-2 py-0.5 inline-block">Filter Block: ${data.filter}</p>
             </td>
             <td class="p-4 border-b border-white/5 text-right space-x-2">
               <button onclick="editGallery('${data.id}')" class="w-8 h-8 rounded border border-gold/30 text-gold hover:bg-gold hover:text-black transition inline-flex justify-center items-center"><i class="fas fa-pen text-xs"></i></button>
               <button onclick="deleteGallery('${data.id}')" class="w-8 h-8 rounded border border-red-900/50 text-red-500 hover:bg-red-600 hover:text-white transition inline-flex justify-center items-center"><i class="fas fa-trash text-xs"></i></button>
             </td>
-          </tr>
-        `;
+          </tr>`;
         });
         galleryTbody.innerHTML = html;
         renderPaginationControls(
@@ -1945,10 +2490,7 @@
           snapshot.forEach((doc) => {
             globalGallery.push({ id: doc.id, ...doc.data() });
           });
-
-          // SORT BY ORDER FIELD (Ascending)
           globalGallery.sort((a, b) => (a.order ?? 9999) - (b.order ?? 9999));
-
           const term = document
             .getElementById("search-gallery")
             .value.toLowerCase();
@@ -1956,11 +2498,9 @@
             ? globalGallery.filter(
                 (g) =>
                   g.enName.toLowerCase().includes(term) ||
-                  g.bnName.includes(term) ||
-                  g.enCat.toLowerCase().includes(term),
+                  g.bnName.includes(term),
               )
             : globalGallery;
-
           renderGalleryTable(filtered);
           updateDashboardStats();
         });
@@ -1973,9 +2513,7 @@
           const term = e.target.value.toLowerCase();
           const filtered = globalGallery.filter(
             (g) =>
-              g.enName.toLowerCase().includes(term) ||
-              g.bnName.includes(term) ||
-              g.enCat.toLowerCase().includes(term),
+              g.enName.toLowerCase().includes(term) || g.bnName.includes(term),
           );
           renderGalleryTable(filtered);
         });
@@ -1984,12 +2522,7 @@
       const previewGalleryImg = document.getElementById("preview-img-gallery");
       galleryImgInput.addEventListener("input", (e) => {
         const url = e.target.value;
-        if (
-          url.match(/\.(jpeg|jpg|gif|png|webp)/) ||
-          url.includes("images.unsplash.com") ||
-          url.includes("images.pexels.com") ||
-          url.includes("postimg.cc")
-        ) {
+        if (url.match(/\.(jpeg|jpg|gif|png|webp)/) || url.includes("http")) {
           previewGalleryImg.src = url;
           previewGalleryImg.style.opacity = "1";
         } else {
@@ -2011,38 +2544,30 @@
             filter: document.getElementById("g-filter").value,
             updatedAt: new Date().toISOString(),
           };
-
           try {
             if (id) {
               await updateDoc(doc(db, "gallery", id), data);
-              Toast.fire({ icon: "success", title: "Visual Data Mutated" });
+              Toast.fire({ icon: "success", title: "Optics Modified" });
             } else {
               data.createdAt = new Date().toISOString();
-              // ALWAYS ADD NEW ITEMS TO THE END OF THE SEQUENCE
               data.order = globalGallery.length;
-
               await addDoc(collection(db, "gallery"), data);
-              Toast.fire({
-                icon: "success",
-                title: "Visual Injected to Gallery",
-              });
+              Toast.fire({ icon: "success", title: "Render Authorized" });
             }
             closeModal("gallery-modal");
           } catch (error) {
-            Toast.fire({ icon: "error", title: "System Error" });
+            Toast.fire({ icon: "error", title: "Storage Fracture Occurred" });
           }
         });
 
       window.editGallery = function (id) {
         const galleryItem = globalGallery.find((g) => g.id === id);
         document.getElementById("gallery-modal-title").innerText =
-          "Mutate Visual Asset";
+          "Manipulate Optics Core";
         document.getElementById("gallery-id").value = galleryItem.id;
-
         const imgInp = document.getElementById("g-image");
         imgInp.value = galleryItem.image;
         imgInp.dispatchEvent(new Event("input"));
-
         document.getElementById("g-enName").value = galleryItem.enName;
         document.getElementById("g-bnName").value = galleryItem.bnName;
         document.getElementById("g-enCat").value = galleryItem.enCat;
@@ -2054,144 +2579,123 @@
       window.deleteGallery = async function (id) {
         Swal.fire({
           title:
-            '<h2 class="font-serif text-2xl text-white">Eradicate Visual?</h2>',
+            '<h2 class="font-serif text-2xl text-white">Fracture Asset Matrix?</h2>',
           html:
-            '<p class="text-[10px] tracking-widest uppercase text-red-400">This action causes irreversible data loss.</p>',
+            '<p class="text-[10px] tracking-widest uppercase text-red-400">Irreversible optical corruption triggered.</p>',
           icon: "warning",
           showCancelButton: true,
           background: "#0a0a0a",
           customClass: { popup: "border border-red-900/50" },
           confirmButtonColor: "#b38728",
           cancelButtonColor: "#1a1a1a",
-          confirmButtonText: "CONFIRM ERADICATION",
-          cancelButtonText: "ABORT",
+          confirmButtonText: "OBLITERATE NODE",
+          cancelButtonText: "CANCEL",
         }).then(async (result) => {
           if (result.isConfirmed) {
             await deleteDoc(doc(db, "gallery", id));
-            Toast.fire({ icon: "success", title: "Visual Eradicated" });
+            Toast.fire({ icon: "success", title: "Vector Dismissed" });
           }
         });
       };
 
-      // ==========================================
-      // ADVANCED REORDER DRAG & DROP LOGIC
-      // ==========================================
-
-      let currentReorderType = ""; // Keeps track if we are sorting 'services' or 'gallery'
+      // SORTABILITY ENGINE //
+      let currentReorderType = "";
       let sortableInstance = null;
 
       window.openReorderModal = function (type) {
         currentReorderType = type;
         const listContainer = document.getElementById("reorder-list");
-        const dataList = type === "services" ? globalServices : globalGallery;
+        const dataList =
+          type === "services"
+            ? globalServices
+            : type === "gallery"
+            ? globalGallery
+            : globalCategories;
 
-        // Dynamic Title Swap
-        const reorderTitle = document.getElementById("reorder-modal-title");
-        if (reorderTitle) {
-          reorderTitle.innerText =
-            type === "services"
-              ? "Reorder Services Sequence"
-              : "Reorder Gallery Sequence";
-        }
+        document.getElementById("reorder-modal-title").innerText =
+          type === "services"
+            ? "Reshape Signature Layout"
+            : type === "categories"
+            ? "Architect Taxonomy Order"
+            : "Calibrate Optics Architecture";
 
-        // Generate drag-and-drop list items based on existing sorted data
         listContainer.innerHTML = dataList
           .map(
             (item) => `
           <li data-id="${item.id}" class="p-4 bg-black/60 border border-white/10 rounded-sm flex items-center gap-4 cursor-grab hover:border-gold/50 transition duration-300">
             <i class="fas fa-grip-vertical text-gray-500 cursor-grab px-2"></i>
             <img src="${item.image}" class="w-16 h-10 object-cover rounded shadow-md border border-white/5">
-            <div class="flex-grow">
-              <span class="text-white font-serif tracking-wide block leading-none">${item.enName}</span>
-              <span class="text-gray-400 text-[10px] font-bengali block mt-1">${item.bnName}</span>
-            </div>
+            <div class="flex-grow"><span class="text-white font-serif tracking-wide block leading-none">${item.enName}</span><span class="text-gray-400 text-[10px] font-bengali block mt-1">${item.bnName}</span></div>
           </li>
         `,
           )
           .join("");
 
-        // Initialize SortableJS
         if (sortableInstance) sortableInstance.destroy();
         sortableInstance = new Sortable(listContainer, {
           animation: 200,
           ghostClass: "sortable-ghost",
           handle: ".fa-grip-vertical, li",
         });
-
         openModal("reorder-modal");
       };
 
       window.saveNewOrder = async function (e) {
         const btn = e.currentTarget;
         btn.innerHTML =
-          '<i class="fas fa-circle-notch fa-spin"></i> Processing...';
-
+          '<i class="fas fa-circle-notch fa-spin"></i> Injecting Protocol...';
         const listItems = document
           .getElementById("reorder-list")
           .querySelectorAll("li");
-        const batch = writeBatch(db); // Initialize Firebase Batch Write
-
-        // Assign the new sequential order to each document in Firestore
+        const batch = writeBatch(db);
         listItems.forEach((li, index) => {
-          const docId = li.getAttribute("data-id");
-          const ref = doc(db, currentReorderType, docId);
+          const ref = doc(db, currentReorderType, li.getAttribute("data-id"));
           batch.update(ref, { order: index });
         });
-
         try {
-          // Push all updates simultaneously
           await batch.commit();
-          Toast.fire({ icon: "success", title: "Live Sequence Locked" });
+          Toast.fire({ icon: "success", title: "Protocol Solidified" });
           closeModal("reorder-modal");
         } catch (err) {
-          Toast.fire({ icon: "error", title: "Sequence Failure" });
+          Toast.fire({ icon: "error", title: "Sequence Transmission Issue" });
         }
-
         btn.innerHTML = 'Lock Sequence <i class="fas fa-lock ml-2"></i>';
       };
 
-      // Security Protocol Form
-      document
-        .getElementById("password-form")
-        .addEventListener("submit", async (e) => {
-          e.preventDefault();
-          const newPass = document.getElementById("new-password").value;
-          const btn = e.target.querySelector("button");
-          btn.innerHTML =
-            '<i class="fas fa-circle-notch fa-spin"></i> Processing...';
-
-          try {
-            await updatePassword(auth.currentUser, newPass);
-            Toast.fire({ icon: "success", title: "Master Cipher Updated" });
-            e.target.reset();
-          } catch (error) {
-            Toast.fire({
-              icon: "error",
-              title: "Error: Re-authentication required",
-            });
-          }
-          btn.innerHTML =
-            'Execute Override <i class="fas fa-shield-check ml-2"></i>';
-        });
-
-      // Global Modal Triggers
+      // Modalities Trigger Mechanisms
       window.openModal = function (id) {
         const modal = document.getElementById(id);
+
+        if (
+          id === "category-modal" &&
+          !document.getElementById("category-id").value
+        ) {
+          document.getElementById("category-modal-title").innerText =
+            "Formulate New Sector";
+          document.getElementById("category-form").reset();
+          document.getElementById("preview-img-category").style.opacity = "0";
+          document.getElementById("subcategories-container").innerHTML = "";
+          document.getElementById("subcat-empty-msg").style.display = "block";
+        }
+
         if (
           id === "service-modal" &&
           !document.getElementById("service-id").value
         ) {
           document.getElementById("modal-title").innerText =
-            "Inject New Service";
+            "Inject New Service Classification";
           document.getElementById("service-form").reset();
           document.getElementById("preview-img").style.opacity = "0";
+          document.getElementById("s-subCategory").innerHTML =
+            '<option value="" disabled selected>Lock Segment Level...</option>';
         }
+
         if (
           id === "gallery-modal" &&
           !document.getElementById("gallery-id").value
         ) {
           document.getElementById("gallery-modal-title").innerText =
-            "Inject Visual Asset";
+            "Inject Rendering Layer";
           document.getElementById("gallery-form").reset();
           document.getElementById("preview-img-gallery").style.opacity = "0";
         }
@@ -2204,6 +2708,10 @@
         modal.classList.remove("active");
         setTimeout(() => {
           modal.style.display = "none";
+          if (id === "category-modal") {
+            document.getElementById("category-form").reset();
+            document.getElementById("category-id").value = "";
+          }
           if (id === "service-modal") {
             document.getElementById("service-form").reset();
             document.getElementById("service-id").value = "";
@@ -2214,6 +2722,31 @@
           }
         }, 400);
       };
+
+      document
+        .getElementById("password-form")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const newPass = document.getElementById("new-password").value;
+          const btn = e.target.querySelector("button");
+          btn.innerHTML =
+            '<i class="fas fa-circle-notch fa-spin"></i> Initializing Encryptor...';
+          try {
+            await updatePassword(auth.currentUser, newPass);
+            Toast.fire({
+              icon: "success",
+              title: "System Integrity Solidified",
+            });
+            e.target.reset();
+          } catch (error) {
+            Toast.fire({
+              icon: "error",
+              title: "Auth Failure - Override Required",
+            });
+          }
+          btn.innerHTML =
+            'Execute Override <i class="fas fa-shield-check ml-2"></i>';
+        });
     </script>
   </body>
 </html>

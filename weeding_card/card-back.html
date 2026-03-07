@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wedding Festivities | Habibullah & Ayesha</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Supreme High-End Typographic Pairings -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Allura&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@200;300;400;500&family=Aref+Ruqaa:wght@400&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "page-bg": "#FDFBF7" /* Rich ivory pearl paper */,
+              "ink-obsidian":
+                "#191816" /* Thick print-press warm charcoal/black */,
+              "foil-light": "#F8EDDB",
+              "foil-base": "#D6AE7B" /* The master true Champagne gold */,
+              "foil-deep": "#9A703F",
+            },
+            fontFamily: {
+              arabic: ['"Aref Ruqaa"', "serif"],
+              classic: ['"Cinzel"', "serif"] /* Monumental Caps */,
+              body: [
+                '"Cormorant Garamond"',
+                "serif",
+              ] /* Ligatures, delicate prose */,
+              script: [
+                '"Allura"',
+                "cursive",
+              ] /* Wide, extravagant aristocratic script */,
+              sans: [
+                '"Montserrat"',
+                "sans-serif",
+              ] /* For VIP information legibility */,
+            },
+            boxShadow: {
+              "thick-paper":
+                "0 40px 100px -10px rgba(0, 0, 0, 0.45), 0 -5px 40px rgba(0, 0, 0, 0.1)",
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      /* Smooth, razor-sharp anti-aliasing */
+      body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      /* Virtual Room / Desktop viewing staging */
+      .stage {
+        background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 2rem 0;
+        overflow-x: hidden;
+      }
+
+      /* STRICT A4 BOUNDS */
+      .a4-wrapper {
+        width: 794px;
+        height: 1123px;
+        position: relative;
+        transform-origin: top center;
+        flex-shrink: 0;
+      }
+
+      /* Auto-zoom fix down on smaller devices */
+      @media screen and (max-width: 850px) {
+        .a4-wrapper {
+          transform: scale(max(0.4, min(1, calc(100vw / 820))));
+        }
+        .stage {
+          padding: 5% 0;
+          min-height: 0;
+        }
+      }
+
+      /* A true masterpiece element: Creating tactile indent text shadows simulating 800gsm letterpress impact */
+      .ink-deboss {
+        color: #191816;
+        text-shadow: 0 -0.5px 0.5px rgba(0, 0, 0, 0.4),
+          0 1.5px 1px rgba(255, 255, 255, 1);
+      }
+
+      /* Highly realistic Champagne blind-stamped physical hot foil. */
+      .gold-foil-press {
+        background: linear-gradient(
+          to right,
+          #a27845 0%,
+          #c49f67 15%,
+          #c49f67 85%,
+          #966c39 100%
+        );
+        background-size: 150% auto;
+        background-position: center;
+        color: transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+        filter: drop-shadow(0 -0.5px 0.5px rgba(0, 0, 0, 0.15))
+          drop-shadow(0 1px 1px rgba(255, 255, 255, 1));
+      }
+
+      .svg-gold-stroke {
+        stroke: url(#foilGradient);
+      }
+      .svg-gold-fill {
+        fill: url(#foilGradient);
+      }
+
+      /* Subtle textured noise mimicking pearl woven heavy cotton paper */
+      .cotton-texture {
+        position: absolute;
+        inset: 0;
+        z-index: 10;
+        pointer-events: none;
+        opacity: 0.2;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        mix-blend-mode: multiply;
+      }
+
+      @media print {
+        .stage {
+          background: none;
+          padding: 0;
+          display: block;
+          height: auto;
+        }
+        .a4-wrapper {
+          transform: scale(1) !important;
+          box-shadow: none !important;
+          margin: 0;
+        }
+        .cotton-texture {
+          display: none;
+        }
+        .gold-foil-press {
+          filter: none !important;
+        }
+        @page {
+          size: A4 portrait;
+          margin: 0;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="selection:bg-[#D6AE7B] selection:text-white">
+    <!-- SVGs Gradients -->
+    <svg width="0" height="0" class="absolute">
+      <defs>
+        <linearGradient id="foilGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#9A703F" />
+          <stop offset="40%" stop-color="#D6AE7B" />
+          <stop offset="50%" stop-color="#FAF1E0" />
+          <stop offset="60%" stop-color="#C29D64" />
+          <stop offset="100%" stop-color="#895E2D" />
+        </linearGradient>
+        <radialGradient id="burstFoil" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#FDF6EA" />
+          <stop offset="80%" stop-color="#C49F67" />
+          <stop offset="100%" stop-color="#9A703F" />
+        </radialGradient>
+      </defs>
+    </svg>
+
+    <div class="stage">
+      <div
+        class="a4-wrapper bg-page-bg shadow-thick-paper box-border rounded-[1px] relative flex flex-col items-center z-10 p-[12px] sm:overflow-hidden transition-all duration-300"
+      >
+        <div class="cotton-texture rounded-[1px]"></div>
+
+        <!-- ///////////// MASTER BORDERS ///////////// -->
+        <div
+          class="absolute inset-[30px] z-10 pointer-events-none mix-blend-multiply opacity-50 border-double border-[3px] border-foil-deep/40 outline outline-[0.5px] outline-offset-[10px] outline-foil-deep/40 shadow-sm rounded-sm"
+        ></div>
+
+        <!-- Ornate Corners Overlay -->
+        <svg
+          class="absolute top-[27px] left-[27px] z-20 w-32 h-32 transform scale-100 opacity-95"
+          viewBox="0 0 100 100"
+          fill="none"
+        >
+          <path
+            d="M 3,45 Q 3,10 40,3 Q 45,5 45,15 Q 40,20 20,40 Z"
+            class="svg-gold-fill"
+            fill-opacity="0.8"
+          />
+          <path
+            d="M 3,45 C 5,80 20,10 40,3"
+            stroke="url(#foilGradient)"
+            stroke-width="0.8"
+          />
+          <circle cx="8" cy="8" r="3" class="svg-gold-fill" />
+          <path
+            d="M 30,3 L 30,30 L 3,30"
+            class="svg-gold-stroke"
+            stroke-width="0.4"
+            stroke-dasharray="2,2"
+          />
+          <circle
+            cx="15"
+            cy="15"
+            r="4.5"
+            fill="none"
+            class="svg-gold-stroke"
+            stroke-width="1.2"
+          />
+        </svg>
+        <svg
+          class="absolute top-[27px] right-[27px] z-20 w-32 h-32 transform rotate-90 opacity-95"
+          viewBox="0 0 100 100"
+          fill="none"
+        >
+          <path
+            d="M 3,45 Q 3,10 40,3 Q 45,5 45,15 Q 40,20 20,40 Z"
+            class="svg-gold-fill"
+            fill-opacity="0.8"
+          />
+          <path
+            d="M 3,45 C 5,80 20,10 40,3"
+            stroke="url(#foilGradient)"
+            stroke-width="0.8"
+          />
+          <circle cx="8" cy="8" r="3" class="svg-gold-fill" />
+          <path
+            d="M 30,3 L 30,30 L 3,30"
+            class="svg-gold-stroke"
+            stroke-width="0.4"
+            stroke-dasharray="2,2"
+          />
+          <circle
+            cx="15"
+            cy="15"
+            r="4.5"
+            fill="none"
+            class="svg-gold-stroke"
+            stroke-width="1.2"
+          />
+        </svg>
+        <svg
+          class="absolute bottom-[27px] left-[27px] z-20 w-32 h-32 transform -rotate-90 opacity-95"
+          viewBox="0 0 100 100"
+          fill="none"
+        >
+          <path
+            d="M 3,45 Q 3,10 40,3 Q 45,5 45,15 Q 40,20 20,40 Z"
+            class="svg-gold-fill"
+            fill-opacity="0.8"
+          />
+          <path
+            d="M 3,45 C 5,80 20,10 40,3"
+            stroke="url(#foilGradient)"
+            stroke-width="0.8"
+          />
+          <circle cx="8" cy="8" r="3" class="svg-gold-fill" />
+          <path
+            d="M 30,3 L 30,30 L 3,30"
+            class="svg-gold-stroke"
+            stroke-width="0.4"
+            stroke-dasharray="2,2"
+          />
+          <circle
+            cx="15"
+            cy="15"
+            r="4.5"
+            fill="none"
+            class="svg-gold-stroke"
+            stroke-width="1.2"
+          />
+        </svg>
+        <svg
+          class="absolute bottom-[27px] right-[27px] z-20 w-32 h-32 transform rotate-180 opacity-95"
+          viewBox="0 0 100 100"
+          fill="none"
+        >
+          <path
+            d="M 3,45 Q 3,10 40,3 Q 45,5 45,15 Q 40,20 20,40 Z"
+            class="svg-gold-fill"
+            fill-opacity="0.8"
+          />
+          <path
+            d="M 3,45 C 5,80 20,10 40,3"
+            stroke="url(#foilGradient)"
+            stroke-width="0.8"
+          />
+          <circle cx="8" cy="8" r="3" class="svg-gold-fill" />
+          <path
+            d="M 30,3 L 30,30 L 3,30"
+            class="svg-gold-stroke"
+            stroke-width="0.4"
+            stroke-dasharray="2,2"
+          />
+          <circle
+            cx="15"
+            cy="15"
+            r="4.5"
+            fill="none"
+            class="svg-gold-stroke"
+            stroke-width="1.2"
+          />
+        </svg>
+
+        <!-- ///////////// INNER PAGE CONTENTS ///////////// -->
+        <div
+          class="z-30 w-full h-full pt-[75px] pb-[75px] px-[75px] flex flex-col justify-start items-center text-center"
+        >
+          <!-- Bismillah -->
+          <h2
+            class="text-[20px] font-arabic ink-deboss tracking-widest leading-none drop-shadow-sm transform opacity-80 pt-1 mix-blend-multiply"
+            dir="rtl"
+          >
+            بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم
+          </h2>
+
+          <!-- Page Header -->
+          <div
+            class="mt-8 mb-10 border-t border-b border-[#C49F67]/30 py-4 px-12 relative w-[80%]"
+          >
+            <div
+              class="absolute top-0 left-0 w-full h-full bg-[#D6AE7B]/5 rounded-sm -z-10"
+            ></div>
+            <h1
+              class="font-classic text-[34px] uppercase tracking-[0.25em] gold-foil-press scale-y-105"
+            >
+              Wedding Festivities
+            </h1>
+            <p
+              class="font-body italic text-[18px] text-[#3a352c] opacity-90 tracking-wide mt-2 mix-blend-multiply"
+            >
+              Celebrating the union of two souls
+            </p>
+          </div>
+
+          <!-- ///// EVENTS TIMELINE ///// -->
+          <div class="w-full flex flex-col items-center space-y-[35px] mt-2">
+            <!-- EVENT 1: Gaye Holud -->
+            <div class="flex flex-col items-center">
+              <h2
+                class="font-script text-[65px] gold-foil-press leading-[0.8] mb-3 transform -rotate-[2deg] drop-shadow-[0_1px_1px_rgba(255,255,255,0.5)]"
+              >
+                Gaye Holud
+              </h2>
+              <p
+                class="font-classic text-ink-obsidian font-bold text-[14px] uppercase tracking-[0.2em] mb-1.5 ink-deboss"
+              >
+                Sunday, 22 March 2026 &nbsp;&bull;&nbsp; 6:00 PM
+              </p>
+              <p
+                class="font-body italic text-[20px] text-[#3a352c] opacity-90 leading-tight"
+              >
+                An evening of colors, music, and blessings
+              </p>
+              <p
+                class="font-sans font-medium tracking-[0.2em] text-[#3a352c] text-[9.5px] uppercase mt-2 opacity-80 border-t border-[#C49F67]/20 pt-2 px-8"
+              >
+                Bride's Residence &nbsp;|&nbsp; Ulat Purbapara, Kahalu Sadar
+              </p>
+            </div>
+
+            <!-- Golden Diamond Divider -->
+            <div class="flex items-center justify-center gap-4 opacity-70 py-2">
+              <div
+                class="h-[0.5px] w-16 bg-gradient-to-r from-transparent to-[#C49F67]"
+              ></div>
+              <div
+                class="w-2 h-2 rotate-45 border-[0.5px] border-[#9A703F] bg-[#FAF1E0]"
+              ></div>
+              <div
+                class="h-[0.5px] w-16 bg-gradient-to-l from-transparent to-[#C49F67]"
+              ></div>
+            </div>
+
+            <!-- EVENT 2: The Wedding (Biye) -->
+            <div class="flex flex-col items-center">
+              <h2
+                class="font-script text-[65px] gold-foil-press leading-[0.8] mb-3 transform rotate-[1deg] drop-shadow-[0_1px_1px_rgba(255,255,255,0.5)]"
+              >
+                Nikkah &amp; Biye
+              </h2>
+              <p
+                class="font-classic text-ink-obsidian font-bold text-[14px] uppercase tracking-[0.2em] mb-1.5 ink-deboss"
+              >
+                Monday, 23 March 2026 &nbsp;&bull;&nbsp; 1:00 PM
+              </p>
+              <p
+                class="font-body italic text-[20px] text-[#3a352c] opacity-90 leading-tight"
+              >
+                The sacred solemnization of marriage
+              </p>
+              <p
+                class="font-sans font-medium tracking-[0.2em] text-[#3a352c] text-[9.5px] uppercase mt-2 opacity-80 border-t border-[#C49F67]/20 pt-2 px-8"
+              >
+                Bride's Residence &nbsp;|&nbsp; Ulat Purbapara, Kahalu Sadar,
+                Bogura
+              </p>
+            </div>
+
+            <!-- Golden Diamond Divider -->
+            <div class="flex items-center justify-center gap-4 opacity-70 py-2">
+              <div
+                class="h-[0.5px] w-16 bg-gradient-to-r from-transparent to-[#C49F67]"
+              ></div>
+              <div
+                class="w-2 h-2 rotate-45 border-[0.5px] border-[#9A703F] bg-[#FAF1E0]"
+              ></div>
+              <div
+                class="h-[0.5px] w-16 bg-gradient-to-l from-transparent to-[#C49F67]"
+              ></div>
+            </div>
+
+            <!-- EVENT 3: Walima / Reception -->
+            <div class="flex flex-col items-center">
+              <h2
+                class="font-script text-[65px] gold-foil-press leading-[0.8] mb-3 transform -rotate-[1deg] drop-shadow-[0_1px_1px_rgba(255,255,255,0.5)]"
+              >
+                Walima Reception
+              </h2>
+              <p
+                class="font-classic text-ink-obsidian font-bold text-[14px] uppercase tracking-[0.2em] mb-1.5 ink-deboss"
+              >
+                Tuesday, 24 March 2026 &nbsp;&bull;&nbsp; 2:00 PM
+              </p>
+              <p
+                class="font-body italic text-[20px] text-[#3a352c] opacity-90 leading-tight"
+              >
+                A grand feast to celebrate the newlyweds
+              </p>
+              <p
+                class="font-sans font-medium tracking-[0.2em] text-[#3a352c] text-[9.5px] uppercase mt-2 opacity-80 border-t border-[#C49F67]/20 pt-2 px-8"
+              >
+                Groom's Residence &nbsp;|&nbsp; Pallapara, Malancha, Kahalu,
+                Bogura
+              </p>
+            </div>
+          </div>
+
+          <!-- Footer / RSVP -->
+          <div class="mt-auto w-full pt-8 flex flex-col items-center">
+            <svg height="15" width="150" class="mb-4">
+              <path
+                d="M0,7 Q75,0 150,7 M0,10 Q75,17 150,10"
+                stroke="url(#foilGradient)"
+                stroke-width="0.8"
+                fill="none"
+                opacity="0.6"
+              />
+            </svg>
+            <p
+              class="font-classic text-[11px] uppercase tracking-[0.3em] font-bold text-ink-obsidian mb-2 ink-deboss"
+            >
+              With Best Compliments
+            </p>
+            <p class="font-body italic text-[18px] text-[#3a352c] opacity-90">
+              The Haque &amp; Uddin Families
+            </p>
+            <p
+              class="font-sans text-[8px] tracking-[0.25em] text-[#3a352c] uppercase mt-2 opacity-60"
+            >
+              No boxed gifts, please. Your presence is our present.
+            </p>
+          </div>
+        </div>
+
+        <!-- Peripheral absolute inner ring -->
+        <div
+          class="absolute inset-[41px] border-[0.7px] border-dotted border-[#CAA877]/30 z-[1] rounded-sm mix-blend-multiply pointer-events-none filter drop-shadow-[0_1px_white]"
+        ></div>
+      </div>
+    </div>
+  </body>
+</html>

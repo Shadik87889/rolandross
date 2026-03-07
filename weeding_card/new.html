@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Union | Midnight Majesty</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Next-Level Editorial Royalty Typography Pairing -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Noto+Serif+Ahom&family=Amiri:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "midnight-obsidian":
+                "#08100D" /* The darkest emerald/obsidian black */,
+              "bg-shadow": "#030605",
+              "ivory-matte": "#E8E5DF",
+              "gold-luminary": "#F9EDC7",
+            },
+            fontFamily: {
+              arabic: ['"Amiri"', "serif"],
+              emperor: ['"Cinzel Decorative"', "serif"],
+              "serif-prose": ['"Playfair Display"', "serif"],
+              romantic: ['"Great Vibes"', "cursive"],
+              caps: ['"Noto Serif Ahom"', "serif"],
+            },
+            boxShadow: {
+              "luxury-panel":
+                "0 60px 100px -20px rgba(0, 0, 0, 1), 0 0 40px rgba(0,0,0,0.8)",
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      /* Immovable foundational baseline for direct image rendering */
+      body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background: #020202; /* Render background framing */
+        margin: 0;
+        padding: 0;
+      }
+
+      /* 
+         * STAGE: Responsively sizes the perfect document without ever touching A4 interior variables. 
+         */
+      .stage {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 3rem 0;
+        overflow-x: hidden;
+        background: radial-gradient(
+          circle at 50% 50%,
+          #17241f 0%,
+          #000000 100%
+        );
+      }
+
+      /* STRICT MASTER CANVASS BOUNDARY */
+      .a4-master {
+        width: 794px;
+        height: 1123px; /* True standardized mathematical aspect bounds */
+        position: relative;
+        transform-origin: top center;
+        flex-shrink: 0;
+        overflow: hidden;
+        background-color: #08100d;
+      }
+
+      @media screen and (max-width: 850px) {
+        .a4-master {
+          transform: scale(max(0.35, min(1, calc(100vw / 820))));
+        }
+        .stage {
+          padding: 5% 0;
+          min-height: 0;
+        }
+      }
+
+      /* SUPERB FOIL SYSTEM: High luminosity gradient designed as a pure metallic plate stamp. */
+      .true-gold-plate {
+        background: linear-gradient(
+          135deg,
+          #855c24 0%,
+          #d0ad55 22%,
+          #fff4cd 45%,
+          #c3a248 70%,
+          #7a521d 100%
+        );
+        color: transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+        /* Creates a completely realistic rigid shadow 3D plate effect! */
+        filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.95))
+          drop-shadow(0 -0.5px 0.5px rgba(255, 255, 215, 0.2));
+      }
+
+      .svg-gold {
+        fill: url(#pureGoldRender);
+        stroke: url(#pureGoldRender);
+      }
+
+      /* Tactical Matte Velour Texture Filter strictly bound within box constraints */
+      .velvet-texture {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        opacity: 0.15;
+        pointer-events: none;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+        mix-blend-mode: soft-light;
+      }
+
+      /* Inner glowing optical volume, strictly layered */
+      .atmospheric-uplight {
+        position: absolute;
+        z-index: 1;
+        top: -10%;
+        left: -20%;
+        right: -20%;
+        bottom: 40%;
+        background: radial-gradient(
+          circle at 50% 20%,
+          rgba(208, 173, 85, 0.12) 0%,
+          rgba(8, 16, 13, 0) 70%
+        );
+        pointer-events: none;
+      }
+
+      .thin-gold-separator {
+        background: linear-gradient(
+          90deg,
+          transparent 0%,
+          rgba(208, 173, 85, 0.9) 50%,
+          transparent 100%
+        );
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 1);
+      }
+
+      /* Pure solid rendering mode so standard text matches foil density without gradients */
+      .obsidian-deboss {
+        text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.9);
+      }
+    </style>
+  </head>
+
+  <body class="selection:bg-[#D0AD55] selection:text-black">
+    <!-- CENTRAL VECTOR MASTER RENDERING GRADIENTS (Immovable) -->
+    <svg width="0" height="0" class="absolute">
+      <defs>
+        <linearGradient id="pureGoldRender" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#7B551C" />
+          <stop offset="25%" stop-color="#C5A34B" />
+          <stop offset="48%" stop-color="#FBF0CC" />
+          <stop offset="72%" stop-color="#BD9942" />
+          <stop offset="100%" stop-color="#553711" />
+        </linearGradient>
+        <!-- Background complex Watermark glow -->
+        <radialGradient id="watermarkFoil" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#F9EDC7" />
+          <stop offset="60%" stop-color="#C5A34B" />
+          <stop offset="100%" stop-color="#7B551C" />
+        </radialGradient>
+      </defs>
+    </svg>
+
+    <div class="stage">
+      <!-- /// THE SOLID A4 MASTERBOARD /// -->
+      <div
+        class="a4-master shadow-luxury-panel rounded-[2px] relative flex flex-col items-center"
+      >
+        <div class="velvet-texture"></div>
+        <div class="atmospheric-uplight"></div>
+
+        <!-- ///////////// FRAMEWORK GEOMETRY (Astoundingly Solid Border Architecture) ///////////// -->
+        <!-- Base Gate Stroke -->
+        <div
+          class="absolute inset-[32px] border-[0.75px] border-[#BD9942]/60 z-10 pointer-events-none drop-shadow-[0_1px_1px_rgba(0,0,0,1)]"
+        ></div>
+        <!-- Secondary Setback Line Structure -->
+        <div
+          class="absolute inset-[44px] border-y-[0.75px] border-[#D0AD55]/40 border-x-transparent z-10 opacity-70 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)] before:absolute before:inset-[-6px_14px] before:border-x-[0.5px] before:border-y-transparent before:border-[#D0AD55]/30"
+        ></div>
+
+        <!-- Extreme Grand Motif Geometry Absolute Mappings -->
+        <!-- Giant Hidden Sacred Center Astrolabe (Watermark styling beneath content, absolutely solid positioned) -->
+        <svg
+          class="absolute top-[32%] left-1/2 -translate-x-1/2 z-0 opacity-[0.05] w-[700px] h-[700px] pointer-events-none"
+          viewBox="0 0 400 400"
+        >
+          <circle
+            cx="200"
+            cy="200"
+            r="190"
+            stroke="url(#pureGoldRender)"
+            stroke-width="0.3"
+            fill="none"
+          />
+          <circle
+            cx="200"
+            cy="200"
+            r="170"
+            stroke="url(#pureGoldRender)"
+            stroke-width="0.8"
+            fill="none"
+            stroke-dasharray="2, 6"
+          />
+          <!-- Multi-layer sacred geometric stars mapped precisely to never break-->
+          <g stroke="url(#pureGoldRender)" stroke-width="0.3" fill="none">
+            <path
+              d="M200 10 L220 180 L390 200 L220 220 L200 390 L180 220 L10 200 L180 180 Z"
+            />
+            <path
+              d="M60 60 L180 180 M340 60 L220 180 M60 340 L180 220 M340 340 L220 220"
+            />
+            <rect
+              x="70"
+              y="70"
+              width="260"
+              height="260"
+              transform="rotate(45 200 200)"
+            />
+            <rect x="70" y="70" width="260" height="260" />
+          </g>
+          <circle
+            cx="200"
+            cy="200"
+            r="100"
+            fill="url(#pureGoldRender)"
+            opacity="0.1"
+          />
+        </svg>
+
+        <!-- Precision Arch Headers overlay -->
+        <svg
+          class="absolute top-[32px] left-1/2 transform -translate-x-1/2 w-[300px] h-[45px] z-20 drop-shadow-[0_2px_4px_rgba(0,0,0,1)]"
+          viewBox="0 0 200 50"
+        >
+          <path
+            d="M 0,0 C 50,0 80,45 100,45 C 120,45 150,0 200,0"
+            fill="none"
+            stroke="url(#pureGoldRender)"
+            stroke-width="1"
+            opacity="0.85"
+          />
+          <!-- Small Center Gem Motif-->
+          <path d="M100 25 L 105 35 L 100 45 L 95 35 Z" class="svg-gold" />
+          <circle
+            cx="100"
+            cy="18"
+            r="2.5"
+            fill="none"
+            stroke="url(#pureGoldRender)"
+            stroke-width="0.5"
+          />
+        </svg>
+        <svg
+          class="absolute bottom-[32px] left-1/2 transform -translate-x-1/2 rotate-180 w-[300px] h-[45px] z-20 drop-shadow-[0_2px_4px_rgba(0,0,0,1)]"
+          viewBox="0 0 200 50"
+        >
+          <path
+            d="M 0,0 C 50,0 80,45 100,45 C 120,45 150,0 200,0"
+            fill="none"
+            stroke="url(#pureGoldRender)"
+            stroke-width="1"
+            opacity="0.85"
+          />
+          <path d="M100 25 L 105 35 L 100 45 L 95 35 Z" class="svg-gold" />
+          <circle
+            cx="100"
+            cy="18"
+            r="2.5"
+            fill="none"
+            stroke="url(#pureGoldRender)"
+            stroke-width="0.5"
+          />
+        </svg>
+
+        <!-- ///////////// CENTRAL INNER FLOW / CONTENT BLOCKS ///////////// -->
+        <!-- Rigid 100% Flex Box holding true positioning spacing logic without messy percentages. -->
+        <div
+          class="relative z-30 flex flex-col items-center justify-between w-full h-full px-[65px] pt-[72px] pb-[76px] box-border text-center overflow-visible"
+        >
+          <!-- TOP HEADER ZONE -->
+          <div class="w-full flex flex-col items-center z-20 relative">
+            <!-- Crisp traditional intro cleanly detached. Bismillah glow effect purely via shadows. -->
+            <h2
+              class="text-[34px] font-arabic true-gold-plate drop-shadow-lg tracking-wider font-light mt-1 pt-[18px]"
+              dir="rtl"
+              style="
+                filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 1))
+                  drop-shadow(0 0px 20px rgba(210, 180, 90, 0.1));
+              "
+            >
+              بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ
+            </h2>
+
+            <p
+              class="mt-[16px] uppercase text-[#B5A58A] font-caps tracking-[0.45em] text-[8.5px] font-semibold opacity-90 drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)] border-b border-[#D0AD55]/20 pb-1.5 w-[50%] flex justify-center scale-x-105"
+            >
+              By the Grace of The Almighty
+            </p>
+          </div>
+
+          <!-- GRID LAYOUT SYMMETRY FOR FAMILIES[Groundbreaking structure swap!] -->
+          <div
+            class="w-full relative flex justify-center items-stretch mt-[48px] px-8 h-[95px] mb-[24px]"
+          >
+            <!-- Left Family Host Plate (Absolutely strictly balanced relative code structure) -->
+            <div
+              class="flex-1 text-right flex flex-col justify-center items-end opacity-90 relative px-[24px]"
+            >
+              <p
+                class="font-caps text-[7.5px] text-[#A6977F] uppercase tracking-[0.35em] mb-3 text-right"
+              >
+                Parents of The Bride
+              </p>
+              <h3
+                class="font-serif-prose font-bold italic tracking-wide text-ivory-matte text-[15px] obsidian-deboss pb-[1px]"
+              >
+                Mr. Kazi Tariqul Islam
+              </h3>
+              <p
+                class="font-serif-prose text-[#D0AD55] opacity-75 italic text-[10px] mt-[1px] mb-[2px] leading-none"
+              >
+                And
+              </p>
+              <h3
+                class="font-serif-prose font-bold italic tracking-wide text-ivory-matte text-[15px] obsidian-deboss"
+              >
+                Mrs. Salma Islam
+              </h3>
+            </div>
+
+            <!-- Divider Axis of perfect center -->
+            <div
+              class="w-auto px-0 relative flex flex-col justify-center items-center h-[90%] mx-[24px]"
+            >
+              <div
+                class="w-px flex-grow thin-gold-separator mb-[6px] opacity-70"
+              ></div>
+              <svg class="h-[12px] w-[12px]" viewBox="0 0 20 20">
+                <path
+                  class="svg-gold opacity-95"
+                  d="M10,0 L12,8 L20,10 L12,12 L10,20 L8,12 L0,10 L8,8 Z"
+                />
+              </svg>
+              <div
+                class="w-px flex-grow thin-gold-separator mt-[6px] opacity-70"
+              ></div>
+            </div>
+
+            <!-- Right Family Host Plate -->
+            <div
+              class="flex-1 text-left flex flex-col justify-center items-start opacity-90 relative px-[24px]"
+            >
+              <p
+                class="font-caps text-[7.5px] text-[#A6977F] uppercase tracking-[0.35em] mb-3 text-left"
+              >
+                Parents of The Groom
+              </p>
+              <h3
+                class="font-serif-prose font-bold italic tracking-wide text-ivory-matte text-[15px] obsidian-deboss pb-[1px]"
+              >
+                Mr. Shafiqur Rahman
+              </h3>
+              <p
+                class="font-serif-prose text-[#D0AD55] opacity-75 italic text-[10px] mt-[1px] mb-[2px] leading-none"
+              >
+                And
+              </p>
+              <h3
+                class="font-serif-prose font-bold italic tracking-wide text-ivory-matte text-[15px] obsidian-deboss"
+              >
+                Mrs. Farida Begum
+              </h3>
+            </div>
+          </div>
+
+          <!-- Mid Connecting Sentences centered structurally down layout-->
+          <p
+            class="w-[60%] font-serif-prose font-normal text-[#CFC8B7] italic leading-[1.8em] tracking-[0.06em] text-[15px] text-center my-[8px] opacity-85 mt-[-15px]"
+          >
+            Together with joy beyond measure, we graciously<br />
+            request the supreme honour of your presence at the highly<br />auspicious
+            Nuptial Gala of our cherished children.
+          </p>
+
+          <!-- ////////////////// THE MAJESTIC TYPOGRAPHY MONUMENT ////////////////// -->
+          <div
+            class="w-full flex flex-col items-center justify-center pt-[5px] pb-[16px] my-[10px] scale-[1.10] relative translate-y-[8px] translate-x-1 z-30 drop-shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
+          >
+            <div class="flex flex-col items-center">
+              <h1
+                class="font-romantic true-gold-plate text-[96px] leading-[0.6] m-0 pr-8 opacity-100 z-10 transform"
+              >
+                Nusrat Jahan
+              </h1>
+
+              <div
+                class="flex w-full items-center my-[18px] translate-x-[-12px] translate-y-[2px]"
+              >
+                <div
+                  class="flex-grow h-px bg-gradient-to-l from-[#C5A34B] to-transparent mx-6 opacity-30 shadow-[0_2px_4px_black]"
+                ></div>
+
+                <!-- Pure typographical architecture -> Ampersand combined heavily overlapping into Names gracefully -->
+                <p
+                  class="font-serif-prose font-black italic true-gold-plate text-[44px] drop-shadow-none filter brightness-125 mx-2 pb-2 -mt-4 mb-2 -rotate-[6deg]"
+                >
+                  &amp;
+                </p>
+
+                <div
+                  class="flex-grow h-px bg-gradient-to-r from-[#C5A34B] to-transparent mx-6 opacity-30 shadow-[0_2px_4px_black]"
+                ></div>
+              </div>
+
+              <h1
+                class="font-romantic true-gold-plate text-[96px] leading-[0.6] m-0 pl-[56px] -mt-[18px] opacity-100 z-10 block pr-2"
+              >
+                Arafat Rahman
+              </h1>
+            </div>
+          </div>
+
+          <!-- ////////////////// IMPERIAL METRIC / HOROLOGY ZONE ////////////////// -->
+          <!-- An awe-inspiring horizontally tracked cinematic Date Plate module -->
+          <div
+            class="flex items-center justify-center w-full max-w-[550px] relative px-[16px] mt-[50px] mx-auto border-t-[1px] border-b-[1px] border-[#D0AD55]/10 bg-gradient-to-b from-transparent via-[#C5A34B]/5 to-transparent shadow-[inset_0_10px_20px_rgba(0,0,0,0.6)] py-[18px] mb-[28px]"
+          >
+            <!-- Geometric Gold corner brackets structurally overlaid for ultra luxury vibes -->
+            <div
+              class="absolute left-0 top-0 w-2 h-2 border-l border-t border-[#D0AD55]/60 rounded-tl-sm drop-shadow-[0_2px_1px_black]"
+            ></div>
+            <div
+              class="absolute right-0 top-0 w-2 h-2 border-r border-t border-[#D0AD55]/60 rounded-tr-sm drop-shadow-[0_2px_1px_black]"
+            ></div>
+            <div
+              class="absolute left-0 bottom-0 w-2 h-2 border-l border-b border-[#D0AD55]/60 rounded-bl-sm drop-shadow-[0_2px_1px_black]"
+            ></div>
+            <div
+              class="absolute right-0 bottom-0 w-2 h-2 border-r border-b border-[#D0AD55]/60 rounded-br-sm drop-shadow-[0_2px_1px_black]"
+            ></div>
+
+            <!-- 3 Grid Symmetrical Flex box logic so exact numbers cannot float onto each other -->
+            <div
+              class="w-[33.3%] text-right font-emperor true-gold-plate text-[18px] font-bold tracking-[0.25em] relative pt-[1px]"
+            >
+              FRIDAY
+              <div
+                class="font-serif-prose italic opacity-60 text-[10px] text-white/50 tracking-[0.15em] pt-[4px] absolute w-[130px] -right-[10px] text-shadow-[0_2px_2px_rgba(0,0,0,1)] flex justify-end"
+              >
+                Two Thousand
+              </div>
+            </div>
+
+            <!-- Core Monolith Date marker exactly central absolute logic! -->
+            <div
+              class="px-[36px] w-[33.3%] flex flex-col justify-center items-center border-r-[0.5px] border-l-[0.5px] border-[#BD9942]/40 relative text-[#FAF1D6] obsidian-deboss py-1 transform translate-y-[-2px]"
+            >
+              <span
+                class="font-caps text-[9px] uppercase tracking-[0.5em] font-normal scale-y-105 opacity-85 block translate-x-1 pb-1"
+                >August</span
+              >
+              <span
+                class="font-emperor font-bold true-gold-plate text-[44px] leading-none m-0 pl-[5px]"
+                >14</span
+              >
+              <!-- Internal floating decorative ornament-->
+              <span
+                class="text-[#D0AD55] opacity-50 block mt-[3px] rotate-[90deg]"
+                >&#x2761;</span
+              >
+            </div>
+
+            <div
+              class="w-[33.3%] text-left font-emperor true-gold-plate text-[18px] font-bold tracking-[0.25em] relative pl-[32px] pt-[1px]"
+            >
+              2026
+              <div
+                class="font-serif-prose italic opacity-60 text-[10px] text-white/50 tracking-[0.15em] pt-[4px] absolute w-[130px] pl-[0px] left-[32px] flex justify-start z-10"
+                style="text-shadow: 0px 2px 2px rgba(0, 0, 0, 1);"
+              >
+                And Twenty Six
+              </div>
+            </div>
+          </div>
+
+          <!-- Lower Time Subtext strictly mapped relative below plate block-->
+          <div
+            class="font-serif-prose font-medium text-ivory-matte/75 italic text-[16px] mb-[28px] obsidian-deboss translate-y-[-28px]"
+          >
+            The Formal Reception sequence unfolds at seven o'clock
+          </div>
+
+          <!-- ////////////////// THE LOCALE PLATFORM ////////////////// -->
+          <div
+            class="w-[100%] flex flex-col items-center flex-grow mb-[2px] border-y border-[#BD9942]/10 bg-black/30 w-max self-center px-[32px] pt-[26px] pb-[20px] shadow-[inset_0_-20px_20px_-10px_rgba(0,0,0,1)]"
+          >
+            <p
+              class="font-caps text-[8.5px] text-[#A6977F]/80 uppercase tracking-[0.5em] opacity-90 pb-[4px]"
+            >
+              Ascertain Venue Address
+            </p>
+
+            <h2
+              class="font-emperor true-gold-plate text-[23px] font-black tracking-[0.38em] text-shadow-[0_2px_8px_black] px-1 scale-x-95"
+            >
+              RADISSON BLU WATER GARDEN
+            </h2>
+            <p
+              class="font-serif-prose tracking-[0.22em] text-[#CFC8B7] uppercase text-[10.5px] font-semibold opacity-95 block relative w-full pt-[6px] text-shadow-xl z-20 mx-[0%] before:absolute before:inset-x-0 before:-top-[2px] before:w-[60%] before:h-[0.5px] before:mx-auto before:bg-gradient-to-r before:from-transparent before:via-[#BD9942] before:to-transparent before:opacity-70 mt-3 pt-3"
+            >
+              THE UTMOST GRANDEUR BALL ROOM
+            </p>
+            <p
+              class="font-serif-prose text-[#A6977F]/80 opacity-80 uppercase tracking-[0.12em] text-[9.5px] pb-1 z-20 mt-[3px] text-shadow-md pb-[4px]"
+            >
+              Airport Road, Dhaka Cantonment, Dhaka
+              <span
+                class="inline-block px-1 align-baseline pt-1 mx-2 relative text-[#BD9942]"
+                >&#x25c6;</span
+              >1206
+            </p>
+          </div>
+
+          <!-- ////////////////// ABSOLUTE PERFECTED BOTTOM ANCHORS (The Regals Envoy Block) ////////////////// -->
+          <!-- Constructed utilizing extreme boundary tracking layout strictly mapping right and left edge so width never snaps incorrectly in print tools -->
+          <div
+            class="relative w-[100%] flex justify-between mt-auto mb-[2px] translate-y-[28px] items-stretch border-b border-[#D0AD55]/10 pb-4 h-[65px]"
+          >
+            <!-- Center Anchor Decal Detail / Diamond  -->
+            <div
+              class="absolute left-1/2 bottom-[8px] transform -translate-x-1/2 -translate-y-[8px] flex space-x-2 pb-0 justify-center h-full items-center z-40 w-max text-[#A6977F] border-x border-[#C5A34B]/20 px-[24px]"
+            >
+              <span
+                class="true-gold-plate block opacity-95 text-[22px] font-caps -mt-[6px]"
+                >✥</span
+              >
+            </div>
+
+            <!-- Left Box Host Form -->
+            <div
+              class="w-[38%] text-left pt-0 h-full flex flex-col z-20 drop-shadow-[0_4px_5px_black] opacity-90 items-start align-baseline h-auto justify-end px-[4px]"
+            >
+              <p
+                class="font-caps tracking-[0.45em] uppercase text-[#D0AD55] text-[7.5px] pb-1 text-left relative z-10 pt-[0px] font-semibold mb-[-2px] border-b border-white/10 w-full mb-[5px]"
+              >
+                Aristocratic Hosts
+              </p>
+              <p
+                class="font-serif-prose text-ivory-matte font-black tracking-wide italic text-[14.5px] pb-[0px] shadow-sm uppercase m-0 leading-[1.3] pl-[1px]"
+              >
+                The Kazi Family
+              </p>
+              <p
+                class="font-serif-prose uppercase tracking-[0.38em] text-[#CFC8B7]/80 opacity-70 text-[6.5px] mt-[1px] m-0 drop-shadow-lg scale-x-[1.03] origin-left border-transparent"
+              >
+                +880 - 1711 - 000000 | +880 - 1911 - 000000
+              </p>
+            </div>
+
+            <!-- Right Box Entry Info Protocol (Absolutely leveled perfectly across grid rules flex line!)-->
+            <div
+              class="w-[38%] text-right pt-0 h-full flex flex-col z-20 drop-shadow-[0_4px_5px_black] opacity-90 justify-end items-end h-auto px-[4px]"
+            >
+              <p
+                class="font-caps tracking-[0.45em] uppercase text-[#D0AD55] text-[7.5px] pb-1 relative z-10 pt-0 text-right text-semibold mb-[-2px] w-[95%] border-b border-[#D0AD55]/20 justify-self-end flex-grow align-end mt-auto block right-[1px] font-bold"
+              >
+                VIP Credentials Enforced
+              </p>
+              <p
+                class="font-serif-prose text-ivory-matte uppercase font-bold text-[10px] pb-1 m-0 pt-[4px] relative border-[#C5A34B] z-10 shadow-lg tracking-[0.16em]"
+              >
+                Protocol Formal Attire Anticipated
+              </p>
+              <p
+                class="font-serif-prose uppercase tracking-[0.34em] text-[#A6977F]/60 text-[6px] m-0 pr-1 block"
+              >
+                Entry Highly Reserved
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Main wrapper bounding container bounds exit perfectly without overlaps -->
+      </div>
+    </div>
+  </body>
+</html>
