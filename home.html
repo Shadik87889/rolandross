@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -42,8 +43,8 @@
             },
             fontFamily: {
               serif: ['"Playfair Display"', "serif"],
-              sans: ["Montserrat", "sans-serif"],
-              bengali: ['"Hind Siliguri"', "sans-serif"],
+              sans:["Montserrat", "sans-serif"],
+              bengali:['"Hind Siliguri"', "sans-serif"],
             },
           },
         },
@@ -871,6 +872,7 @@
         align-items: center;
         padding: 1.5rem;
         opacity: 0;
+        will-change: opacity; /* Fix lag */
       }
 
       .pm-content {
@@ -880,12 +882,15 @@
           0 0 100px rgba(212, 175, 55, 0.05);
         border-radius: 4px;
         width: 100%;
-        max-w: 900px;
+        max-width: 900px; /* Fixed: Changed from max-w to max-width */
         max-height: 90vh;
         overflow-y: auto;
         display: flex;
         flex-direction: column;
         transform: scale(0.95) translateY(20px);
+        will-change: transform, opacity; /* Fix lag */
+        overscroll-behavior: contain; /* Enable native nested scroll */
+        -webkit-overflow-scrolling: touch; /* Fix iOS mobile scroll */
       }
 
       @media (min-width: 768px) {
@@ -895,6 +900,10 @@
       }
 
       /* Custom scrollbar for modal details */
+      .pm-details {
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+      }
       .pm-details::-webkit-scrollbar {
         width: 4px;
       }
@@ -2407,7 +2416,7 @@
 
     <!-- WORLD-CLASS CUSTOM PACKAGE MODAL -->
     <div id="package-modal" class="package-modal-overlay cursor-hover">
-      <div class="pm-content">
+      <div class="pm-content" data-lenis-prevent>
         <!-- Left Side Image -->
         <div
           class="w-full md:w-2/5 h-[250px] md:h-auto relative overflow-hidden shrink-0"
@@ -2434,6 +2443,7 @@
         <!-- Right Side Details -->
         <div
           class="w-full md:w-3/5 p-6 md:p-10 flex flex-col max-h-[70vh] md:max-h-none pm-details cursor-hover"
+          data-lenis-prevent
         >
           <div class="flex justify-between items-start mb-6 shrink-0">
             <div class="w-full pr-4">
@@ -2463,6 +2473,7 @@
 
           <div
             class="border-t border-white/5 pt-6 flex-grow overflow-y-auto pm-details pr-2"
+            data-lenis-prevent
           >
             <h4
               class="font-sans text-[10px] uppercase tracking-[0.2em] text-gold mb-4 lang-en"
@@ -2524,7 +2535,7 @@
       // Store Database in memory for Modal Cross-referencing
       window.globalCategories = [];
       window.globalServices = [];
-      window.liveOffers = [];
+      window.liveOffers =[];
 
       onSnapshot(collection(db, "categories"), (snap) => {
         window.globalCategories = snap.docs.map((doc) => ({
@@ -2638,7 +2649,7 @@
         section.style.display = "block";
         track.innerHTML = "";
 
-        const themes = [
+        const themes =[
           "theme-gold",
           "theme-silver",
           "theme-rose",
@@ -2884,12 +2895,12 @@
         gsap.fromTo(
           modal,
           { opacity: 0 },
-          { opacity: 1, duration: 0.4, ease: "power2.out" },
+          { opacity: 1, duration: 0.3, ease: "power2.out", force3D: true },
         );
         gsap.fromTo(
           ".pm-content",
           { scale: 0.95, y: 30 },
-          { scale: 1, y: 0, duration: 0.6, ease: "back.out(1.5)" },
+          { scale: 1, y: 0, duration: 0.4, ease: "power3.out", force3D: true },
         );
 
         if (window.lenisInstance) window.lenisInstance.stop();
@@ -2902,10 +2913,13 @@
           y: 30,
           duration: 0.3,
           ease: "power2.in",
+          force3D: true
         });
         gsap.to(modal, {
           opacity: 0,
           duration: 0.3,
+          ease: "power2.in",
+          force3D: true,
           onComplete: () => {
             modal.style.display = "none";
             if (window.lenisInstance) window.lenisInstance.start();
@@ -2930,7 +2944,7 @@
 
       // Fetch Offers
       onSnapshot(collection(db, "offers"), (snapshot) => {
-        let activeOffers = [];
+        let activeOffers =[];
         const now = new Date();
         snapshot.forEach((doc) => {
           const data = doc.data();

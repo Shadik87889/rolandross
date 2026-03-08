@@ -80,7 +80,7 @@
         overflow: hidden;
       }
 
-      /* Dynamic Premium Cursor */
+      /* Dynamic Premium Cursor - FIXED Transform conflicts */
       @media (min-width: 1024px) {
         body,
         a,
@@ -100,7 +100,7 @@
           border-radius: 50%;
           z-index: 9999;
           pointer-events: none;
-          transform: translate(-50%, -50%);
+          opacity: 0; /* Hides until initial mouse move */
           transition: opacity 0.3s ease;
         }
         .cursor-outline {
@@ -113,14 +113,15 @@
           border-radius: 50%;
           z-index: 9998;
           pointer-events: none;
-          transform: translate(-50%, -50%);
           display: flex;
           justify-content: center;
           align-items: center;
           backdrop-filter: blur(2px);
+          opacity: 0; /* Hides until initial mouse move */
           transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1),
             height 0.3s cubic-bezier(0.25, 1, 0.5, 1),
-            background-color 0.3s ease, border-color 0.3s ease;
+            background-color 0.3s ease, border-color 0.3s ease,
+            opacity 0.3s ease;
         }
         .cursor-hover-link .cursor-outline {
           width: 50px;
@@ -234,7 +235,7 @@
       }
 
       /* ========================================================
-         TIER 1: ULTRA-PREMIUM CINEMATIC CATEGORY CARDS (FIXED)
+         TIER 1: ULTRA-PREMIUM CINEMATIC CATEGORY CARDS 
          ======================================================== */
       .category-card-luxe {
         position: relative;
@@ -270,7 +271,6 @@
         );
       }
 
-      /* Inner Border Frame */
       .category-card-luxe .card-frame {
         position: absolute;
         inset: 1rem;
@@ -302,7 +302,6 @@
         transform: translateY(-0.25rem);
       }
 
-      /* 👑 THE FIX: Flawless Overflow Boundary synced perfectly with the Inner Frame */
       .category-card-luxe .card-content {
         position: absolute;
         inset: 1rem;
@@ -311,7 +310,7 @@
         flex-direction: column;
         justify-content: flex-end;
         z-index: 20;
-        overflow: hidden; /* This masks any text sliding out of bounds instantly */
+        overflow: hidden;
         transition: inset 0.8s cubic-bezier(0.19, 1, 0.22, 1),
           padding 0.8s cubic-bezier(0.19, 1, 0.22, 1);
       }
@@ -320,7 +319,6 @@
         padding: 0.75rem;
       }
 
-      /* Butter-smooth text sliding properly masked */
       .category-card-luxe .text-wrapper {
         transform: translateY(1.2rem);
         transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
@@ -329,7 +327,6 @@
         transform: translateY(0);
       }
 
-      /* Modern CSS Grid Subtitle Animation (No Snapping) */
       .category-card-luxe .subtitle-grid {
         display: grid;
         grid-template-rows: 0fr;
@@ -371,9 +368,6 @@
         transform: translateX(0);
       }
 
-      /* ========================================================
-         MOBILE FOCUSED: ALWAYS ON, NO HOVER REQUIRED
-         ======================================================== */
       @media (max-width: 1023px) {
         .category-card-luxe .card-frame {
           inset: 1rem !important;
@@ -814,7 +808,7 @@
                 class="font-sans text-[10px] md:text-xs uppercase tracking-[0.15em] text-gray-500 font-medium flex items-center gap-2 flex-wrap"
               >
                 <button
-                  onclick="renderCategories()"
+                  onclick="window.renderCategories(true)"
                   class="breadcrumb-item cursor-hover"
                 >
                   <i class="fas fa-layer-group mr-2"></i
@@ -825,7 +819,7 @@
                   <span class="text-gray-700">/</span>
                   <button
                     id="bc-category"
-                    onclick="revertToSubcategories()"
+                    onclick="window.revertToSubcategories()"
                     class="breadcrumb-item cursor-hover text-white"
                   ></button>
                   <span id="bc-slash-2" class="text-gray-700 hidden">/</span>
@@ -957,7 +951,7 @@
                   <li>
                     <a
                       href="#"
-                      onclick="renderCategories()"
+                      onclick="window.renderCategories(true)"
                       class="cursor-hover hover:text-gold transition"
                       >Signature Services</a
                     >
@@ -1042,6 +1036,15 @@
       const app = initializeApp(firebaseConfig);
       const db = getFirestore(app);
 
+      // Scroll Position Retention Function
+      function scrollToTop() {
+        document.body.classList.remove("cursor-hover-link"); // Hard reset on stuck cursors
+        window.scrollTo(0, 0);
+        if (typeof lenis !== "undefined") {
+          lenis.scrollTo(0, { immediate: true });
+        }
+      }
+
       // --- LANGUAGE TOGGLE STRICT ENFORCEMENT ---
       let currentLang = "en";
       document.body.setAttribute("data-lang", currentLang);
@@ -1064,10 +1067,9 @@
           }
         });
       }
-      // Initialize immediately on load
       updateLangUI();
 
-      // Scroll Setup
+      // FIXED LENIS SETUP - Clean single execution loop via GSAP ticker
       const lenis = new Lenis({
         duration: 1.2,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -1075,25 +1077,27 @@
         smooth: true,
         smoothTouch: false,
       });
-      function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-      }
-      requestAnimationFrame(raf);
+
       gsap.registerPlugin(ScrollTrigger);
       lenis.on("scroll", ScrollTrigger.update);
-      gsap.ticker.add((time) => lenis.raf(time * 1000));
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000); // Drives lenis directly through GSAP loop. No double RAF loops.
+      });
       gsap.ticker.lagSmoothing(0);
 
+      // Flawless Cursor Binding
       function bindCursorHover() {
         if (window.innerWidth > 1024) {
           document.querySelectorAll(".cursor-hover").forEach((el) => {
-            el.addEventListener("mouseenter", () =>
-              document.body.classList.add("cursor-hover-link"),
-            );
-            el.addEventListener("mouseleave", () =>
-              document.body.classList.remove("cursor-hover-link"),
-            );
+            if (!el.hasAttribute("data-cursor-bound")) {
+              el.setAttribute("data-cursor-bound", "true");
+              el.addEventListener("mouseenter", () =>
+                document.body.classList.add("cursor-hover-link"),
+              );
+              el.addEventListener("mouseleave", () =>
+                document.body.classList.remove("cursor-hover-link"),
+              );
+            }
           });
         }
       }
@@ -1134,9 +1138,14 @@
         ScrollTrigger.refresh();
       }
 
+      // FIXED CURSOR
       if (window.innerWidth > 1024) {
         const cursorDot = document.querySelector(".cursor-dot");
         const cursorOutline = document.querySelector(".cursor-outline");
+
+        gsap.set(cursorDot, { xPercent: -50, yPercent: -50 });
+        gsap.set(cursorOutline, { xPercent: -50, yPercent: -50 });
+
         let xToDot = gsap.quickTo(cursorDot, "x", {
           duration: 0.1,
           ease: "power3",
@@ -1153,7 +1162,15 @@
           duration: 0.5,
           ease: "power3",
         });
+
         window.addEventListener("mousemove", (e) => {
+          if (
+            cursorDot.style.opacity === "0" ||
+            cursorDot.style.opacity === ""
+          ) {
+            cursorDot.style.opacity = "1";
+            cursorOutline.style.opacity = "1";
+          }
           xToDot(e.clientX);
           yToDot(e.clientY);
           xToOutline(e.clientX);
@@ -1162,7 +1179,7 @@
         bindCursorHover();
       }
 
-      // --- STATE MANAGEMENT ENGINE ---
+      // --- STATE MANAGEMENT ENGINE WITH RACE-CONDITION PREVENTION ---
       let globalCategories = [];
       let globalServices = [];
       let loaded = { cat: false, srv: false };
@@ -1171,10 +1188,12 @@
       let activeCategoryObj = null;
       let activeSubcategoryEn = null;
 
-      // Variables to store exact previous context before a search
       let preSearchState = "categories";
       let preSearchCategoryObj = null;
       let preSearchSubcategoryEn = null;
+
+      // Anti-Race-Condition Token (Prevents old animations from overriding new commands)
+      let renderToken = 0;
 
       const container = document.getElementById("master-container");
       const bcExtended = document.getElementById("breadcrumb-extended");
@@ -1204,14 +1223,75 @@
 
       function checkInit() {
         if (loaded.cat && loaded.srv) {
-          if (document.getElementById("searchInput").value) handleSearch();
-          else if (currentState === "categories") window.renderCategories();
-          else if (currentState === "subcategories")
-            window.selectCategory(activeCategoryObj.id);
-          else if (currentState === "services")
-            window.selectSubcategory(activeSubcategoryEn);
+          const q = document.getElementById("searchInput").value.trim();
+
+          if (q !== "") {
+            if (!history.state)
+              history.replaceState({ state: "categories" }, "");
+            handleSearch();
+            return;
+          }
+
+          if (history.state) {
+            const st = history.state;
+            if (st.state === "subcategories") {
+              activeCategoryObj = globalCategories.find(
+                (c) => c.id === st.categoryId,
+              );
+              if (activeCategoryObj) {
+                window.selectCategory(st.categoryId, false);
+                return;
+              }
+            } else if (st.state === "services") {
+              activeCategoryObj = globalCategories.find(
+                (c) => c.id === st.categoryId,
+              );
+              if (activeCategoryObj) {
+                window.selectSubcategory(st.subcategoryEn, false);
+                return;
+              }
+            }
+            window.renderCategories(false);
+          } else {
+            history.replaceState({ state: "categories" }, "");
+            window.renderCategories(false);
+          }
         }
       }
+
+      window.addEventListener("popstate", (e) => {
+        document.getElementById("searchInput").value = "";
+        document.body.classList.remove("cursor-hover-link");
+
+        if (e.state) {
+          const st = e.state;
+          if (st.state === "categories") {
+            window.renderCategories(false);
+          } else if (st.state === "subcategories") {
+            activeCategoryObj = globalCategories.find(
+              (c) => c.id === st.categoryId,
+            );
+            if (activeCategoryObj) {
+              window.selectCategory(st.categoryId, false);
+            } else {
+              window.renderCategories(false);
+            }
+          } else if (st.state === "services") {
+            activeCategoryObj = globalCategories.find(
+              (c) => c.id === st.categoryId,
+            );
+            if (activeCategoryObj) {
+              window.selectSubcategory(st.subcategoryEn, false);
+            } else {
+              window.renderCategories(false);
+            }
+          } else {
+            window.renderCategories(false);
+          }
+        } else {
+          window.renderCategories(false);
+        }
+      });
 
       function updateBreadcrumbs() {
         if (currentState === "categories" || currentState === "search") {
@@ -1242,36 +1322,48 @@
         forceLanguageRefresh();
       }
 
-      // --- TIER 1: ULTRA PREMIUM CATEGORIES VIEW (FIXED) ---
-      window.renderCategories = function () {
+      // --- TIER 1: ULTRA PREMIUM CATEGORIES VIEW ---
+      window.renderCategories = function (pushHistory = true) {
+        if (pushHistory && currentState !== "categories") {
+          history.pushState({ state: "categories" }, "");
+        }
+
         currentState = "categories";
         activeCategoryObj = null;
         activeSubcategoryEn = null;
         document.getElementById("searchInput").value = "";
+        document.body.classList.remove("cursor-hover-link");
         updateBreadcrumbs();
 
+        const myRenderToken = ++renderToken;
+
         if (globalCategories.length === 0) {
-          container.innerHTML = `<div class="text-center py-20 text-gray-500 font-sans tracking-widest text-xs uppercase solid-stagger opacity-0">No sectors found.</div>`;
-          initStagger();
+          gsap.to(container.children, {
+            opacity: 0,
+            y: -20,
+            duration: 0.25,
+            onComplete: () => {
+              if (myRenderToken !== renderToken) return; // Prevent old renders from injecting
+              scrollToTop();
+              container.innerHTML = `<div class="text-center py-20 text-gray-500 font-sans tracking-widest text-xs uppercase solid-stagger opacity-0">No sectors found.</div>`;
+              initStagger();
+            },
+          });
           return;
         }
 
         let html =
           '<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">';
-
         globalCategories.forEach((cat, index) => {
           const padIndex = String(index + 1).padStart(2, "0");
-
           html += `
-            <div class="category-card-luxe solid-stagger opacity-0 cursor-hover group" onclick="selectCategory('${
+            <div class="category-card-luxe solid-stagger opacity-0 cursor-hover group" onclick="window.selectCategory('${
               cat.id
             }')">
               <img src="${cat.image}" alt="${cat.enName}" class="card-bg-img" />
               <div class="card-overlay"></div>
               <div class="card-frame"></div>
               <div class="card-number">${padIndex}</div>
-
-              <!-- Card Content with Overflow Bound Clipping Mask applied -->
               <div class="card-content">
                 <div class="text-wrapper">
                   <h3 class="font-serif text-3xl md:text-4xl text-white leading-[1.1] mb-2 lang-en">${
@@ -1280,7 +1372,6 @@
                   <h3 class="font-bengali text-[1.7rem] md:text-4xl text-white leading-[1.2] mb-2 lang-bn">${
                     cat.bnName
                   }</h3>
-
                   <div class="subtitle-grid">
                     <div class="subtitle-inner">
                       <p class="font-sans text-[11px] md:text-xs text-gray-300 font-light leading-relaxed mt-2 lang-en">${
@@ -1291,7 +1382,6 @@
                       }</p>
                     </div>
                   </div>
-
                   <div class="flex items-center gap-4 mt-5">
                     <div class="explore-line"></div>
                     <span class="explore-text lang-en">Explore Sector</span>
@@ -1303,35 +1393,50 @@
         });
         html += "</div>";
 
-        container.innerHTML = html;
-        bindCursorHover();
-        forceLanguageRefresh();
-        setTimeout(initStagger, 50);
+        gsap.to(container.children, {
+          opacity: 0,
+          y: -20,
+          duration: 0.25,
+          onComplete: () => {
+            if (myRenderToken !== renderToken) return; // Completely fixes async search bugs
+            scrollToTop();
+            container.innerHTML = html;
+            bindCursorHover();
+            forceLanguageRefresh();
+            setTimeout(initStagger, 50);
+          },
+        });
       };
 
       // --- TIER 2: SUBCATEGORIES (LUXURY LIST VIEW) ---
-      window.selectCategory = function (id) {
+      window.selectCategory = function (id, pushHistory = true) {
         activeCategoryObj = globalCategories.find((c) => c.id === id);
         if (!activeCategoryObj) return;
 
-        // If no subcategories exist, skip straight to services
         if (
           !activeCategoryObj.subcategories ||
           activeCategoryObj.subcategories.length === 0
         ) {
-          activeSubcategoryEn = "All"; // Catch-all trigger
-          window.selectSubcategory(activeSubcategoryEn);
+          activeSubcategoryEn = "All";
+          window.selectSubcategory(activeSubcategoryEn, pushHistory);
           return;
         }
 
+        if (pushHistory && currentState !== "subcategories") {
+          history.pushState({ state: "subcategories", categoryId: id }, "");
+        }
+
         currentState = "subcategories";
+        document.body.classList.remove("cursor-hover-link");
         updateBreadcrumbs();
+
+        const myRenderToken = ++renderToken;
 
         let html =
           '<div class="flex flex-col border-t border-white/10 w-full max-w-5xl mx-auto">';
         activeCategoryObj.subcategories.forEach((sub) => {
           html += `
-            <div class="subcat-row flex justify-between items-center py-8 md:py-10 border-b border-white/10 cursor-hover group px-4 md:px-8" onclick="selectSubcategory('${sub.en.replace(
+            <div class="subcat-row flex justify-between items-center py-8 md:py-10 border-b border-white/10 cursor-hover group px-4 md:px-8" onclick="window.selectSubcategory('${sub.en.replace(
               /'/g,
               "\\'",
             )}')">
@@ -1350,12 +1455,13 @@
         });
         html += "</div>";
 
-        // Animate Out & In
         gsap.to(container.children, {
           opacity: 0,
           y: -20,
-          duration: 0.3,
+          duration: 0.25,
           onComplete: () => {
+            if (myRenderToken !== renderToken) return;
+            scrollToTop();
             container.innerHTML = html;
             bindCursorHover();
             forceLanguageRefresh();
@@ -1376,13 +1482,28 @@
       };
 
       window.revertToSubcategories = function () {
-        if (activeCategoryObj) selectCategory(activeCategoryObj.id);
+        if (activeCategoryObj)
+          window.selectCategory(activeCategoryObj.id, true);
       };
 
       // --- TIER 3: DETAILED SERVICES VIEW ---
-      window.selectSubcategory = function (subEn) {
+      window.selectSubcategory = function (subEn, pushHistory = true) {
+        if (!activeCategoryObj) return;
+
+        if (pushHistory && currentState !== "services") {
+          history.pushState(
+            {
+              state: "services",
+              categoryId: activeCategoryObj.id,
+              subcategoryEn: subEn,
+            },
+            "",
+          );
+        }
+
         activeSubcategoryEn = subEn;
         currentState = "services";
+        document.body.classList.remove("cursor-hover-link");
         updateBreadcrumbs();
 
         let filtered = globalServices.filter(
@@ -1397,26 +1518,39 @@
         );
       };
 
-      // --- GLOBAL SEARCH ENGINE OVERRIDE (FIXED LOGIC) ---
+      // --- GLOBAL SEARCH ENGINE OVERRIDE ---
       document
         .getElementById("searchInput")
         .addEventListener("input", handleSearch);
 
       function handleSearch() {
-        const q = document.getElementById("searchInput").value.toLowerCase();
+        const inputEl = document.getElementById("searchInput");
+        const q = inputEl.value.toLowerCase().trim();
 
-        if (q.trim() === "") {
-          // Revert back to precise pre-search state intelligently
+        if (q === "") {
           if (currentState === "search") {
+            // Restore Pre-Search Context Flawlessly
             currentState = preSearchState;
             activeCategoryObj = preSearchCategoryObj;
             activeSubcategoryEn = preSearchSubcategoryEn;
-            checkInit();
+            inputEl.value = "";
+
+            // Re-render accurately without pushing history
+            if (currentState === "subcategories" && activeCategoryObj) {
+              window.selectCategory(activeCategoryObj.id, false);
+            } else if (
+              currentState === "services" &&
+              activeCategoryObj &&
+              activeSubcategoryEn
+            ) {
+              window.selectSubcategory(activeSubcategoryEn, false);
+            } else {
+              window.renderCategories(false);
+            }
           }
           return;
         }
 
-        // Store exact pre-search context if we are initiating a fresh search
         if (currentState !== "search") {
           preSearchState = currentState;
           preSearchCategoryObj = activeCategoryObj;
@@ -1436,6 +1570,8 @@
       }
 
       function renderServiceCards(data, emptyMsg) {
+        document.body.classList.remove("cursor-hover-link");
+
         let html = "";
         if (data.length === 0) {
           html = `
@@ -1492,11 +1628,15 @@
           html += "</div>";
         }
 
+        const myRenderToken = ++renderToken;
+
         gsap.to(container.children, {
           opacity: 0,
           y: -20,
-          duration: 0.3,
+          duration: 0.25,
           onComplete: () => {
+            if (myRenderToken !== renderToken) return;
+            scrollToTop();
             container.innerHTML = html;
             bindGlowCards();
             bindCursorHover();
@@ -1506,7 +1646,6 @@
         });
       }
 
-      // Force language CSS refresh perfectly synced upon DOM injection
       function forceLanguageRefresh() {
         const tempLang = currentLang === "en" ? "bn" : "en";
         document.body.setAttribute("data-lang", tempLang);
@@ -1542,11 +1681,11 @@
             {
               x: 0,
               opacity: 1,
-              duration: 2, // Longer duration for the "tail" of the animation
-              stagger: 0.06, // Tighter cascade so they flow together
-              ease: "expo.out", // "expo.out" gives a fast start and a beautiful, slow deceleration
-              delay: 0.2, // Overlaps slightly with the drawer sliding in
-              force3D: true, // THE FIX: Forces the GPU to render this, killing the lag completely
+              duration: 2,
+              stagger: 0.06,
+              ease: "expo.out",
+              delay: 0.2,
+              force3D: true,
             },
           );
         } else {
