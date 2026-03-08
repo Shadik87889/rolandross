@@ -996,14 +996,15 @@
           lenis.stop();
           gsap.fromTo(
             drawerLinks,
-            { x: 50, opacity: 0 },
+            { opacity: 0 },
             {
               x: 0,
               opacity: 1,
-              duration: 0.5,
-              stagger: 0.1,
-              ease: "power3.out",
-              delay: 0.2,
+              duration: 2, // Longer duration for the "tail" of the animation
+              stagger: 0.06, // Tighter cascade so they flow together
+              ease: "expo.out", // "expo.out" gives a fast start and a beautiful, slow deceleration
+              delay: 0.2, // Overlaps slightly with the drawer sliding in
+              force3D: true, // THE FIX: Forces the GPU to render this, killing the lag completely
             },
           );
         } else {

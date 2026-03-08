@@ -86,9 +86,12 @@
            DYNAMIC PREMIUM CURSOR
            ------------------------------------------- */
       @media (min-width: 1024px) {
-        /* Enforce custom cursor across every single element */
         body,
-        body * {
+        a,
+        button,
+        select,
+        input,
+        textarea {
           cursor: none !important;
         }
         .cursor-dot {
@@ -99,7 +102,7 @@
           height: 6px;
           background: #d4af37;
           border-radius: 50%;
-          z-index: 999999; /* FIXED: Now higher than the modal overlay */
+          z-index: 99999 !important;
           pointer-events: none;
           transform: translate(-50%, -50%);
           transition: opacity 0.3s ease;
@@ -112,7 +115,7 @@
           height: 40px;
           border: 1px solid rgba(212, 175, 55, 0.6);
           border-radius: 50%;
-          z-index: 999998; /* FIXED: Now higher than the modal overlay */
+          z-index: 9998;
           pointer-events: none;
           transform: translate(-50%, -50%);
           display: flex;
@@ -762,81 +765,6 @@
       }
 
       /* -------------------------------------------
-         NEW SMART TIMER / COUNTDOWN ENGINE UI
-         ------------------------------------------- */
-      .timer-safe {
-        background: linear-gradient(
-          145deg,
-          rgba(212, 175, 55, 0.05),
-          rgba(0, 0, 0, 0.4)
-        );
-        border: 1px solid rgba(212, 175, 55, 0.15);
-        border-left: 3px solid #d4af37;
-        padding: 10px 14px;
-        border-radius: 6px;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        width: 100%;
-      }
-      .timer-safe i {
-        color: #d4af37;
-        font-size: 1.25rem;
-        filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.4));
-      }
-      .timer-urgent {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 4px;
-      }
-      .timer-block {
-        background: linear-gradient(
-          180deg,
-          rgba(20, 20, 20, 0.8),
-          rgba(5, 5, 5, 0.9)
-        );
-        border: 1px solid rgba(239, 68, 68, 0.3);
-        border-top: 1px solid rgba(239, 68, 68, 0.6);
-        padding: 6px 4px;
-        border-radius: 6px;
-        min-width: 48px;
-        text-align: center;
-        box-shadow: 0 5px 15px rgba(239, 68, 68, 0.15);
-        backdrop-filter: blur(4px);
-        flex: 1;
-      }
-      .timer-value {
-        font-family: "Montserrat", sans-serif;
-        font-size: 1.1rem;
-        font-weight: 700;
-        color: #ef4444;
-        text-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
-        display: block;
-        line-height: 1.1;
-      }
-      .timer-label {
-        font-size: 0.45rem;
-        display: block;
-        color: #a3a3a3;
-        margin-top: 3px;
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-      }
-      .timer-expired {
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px dashed rgba(255, 255, 255, 0.15);
-        color: #666;
-        padding: 12px;
-        border-radius: 6px;
-        text-align: center;
-        text-transform: uppercase;
-        letter-spacing: 0.2em;
-        font-size: 0.75rem;
-        width: 100%;
-      }
-
-      /* -------------------------------------------
          CUSTOM PACKAGE UNIQUE BADGE & MODAL
          ------------------------------------------- */
       .holographic-badge {
@@ -891,6 +819,24 @@
       @media (min-width: 768px) {
         .pm-content {
           flex-direction: row;
+        }
+      }
+
+      /* Urgent Pulse for Countdown */
+      .urgent-pulse {
+        animation: urgent-beat 1s infinite;
+      }
+      @keyframes urgent-beat {
+        0%,
+        100% {
+          transform: scale(1);
+          color: #f87171;
+          text-shadow: 0 0 10px rgba(248, 113, 113, 0.5);
+        }
+        50% {
+          transform: scale(1.02);
+          color: #ff9c9c;
+          text-shadow: 0 0 20px rgba(248, 113, 113, 0.8);
         }
       }
 
@@ -1110,58 +1056,63 @@
             class="relative z-10 text-center px-4 w-full max-w-4xl mx-auto flex flex-col items-center justify-center -translate-y-6 md:-translate-y-10 mt-16 md:mt-24"
           >
             <div
-              class="hero-anim flex flex-col items-center justify-center mb-8 relative w-full"
+              class="hero-anim flex flex-col items-center justify-center mb-6 relative w-full"
             >
               <div
-                class="absolute inset-0 bg-gold/10 blur-[60px] rounded-full pointer-events-none w-4/5 h-4/5 m-auto"
+                class="absolute inset-0 bg-gold/10 blur-[50px] rounded-full pointer-events-none w-3/4 h-3/4 m-auto"
               ></div>
-              <!-- Increased Logo Size & Shadow -->
               <img
                 src="https://image2url.com/r2/default/images/1772790482998-73bcfde2-6246-44fa-b074-bde4be53c563.png"
                 alt="Rol & Rose Logo"
-                class="w-48 md:w-64 lg:w-72 object-contain drop-shadow-[0_15px_30px_rgba(212,175,55,0.3)] relative z-10"
+                class="w-36 md:w-48 lg:w-52 object-contain drop-shadow-[0_10px_20px_rgba(212,175,55,0.2)] relative z-10"
               />
               <h2
-                class="font-serif text-lg md:text-xl lg:text-2xl text-gold-gradient mt-4 tracking-[0.4em] uppercase font-semibold relative z-10"
+                class="font-serif text-lg md:text-xl lg:text-2xl text-gold-gradient mt-2 tracking-[0.3em] uppercase font-semibold relative z-10"
               >
                 BY MST ROJI
               </h2>
             </div>
-
-            <!-- Updated Headings -->
-            <h1
-              class="hero-anim font-serif text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 lang-en"
-            >
-              Where Beauty <br /><span
-                class="text-gold-gradient italic font-light"
-                >Meets Elegance</span
-              >
-            </h1>
-            <h1
-              class="hero-anim font-bengali text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6 lang-bn"
-            >
-              যেখানে সৌন্দর্য <br /><span class="text-gold-gradient"
-                >আভিজাত্যের সাথে মেশে</span
-              >
-            </h1>
-
             <p
-              class="hero-anim font-sans text-gray-300 text-sm md:text-base max-w-xl mx-auto mb-10 leading-relaxed font-light lang-en"
+              class="hero-anim font-sans text-white/80 tracking-[0.4em] text-[10px] md:text-xs uppercase mb-3 lang-en"
+            >
+              A Golden Touch of Perfection
+            </p>
+            <p
+              class="hero-anim font-bengali text-white/80 tracking-widest text-xs md:text-sm mb-3 lang-bn"
+            >
+              নিখুঁততার একটি সোনালী স্পর্শ
+            </p>
+            <h1
+              class="hero-anim font-serif text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-5 lang-en"
+            >
+              Redefining <br /><span
+                class="text-gold-gradient italic font-light"
+                >Luxury Beauty</span
+              >
+            </h1>
+            <h1
+              class="hero-anim font-bengali text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-5 lang-bn"
+            >
+              বিলাসবহুল সৌন্দর্যের <br /><span class="text-gold-gradient"
+                >নতুন সংজ্ঞা</span
+              >
+            </h1>
+            <p
+              class="hero-anim font-sans text-gray-300 text-sm md:text-base max-w-xl mx-auto mb-8 leading-relaxed font-light lang-en"
             >
               Experience the absolute pinnacle of elegance. Rol & Rose offers
               world-class aesthetics and premium spa treatments meticulously
               tailored to unveil your ultimate radiance.
             </p>
             <p
-              class="hero-anim font-bengali text-gray-300 text-sm md:text-lg max-w-xl mx-auto mb-10 leading-relaxed font-light lang-bn"
+              class="hero-anim font-bengali text-gray-300 text-sm md:text-lg max-w-xl mx-auto mb-8 leading-relaxed font-light lang-bn"
             >
               স্নিগ্ধতার সর্বোচ্চ রূপ উপভোগ করুন। রোল অ্যান্ড রস আপনার চূড়ান্ত
               উজ্জ্বলতা ফুটিয়ে তুলতে বিশ্বমানের নান্দনিক এবং স্পা ট্রিটমেন্ট
               প্রদান করে।
             </p>
-
             <div
-              class="hero-anim flex flex-col sm:flex-row items-center justify-center gap-5 w-full px-4 sm:px-0"
+              class="hero-anim flex flex-col sm:flex-row items-center justify-center gap-4 w-full px-4 sm:px-0"
             >
               <a
                 href="booking"
@@ -1190,6 +1141,7 @@
             </div>
           </div>
         </section>
+
         <!-- ==========================================
              1.5 PROMOTIONAL MATRIX (THE NEW TICKER) 
              ========================================== -->
@@ -2433,13 +2385,16 @@
 
         <!-- Right Side Details -->
         <div
-          class="w-full md:w-3/5 p-6 md:p-10 flex flex-col max-h-[70vh] md:max-h-none pm-details cursor-hover"
+          class="w-full md:w-3/5 p-6 md:p-10 flex flex-col max-h-[70vh] md:max-h-none pm-details"
         >
           <div class="flex justify-between items-start mb-6 shrink-0">
-            <div class="w-full pr-4">
-              <!-- Live Timer Injected Here -->
-              <div id="pm-timer-container" class="mb-4 w-full"></div>
-
+            <div>
+              <p
+                id="pm-timer-container"
+                class="font-sans text-[9px] tracking-[0.2em] text-gray-400 uppercase mb-2 flex items-center gap-2"
+              >
+                <!-- Live Timer Injected Here -->
+              </p>
               <h2
                 id="pm-title-en"
                 class="font-serif text-3xl md:text-4xl text-white lang-en"
@@ -2455,7 +2410,7 @@
             </div>
             <button
               onclick="closePackageModal()"
-              class="w-10 h-10 rounded-full border border-white/10 text-gray-400 hover:text-white hover:border-white/50 transition flex items-center justify-center bg-white/5 shrink-0 cursor-hover"
+              class="w-10 h-10 rounded-full border border-white/10 text-gray-400 hover:text-white hover:border-white/50 transition flex items-center justify-center bg-white/5 shrink-0"
             >
               <i class="fas fa-times"></i>
             </button>
@@ -2480,7 +2435,7 @@
           <div class="mt-8 pt-6 border-t border-white/5 shrink-0">
             <button
               id="pm-wa-btn"
-              class="btn-solid-luxe w-full py-4 rounded-sm flex items-center justify-center gap-3 cursor-hover"
+              class="btn-solid-luxe w-full py-4 rounded-sm flex items-center justify-center gap-3"
             >
               <i class="fab fa-whatsapp text-xl"></i>
               <span
@@ -2546,7 +2501,7 @@
         // Set to end of the day for precision
         const endDate = new Date(validUntil);
         endDate.setHours(23, 59, 59, 999);
-        return `<div class="live-countdown transition-all duration-300 w-full cursor-explore" data-expire="${endDate.toISOString()}">Loading...</div>`;
+        return `<span class="live-countdown transition-all duration-300" data-expire="${endDate.toISOString()}">Loading...</span>`;
       }
 
       setInterval(() => {
@@ -2556,37 +2511,22 @@
           const diff = end - now;
 
           if (diff <= 0) {
-            el.innerHTML = `
-              <div class="timer-expired">
-                <i class="fas fa-lock mb-1"></i><br/>
-                <span class="lang-en">Campaign Concluded</span>
-                <span class="lang-bn font-bengali">অফার শেষ</span>
-              </div>
-            `;
+            el.innerHTML = "Offer Expired";
+            el.classList.remove("urgent-pulse");
             return;
           }
 
           const days = Math.floor(diff / (1000 * 60 * 60 * 24));
 
           if (days > 10) {
-            // Beyond 10 days: Elegant Safe Badge
-            const dateStr = new Date(end).toLocaleDateString("en-GB", {
-              day: "2-digit",
-              month: "short",
-              year: "numeric",
-            });
-            el.innerHTML = `
-              <div class="timer-safe">
-                <i class="far fa-calendar-check"></i>
-                <div>
-                  <span class="block text-[8px] text-gray-400 lang-en uppercase tracking-widest font-sans">Valid Until</span>
-                  <span class="block text-[10px] text-gray-400 lang-bn font-bengali uppercase tracking-widest">অফারের মেয়াদ</span>
-                  <span class="text-gold font-bold text-xs uppercase tracking-widest">${dateStr}</span>
-                </div>
-              </div>
-            `;
+            // Beyond 10 days, show standard clean date
+            el.innerHTML = `<i class="far fa-calendar-alt"></i> Valid till: ${new Date(
+              end,
+            ).toLocaleDateString()}`;
+            el.classList.remove("urgent-pulse");
+            el.style.color = "inherit";
           } else {
-            // 10 days or less: High Urgency Live Countdown Blocks
+            // 10 days or less = High Urgency Live Countdown
             const h = Math.floor(
               (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
             )
@@ -2599,25 +2539,10 @@
               .toString()
               .padStart(2, "0");
 
-            el.innerHTML = `
-              <div class="w-full flex flex-col gap-2 p-3 bg-red-950/10 border border-red-500/20 rounded-lg relative overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-r from-red-500/5 to-transparent pointer-events-none"></div>
-                <div class="flex items-center gap-2 mb-1 relative z-10">
-                  <span class="live-beacon"></span> 
-                  <span class="text-red-400 text-[9px] uppercase tracking-[0.2em] font-bold lang-en">Urgent: Ends In</span>
-                  <span class="text-red-400 text-[11px] font-bold lang-bn font-bengali">অফারটি শেষ হবে</span>
-                </div>
-                <div class="timer-urgent relative z-10">
-                  <div class="timer-block"><span class="timer-value">${days}</span><span class="timer-label">DAYS</span></div>
-                  <span class="text-red-500/50">:</span>
-                  <div class="timer-block"><span class="timer-value">${h}</span><span class="timer-label">HRS</span></div>
-                  <span class="text-red-500/50">:</span>
-                  <div class="timer-block"><span class="timer-value">${m}</span><span class="timer-label">MINS</span></div>
-                  <span class="text-red-500/50">:</span>
-                  <div class="timer-block"><span class="timer-value">${s}</span><span class="timer-label">SECS</span></div>
-                </div>
-              </div>
-            `;
+            el.innerHTML = `⏳ Ends in: ${days}d ${h}h ${m}m ${s}s`;
+            if (!el.classList.contains("urgent-pulse")) {
+              el.classList.add("urgent-pulse");
+            }
           }
         });
       }, 1000);
@@ -2657,7 +2582,7 @@
           let promoHtml = "";
           if (o.promoCode) {
             promoHtml = `
-              <div class="promo-dash-box inline-flex items-center gap-2 px-3 py-1.5 rounded text-[10px] font-mono offer-accent-text cursor-hover">
+              <div class="promo-dash-box inline-flex items-center gap-2 px-3 py-1.5 rounded text-[10px] font-mono offer-accent-text">
                 CODE: ${o.promoCode}
               </div>`;
           }
@@ -2711,9 +2636,9 @@
                 
                 <div class="h-[1px] w-full bg-gradient-to-r from-white/10 to-transparent my-4"></div>
                 
-                <div class="mb-6 w-full flex items-center gap-2">
+                <p class="font-sans text-[9px] tracking-[0.2em] text-gray-400 uppercase mb-6 flex items-center gap-2">
                   ${getTimerMarkup(o.validUntil)}
-                </div>
+                </p>
                 
                 <div class="mt-auto flex items-end justify-between">
                   <div>${promoHtml}</div>
@@ -2775,7 +2700,7 @@
           startX = e.clientX;
           lastX = e.clientX;
           dragVelocity = 0;
-          // We are handling cursors strictly in CSS so no inline styles here to conflict.
+          track.style.cursor = "grabbing";
         });
         window.addEventListener("pointermove", (e) => {
           if (!isDragging) return;
@@ -2788,6 +2713,7 @@
         window.addEventListener("pointerup", () => {
           if (isDragging) {
             isDragging = false;
+            track.style.cursor = "";
             if (Math.abs(dragVelocity) > 2) {
               dir = dragVelocity < 0 ? 1 : -1;
               currentSpeed = Math.min(Math.abs(dragVelocity) * 1.5, 20);
@@ -2797,6 +2723,7 @@
         track.addEventListener("pointerleave", () => {
           if (isDragging) {
             isDragging = false;
+            track.style.cursor = "";
           }
         });
         track.addEventListener("mouseenter", () => (isHovered = true));
@@ -2864,7 +2791,7 @@
         document.getElementById("pm-image").src = offer.image;
         document.getElementById("pm-items").innerHTML = itemsHtml;
 
-        // Re-inject the dynamic countdown div directly into the modal
+        // Re-inject the dynamic countdown span directly into the modal
         document.getElementById(
           "pm-timer-container",
         ).innerHTML = getTimerMarkup(offer.validUntil);
@@ -3045,12 +2972,12 @@
           ScrollTrigger.refresh();
         });
       });
+
       // 5. Mobile Drawer Logic
       const menuToggle = document.getElementById("menu-toggle");
       const drawer = document.getElementById("mobile-drawer");
       const drawerLinks = document.querySelectorAll(".drawer-link");
       let menuOpen = false;
-
       menuToggle.addEventListener("click", () => {
         menuOpen = !menuOpen;
         if (menuOpen) {
@@ -3058,19 +2985,16 @@
           menuToggle.innerHTML = '<i class="fas fa-times"></i>';
           menuToggle.classList.add("text-white");
           lenis.stop();
-
-          // UPDATED: GPU-Accelerated, Ultra-Smooth Premium Reveal
           gsap.fromTo(
             drawerLinks,
-            { opacity: 0 },
+            { x: 50, opacity: 0 },
             {
               x: 0,
               opacity: 1,
-              duration: 2, // Longer duration for the "tail" of the animation
-              stagger: 0.06, // Tighter cascade so they flow together
-              ease: "expo.out", // "expo.out" gives a fast start and a beautiful, slow deceleration
-              delay: 0.2, // Overlaps slightly with the drawer sliding in
-              force3D: true, // THE FIX: Forces the GPU to render this, killing the lag completely
+              duration: 0.5,
+              stagger: 0.1,
+              ease: "power3.out",
+              delay: 0.2,
             },
           );
         } else {
@@ -3080,7 +3004,6 @@
           lenis.start();
         }
       });
-
       drawerLinks.forEach((link) => {
         link.addEventListener("click", (e) => {
           if (e.target.classList.contains("lang-btn")) return;
