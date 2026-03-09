@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -43,8 +42,8 @@
             },
             fontFamily: {
               serif: ['"Playfair Display"', "serif"],
-              sans:["Montserrat", "sans-serif"],
-              bengali:['"Hind Siliguri"', "sans-serif"],
+              sans: ["Montserrat", "sans-serif"],
+              bengali: ['"Hind Siliguri"', "sans-serif"],
             },
           },
         },
@@ -87,7 +86,6 @@
            DYNAMIC PREMIUM CURSOR
            ------------------------------------------- */
       @media (min-width: 1024px) {
-        /* Enforce custom cursor across every single element */
         body,
         body * {
           cursor: none !important;
@@ -100,7 +98,7 @@
           height: 6px;
           background: #d4af37;
           border-radius: 50%;
-          z-index: 999999; /* FIXED: Now higher than the modal overlay */
+          z-index: 999999;
           pointer-events: none;
           transform: translate(-50%, -50%);
           transition: opacity 0.3s ease;
@@ -113,7 +111,7 @@
           height: 40px;
           border: 1px solid rgba(212, 175, 55, 0.6);
           border-radius: 50%;
-          z-index: 999998; /* FIXED: Now higher than the modal overlay */
+          z-index: 999998;
           pointer-events: none;
           transform: translate(-50%, -50%);
           display: flex;
@@ -136,16 +134,12 @@
           transform: scale(0.5);
           transition: opacity 0.3s ease, transform 0.3s ease;
         }
-
-        /* Hover States */
         .cursor-hover-link .cursor-outline {
           width: 50px;
           height: 50px;
           border-color: #d4af37;
           background-color: rgba(212, 175, 55, 0.1);
         }
-
-        /* Explore Mode (Gallery) */
         .cursor-explore .cursor-dot {
           opacity: 0;
         }
@@ -306,9 +300,6 @@
         color: #fff;
       }
 
-      /* -------------------------------------------
-           DYNAMIC MOUSE TRACKING GLOW CARDS
-           ------------------------------------------- */
       .glow-card {
         background: #080808;
         position: relative;
@@ -318,13 +309,11 @@
         transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1),
           box-shadow 0.5s ease, border-color 0.5s ease;
       }
-
       @media (max-width: 1023px) {
         .glow-card {
           border-color: rgba(212, 175, 55, 0.25);
         }
       }
-
       .glow-card::before {
         content: "";
         position: absolute;
@@ -422,9 +411,6 @@
         }
       }
 
-      /* -------------------------------------------
-           WORLD-CLASS CONTRA-ZOOM GALLERY
-           ------------------------------------------- */
       .gallery-item {
         position: relative;
         overflow: hidden;
@@ -445,7 +431,6 @@
       .gallery-item:hover .gallery-parallax-img {
         filter: brightness(0.5) blur(3px);
       }
-
       .gallery-gradient {
         position: absolute;
         inset: 0;
@@ -458,7 +443,6 @@
         );
         transition: opacity 0.8s ease;
       }
-
       .gallery-inner-frame {
         position: absolute;
         inset: 20px;
@@ -474,7 +458,6 @@
         transform: scale(1);
         opacity: 1;
       }
-
       .gallery-text-content {
         position: absolute;
         bottom: 40px;
@@ -487,11 +470,9 @@
       .gallery-title {
         text-shadow: 0 2px 15px rgba(0, 0, 0, 0.8);
       }
-
       .gallery-item:hover .gallery-text-content {
         transform: translateY(-10px);
       }
-
       .horizontal-scroll-content::-webkit-scrollbar {
         display: none;
       }
@@ -531,17 +512,11 @@
         transform: translateX(0);
       }
 
-      /* ===========================================
-           THE NEW PREMIUM OFFER TICKER CSS
-           =========================================== */
-
-      /* GPU Accelerated Track for Butter Smooth Motion */
+      /* Ticker & Offers */
       .ticker-smooth {
         will-change: transform;
         transform: translateZ(0);
       }
-
-      /* Live Pulsing Beacon */
       .live-beacon {
         width: 6px;
         height: 6px;
@@ -565,8 +540,6 @@
           box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
         }
       }
-
-      /* Ticker Controls */
       .ticker-btn {
         background: rgba(10, 10, 10, 0.8);
         border: 1px solid rgba(255, 255, 255, 0.1);
@@ -579,9 +552,6 @@
         transform: scale(1.1);
       }
 
-      /* NEW DYNAMIC PREMIUM THEMES */
-
-      /* Base Card Styles - Overflow MUST be visible for pop-out badge */
       .premium-offer-card {
         background: #080808;
         border: 1px solid rgba(255, 255, 255, 0.04);
@@ -591,38 +561,31 @@
         transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.1),
           box-shadow 0.5s ease, border-color 0.5s ease;
       }
-
-      /* Elevate card slightly on hover to prevent badge clipping behind adjacent cards */
       .premium-offer-card:hover {
         z-index: 50;
       }
 
-      /* 1. Gold Theme */
       .theme-gold {
         --accent: #d4af37;
         --accent-light: #f9df9f;
         --accent-bg: rgba(212, 175, 55, 0.1);
       }
-      /* 2. Silver / Platinum Theme */
       .theme-silver {
         --accent: #e2e8f0;
         --accent-light: #ffffff;
         --accent-bg: rgba(226, 232, 240, 0.1);
       }
-      /* 3. Rose Gold Theme */
       .theme-rose {
         --accent: #e0bfb8;
         --accent-light: #f5e6e3;
         --accent-bg: rgba(224, 191, 184, 0.1);
       }
-      /* 4. Emerald / Forest Theme */
       .theme-emerald {
         --accent: #50c878;
         --accent-light: #a8e6cf;
         --accent-bg: rgba(80, 200, 120, 0.1);
       }
 
-      /* Interactions based on CSS variables */
       .premium-offer-card:hover {
         border-color: var(--accent);
         box-shadow: 0 20px 50px var(--accent-bg);
@@ -664,9 +627,6 @@
         background: var(--accent-bg);
       }
 
-      /* -------------------------------------------
-         SUPER EYE-CATCHING DISCOUNT BADGE
-         ------------------------------------------- */
       .premium-discount-badge {
         position: absolute;
         top: -20px;
@@ -686,12 +646,9 @@
         animation: float-badge 4s ease-in-out infinite;
         overflow: hidden;
       }
-
-      /* Make it pulse gently on hover */
       .premium-offer-card:hover .premium-discount-badge {
         animation: pop-pulse 1.5s infinite;
       }
-
       .premium-discount-badge .amount {
         font-family: "Playfair Display", serif;
         font-size: 2rem;
@@ -700,7 +657,6 @@
         color: #050505;
         text-shadow: 0 2px 10px rgba(255, 255, 255, 0.5);
       }
-
       .premium-discount-badge .off-text {
         font-family: "Montserrat", sans-serif;
         font-size: 0.65rem;
@@ -713,8 +669,6 @@
         padding: 3px 8px;
         border-radius: 6px;
       }
-
-      /* Light sweeping shine effect for extra pop */
       .premium-discount-badge::after {
         content: "";
         position: absolute;
@@ -731,7 +685,6 @@
         transform: skewX(-25deg);
         animation: shine-sweep 3s infinite;
       }
-
       @keyframes shine-sweep {
         0% {
           left: -150%;
@@ -762,9 +715,6 @@
         }
       }
 
-      /* -------------------------------------------
-         NEW SMART TIMER / COUNTDOWN ENGINE UI
-         ------------------------------------------- */
       .timer-safe {
         background: linear-gradient(
           145deg,
@@ -837,9 +787,6 @@
         width: 100%;
       }
 
-      /* -------------------------------------------
-         CUSTOM PACKAGE UNIQUE BADGE & MODAL
-         ------------------------------------------- */
       .holographic-badge {
         background: linear-gradient(120deg, #ffd700, #ffb142, #ffda79, #ffd700);
         background-size: 300% 300%;
@@ -872,9 +819,8 @@
         align-items: center;
         padding: 1.5rem;
         opacity: 0;
-        will-change: opacity; /* Fix lag */
+        will-change: opacity;
       }
-
       .pm-content {
         background: linear-gradient(145deg, #0a0a0a, #050505);
         border: 1px solid rgba(212, 175, 55, 0.2);
@@ -882,24 +828,21 @@
           0 0 100px rgba(212, 175, 55, 0.05);
         border-radius: 4px;
         width: 100%;
-        max-width: 900px; /* Fixed: Changed from max-w to max-width */
+        max-width: 900px;
         max-height: 90vh;
         overflow-y: auto;
         display: flex;
         flex-direction: column;
         transform: scale(0.95) translateY(20px);
-        will-change: transform, opacity; /* Fix lag */
-        overscroll-behavior: contain; /* Enable native nested scroll */
-        -webkit-overflow-scrolling: touch; /* Fix iOS mobile scroll */
+        will-change: transform, opacity;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
       }
-
       @media (min-width: 768px) {
         .pm-content {
           flex-direction: row;
         }
       }
-
-      /* Custom scrollbar for modal details */
       .pm-details {
         overscroll-behavior: contain;
         -webkit-overflow-scrolling: touch;
@@ -1124,7 +1067,6 @@
               <div
                 class="absolute inset-0 bg-gold/10 blur-[60px] rounded-full pointer-events-none w-4/5 h-4/5 m-auto"
               ></div>
-              <!-- Increased Logo Size & Shadow -->
               <img
                 src="https://image2url.com/r2/default/images/1772790482998-73bcfde2-6246-44fa-b074-bde4be53c563.png"
                 alt="Rol & Rose Logo"
@@ -1137,7 +1079,6 @@
               </h2>
             </div>
 
-            <!-- Updated Headings -->
             <h1
               class="hero-anim font-serif text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 lang-en"
             >
@@ -1199,8 +1140,9 @@
             </div>
           </div>
         </section>
+
         <!-- ==========================================
-             1.5 PROMOTIONAL MATRIX (THE NEW TICKER) 
+             1.5 PROMOTIONAL MATRIX
              ========================================== -->
         <section
           id="offers-section"
@@ -1213,7 +1155,7 @@
           ></div>
 
           <div
-            class="container mx-auto px-6 md:px-12 mb-12 relative z-10 flex flex-col md:flex-row justify-between items-end gap-6"
+            class="container mx-auto px-6 md:px-12 mb-8 relative z-10 flex flex-col md:flex-row justify-between items-start gap-6"
           >
             <div class="reveal-up">
               <div class="flex items-center gap-3 mb-4">
@@ -1229,22 +1171,23 @@
                   সীমিত সময়ের অফার
                 </p>
               </div>
+
               <h2
                 class="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white lang-en"
               >
                 Exclusive
-                <span class="text-gray-400 italic font-light">Privileges</span>
+                <span class="text-gold-gradient italic font-light">Offers</span>
               </h2>
               <h2
                 class="font-bengali text-3xl md:text-4xl lg:text-5xl font-bold text-white lang-bn"
               >
                 এক্সক্লুসিভ
-                <span class="text-gray-400 font-light">প্রিভিলেজ</span>
+                <span class="text-gold-gradient font-light">অফার</span>
               </h2>
             </div>
 
-            <!-- Ticker Manual Controls -->
-            <div class="flex gap-4 reveal-up mb-2">
+            <!-- Ticker Manual Controls (Desktop Only) -->
+            <div class="hidden md:flex gap-4 reveal-up mb-2">
               <button
                 id="ticker-prev"
                 class="ticker-btn w-12 h-12 rounded-full cursor-hover flex items-center justify-center text-gray-400"
@@ -1260,22 +1203,27 @@
             </div>
           </div>
 
-          <!-- THE BULLETPROOF TICKER TRACK -->
+          <!-- SUPER AWESOME MOBILE PAGINATION (MOVED TO TOP) -->
           <div
-            class="w-full relative z-10 cursor-explore py-4"
-            style="touch-action: pan-y pinch-zoom;"
+            id="mobile-pagination"
+            class="flex md:hidden justify-center items-center gap-4 mb-6 relative z-20 w-full px-4"
           >
-            <!-- Absolute Gradient Overlays to FIX Chrome Flashing/Pixelation Bug -->
+            <!-- Dynamically populated via JS for infinite sliding numbers -->
+          </div>
+
+          <!-- THE BULLETPROOF TICKER TRACK -->
+          <div class="w-full relative z-10 cursor-explore py-4 overflow-hidden">
+            <!-- Gradient Overlays for Desktop Ticker -->
             <div
-              class="absolute left-0 top-0 bottom-0 w-16 md:w-40 bg-gradient-to-r from-[#060606] to-transparent z-50 pointer-events-none"
+              class="hidden md:block absolute left-0 top-0 bottom-0 w-16 md:w-40 bg-gradient-to-r from-[#060606] to-transparent z-50 pointer-events-none"
             ></div>
             <div
-              class="absolute right-0 top-0 bottom-0 w-16 md:w-40 bg-gradient-to-l from-[#060606] to-transparent z-50 pointer-events-none"
+              class="hidden md:block absolute right-0 top-0 bottom-0 w-16 md:w-40 bg-gradient-to-l from-[#060606] to-transparent z-50 pointer-events-none"
             ></div>
 
             <div
               id="offers-track"
-              class="flex gap-6 md:gap-10 w-max py-6 ticker-smooth items-stretch px-4"
+              class="flex gap-6 md:gap-10 py-6 items-stretch px-4 w-max"
             >
               <!-- Dynamically Populated Cards via JS -->
             </div>
@@ -1461,7 +1409,6 @@
               </h2>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-              <!-- Service 1: Advance Hydra Facial -->
               <div class="glow-card p-6 solid-stagger opacity-0">
                 <div class="glow-card-content cursor-hover">
                   <div
@@ -1513,7 +1460,7 @@
                   </div>
                 </div>
               </div>
-              <!-- Service 2: BB Glow Facial -->
+
               <div class="glow-card p-6 solid-stagger opacity-0">
                 <div class="glow-card-content cursor-hover">
                   <div
@@ -1565,7 +1512,7 @@
                   </div>
                 </div>
               </div>
-              <!-- Service 3: Micro Needling -->
+
               <div class="glow-card p-6 solid-stagger opacity-0">
                 <div class="glow-card-content cursor-hover">
                   <div
@@ -1617,7 +1564,7 @@
                   </div>
                 </div>
               </div>
-              <!-- Service 4: Micro Dermabrasion -->
+
               <div class="glow-card p-6 solid-stagger opacity-0">
                 <div class="glow-card-content cursor-hover">
                   <div
@@ -1669,7 +1616,7 @@
                   </div>
                 </div>
               </div>
-              <!-- Service 5: Advanced Korean Flow Facial -->
+
               <div class="glow-card p-6 solid-stagger opacity-0">
                 <div class="glow-card-content cursor-hover">
                   <div
@@ -1721,7 +1668,7 @@
                   </div>
                 </div>
               </div>
-              <!-- Service 6: D-Tan Facial -->
+
               <div class="glow-card p-6 solid-stagger opacity-0">
                 <div class="glow-card-content cursor-hover">
                   <div
@@ -1774,7 +1721,7 @@
                 </div>
               </div>
             </div>
-            <!-- More Services Button -->
+
             <div class="mt-16 text-center w-full flex justify-center reveal-up">
               <a
                 href="services"
@@ -1825,7 +1772,6 @@
             <div
               class="horizontal-scroll-content flex items-center gap-6 md:gap-12 px-6 md:px-12 h-[60vh] md:h-[70vh] w-max absolute mt-16"
             >
-              <!-- Gallery Items -->
               <div
                 class="gallery-item w-[85vw] md:w-[45vw] lg:w-[35vw] h-full shadow-[0_15px_30px_rgba(0,0,0,0.8)] cursor-explore"
               >
@@ -1861,6 +1807,7 @@
                   </p>
                 </div>
               </div>
+
               <div
                 class="gallery-item w-[85vw] md:w-[35vw] lg:w-[25vw] h-[80%] shadow-[0_15px_30px_rgba(0,0,0,0.8)] self-end mb-10 cursor-explore"
               >
@@ -1894,6 +1841,7 @@
                   </p>
                 </div>
               </div>
+
               <div
                 class="gallery-item w-[85vw] md:w-[45vw] lg:w-[35vw] h-full shadow-[0_15px_30px_rgba(0,0,0,0.8)] cursor-explore"
               >
@@ -1929,6 +1877,7 @@
                   </p>
                 </div>
               </div>
+
               <div
                 class="gallery-item w-[85vw] md:w-[35vw] lg:w-[25vw] h-[80%] shadow-[0_15px_30px_rgba(0,0,0,0.8)] self-start mt-10 cursor-explore"
               >
@@ -1962,6 +1911,7 @@
                   </p>
                 </div>
               </div>
+
               <div
                 class="w-[85vw] md:w-[35vw] h-[70%] relative flex flex-col items-center justify-center group border border-gold/30 rounded-sm shrink-0 bg-[#0a0a0a] shadow-[0_0_40px_rgba(212,175,55,0.08)] ml-6 md:ml-12 overflow-hidden cursor-hover"
               >
@@ -2145,14 +2095,62 @@
                 আমাদের <span class="text-gold-gradient">ঠিকানা</span>
               </h2>
             </div>
+
             <div class="grid lg:grid-cols-5 gap-10 items-center reveal-up">
               <div class="lg:col-span-2 flex flex-col gap-8">
+                <div
+                  class="p-8 border border-gold/60 bg-[#0d0a00] relative group overflow-hidden transition-colors hover:border-gold cursor-hover shadow-[0_0_30px_rgba(212,175,55,0.15)] transform hover:-translate-y-1 duration-300"
+                >
+                  <div
+                    class="absolute top-4 right-4 bg-gold text-black text-[9px] md:text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-sm shadow-[0_0_10px_rgba(212,175,55,0.5)] z-20 flex items-center gap-1.5"
+                  >
+                    <i class="fas fa-crown text-[10px]"></i>
+                    <span class="lang-en">Main Branch</span>
+                    <span class="lang-bn font-bengali text-xs"
+                      >প্রধান শাখা</span
+                    >
+                  </div>
+                  <div
+                    class="absolute top-0 right-0 w-40 h-40 bg-gold/15 rounded-full blur-[40px] transition-transform duration-700 group-hover:scale-150 pointer-events-none"
+                  ></div>
+
+                  <h3
+                    class="font-serif text-2xl text-gold mb-2 lang-en relative z-10"
+                  >
+                    JCX Business Tower
+                  </h3>
+                  <h3
+                    class="font-bengali text-2xl text-gold mb-2 lang-bn relative z-10"
+                  >
+                    জেসিএক্স বিজনেস টাওয়ার
+                  </h3>
+
+                  <div class="flex items-start gap-4 mt-6 relative z-10">
+                    <i class="fas fa-map-marker-alt text-gold mt-1"></i>
+                    <div>
+                      <p
+                        class="font-sans text-gray-300 text-sm font-light leading-relaxed lang-en"
+                      >
+                        Level -1, Bashundhara R/A<br />Japan Street, Block-I<br />Dhaka,
+                        Bangladesh, 1229
+                      </p>
+                      <p
+                        class="font-bengali text-gray-300 text-sm font-light leading-relaxed lang-bn"
+                      >
+                        লেভেল -১, বসুন্ধরা আ/এ<br />জাপান স্ট্রিট, ব্লক-আই<br />ঢাকা,
+                        বাংলাদেশ, ১২২৯
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
                 <div
                   class="p-8 border border-white/5 bg-[#080808] relative group overflow-hidden transition-colors hover:border-gold/30 cursor-hover"
                 >
                   <div
                     class="absolute top-0 right-0 w-32 h-32 bg-gold/5 rounded-full blur-[40px] transition-transform duration-700 group-hover:scale-150 pointer-events-none"
                   ></div>
+
                   <h3
                     class="font-serif text-2xl text-white mb-2 lang-en relative z-10"
                   >
@@ -2163,8 +2161,11 @@
                   >
                     রূপায়ণ শপিং স্কয়ার
                   </h3>
+
                   <div class="flex items-start gap-4 mt-6 relative z-10">
-                    <i class="fas fa-map-marker-alt text-gold mt-1"></i>
+                    <i
+                      class="fas fa-map-marker-alt text-white/50 group-hover:text-gold transition-colors mt-1"
+                    ></i>
                     <div>
                       <p
                         class="font-sans text-gray-400 text-sm font-light leading-relaxed lang-en"
@@ -2179,39 +2180,8 @@
                     </div>
                   </div>
                 </div>
-                <div
-                  class="p-8 border border-white/5 bg-[#080808] relative group overflow-hidden transition-colors hover:border-gold/30 cursor-hover"
-                >
-                  <div
-                    class="absolute top-0 right-0 w-32 h-32 bg-gold/5 rounded-full blur-[40px] transition-transform duration-700 group-hover:scale-150 pointer-events-none"
-                  ></div>
-                  <h3
-                    class="font-serif text-2xl text-white mb-2 lang-en relative z-10"
-                  >
-                    JCX Business Tower
-                  </h3>
-                  <h3
-                    class="font-bengali text-2xl text-white mb-2 lang-bn relative z-10"
-                  >
-                    জেসিএক্স বিজনেস টাওয়ার
-                  </h3>
-                  <div class="flex items-start gap-4 mt-6 relative z-10">
-                    <i class="fas fa-map-marker-alt text-gold mt-1"></i>
-                    <div>
-                      <p
-                        class="font-sans text-gray-400 text-sm font-light leading-relaxed lang-en"
-                      >
-                        Bashundhara Japan Street<br />Dhaka, Bangladesh, 1229
-                      </p>
-                      <p
-                        class="font-bengali text-gray-400 text-sm font-light leading-relaxed lang-bn"
-                      >
-                        বসুন্ধরা জাপান স্ট্রিট<br />ঢাকা, বাংলাদেশ, ১২২৯
-                      </p>
-                    </div>
-                  </div>
-                </div>
               </div>
+
               <div
                 class="lg:col-span-3 h-[450px] lg:h-full min-h-[450px] w-full relative border border-white/10 p-2 bg-[#050505] rounded-sm group"
               >
@@ -2260,71 +2230,124 @@
                   নান্দনিক ট্রিটমেন্টের প্রিমিয়ার গন্তব্য।
                 </p>
               </div>
-              <div>
+
+              <div class="md:col-span-2 pr-0 md:pr-12">
                 <h4
                   class="font-sans text-white uppercase tracking-[0.2em] text-[10px] font-bold mb-6 lang-en"
                 >
-                  Contact & Visit
+                  Contact Branches
                 </h4>
                 <h4
                   class="font-bengali text-white tracking-widest text-sm font-bold mb-6 lang-bn"
                 >
-                  যোগাযোগ ও ঠিকানা
+                  যোগাযোগ করুন
                 </h4>
-                <ul
-                  class="space-y-5 font-sans text-xs text-gray-400 font-light"
-                >
-                  <li class="flex items-center gap-3">
-                    <i class="fas fa-phone text-gold w-4"></i> +880 1750-087889
-                  </li>
-                  <li class="flex items-center gap-3">
-                    <i class="fab fa-whatsapp text-gold w-4"></i> +880
-                    1750-087889
-                  </li>
-                  <li
-                    class="flex items-start gap-3 border-t border-white/5 pt-5 mt-2"
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div
+                    class="p-5 rounded-xl border border-gold/30 bg-gradient-to-br from-gold/10 to-transparent relative overflow-hidden group cursor-hover"
                   >
-                    <i class="fas fa-map-marker-alt text-gold w-4 mt-0.5"></i>
-                    <div>
-                      <span class="block text-white mb-1 font-medium lang-en"
-                        >Rupayan Shopping Square</span
-                      >
-                      <span
-                        class="block text-white mb-1 font-medium font-bengali text-[13px] lang-bn"
-                        >রূপায়ণ শপিং স্কয়ার</span
-                      >
-                      <span class="lang-en leading-relaxed block"
-                        >Shop 404A, Bashundhara<br />Dhaka, Bangladesh,
-                        1229</span
-                      >
-                      <span
-                        class="lang-bn font-bengali text-sm leading-relaxed block"
-                        >শপ ৪০৪এ, বসুন্ধরা<br />ঢাকা, বাংলাদেশ, ১২২৯</span
-                      >
+                    <div
+                      class="absolute -top-10 -right-10 w-24 h-24 bg-gold/20 rounded-full blur-2xl group-hover:bg-gold/40 transition-colors"
+                    ></div>
+                    <div class="flex items-center gap-3 mb-4">
+                      <i class="fas fa-crown text-gold text-lg"></i>
+                      <div>
+                        <span
+                          class="block text-gold font-bold text-[10px] tracking-[0.2em] uppercase lang-en"
+                          >Main Branch</span
+                        >
+                        <span
+                          class="block text-gold font-bold font-bengali text-[12px] tracking-widest lang-bn"
+                          >প্রধান শাখা</span
+                        >
+                      </div>
                     </div>
-                  </li>
-                  <li class="flex items-start gap-3">
-                    <i class="fas fa-map-marker-alt text-gold w-4 mt-0.5"></i>
-                    <div>
-                      <span class="block text-white mb-1 font-medium lang-en"
-                        >JCX Business Tower</span
+                    <span class="block text-white mb-4 font-serif text-lg"
+                      >JCX Business Tower</span
+                    >
+                    <div
+                      class="flex flex-col gap-3 font-sans text-xs font-light"
+                    >
+                      <a
+                        href="tel:+8801332121183"
+                        class="flex items-center gap-3 text-white hover:text-gold transition-colors"
                       >
-                      <span
-                        class="block text-white mb-1 font-medium font-bengali text-[13px] lang-bn"
-                        >জেসিএক্স বিজনেস টাওয়ার</span
+                        <i class="fas fa-phone-alt text-gold w-3"></i> +88 013
+                        3212 1183
+                      </a>
+                      <a
+                        href="mailto:rrbeautysalon2026@gmail.com"
+                        class="flex items-center gap-3 text-white hover:text-gold transition-colors"
                       >
-                      <span class="lang-en leading-relaxed block"
-                        >Bashundhara Japan Street<br />Dhaka, Bangladesh,
-                        1229</span
-                      >
-                      <span
-                        class="lang-bn font-bengali text-sm leading-relaxed block"
-                        >বসুন্ধরা জাপান স্ট্রিট<br />ঢাকা, বাংলাদেশ, ১২২৯</span
-                      >
+                        <i class="fas fa-envelope text-gold w-3"></i>
+                        rrbeautysalon2026@gmail.com
+                      </a>
+                      <span class="flex items-start gap-3 text-gray-300 mt-1">
+                        <i class="fas fa-map-marker-alt text-gold w-3 mt-1"></i>
+                        <span class="leading-relaxed"
+                          >Level -1, Bashundhara R/A<br />Japan Street,
+                          Block-I</span
+                        >
+                      </span>
                     </div>
-                  </li>
-                </ul>
+                  </div>
+
+                  <div
+                    class="p-5 rounded-xl border border-white/10 bg-gradient-to-br from-white/5 to-transparent relative overflow-hidden group cursor-hover"
+                  >
+                    <div
+                      class="absolute -top-10 -right-10 w-24 h-24 bg-white/5 rounded-full blur-2xl group-hover:bg-white/10 transition-colors"
+                    ></div>
+                    <div class="flex items-center gap-3 mb-4">
+                      <i
+                        class="fas fa-building text-white/50 text-lg group-hover:text-white transition-colors"
+                      ></i>
+                      <div>
+                        <span
+                          class="block text-gray-300 font-bold text-[10px] tracking-[0.2em] uppercase lang-en"
+                          >Branch 02</span
+                        >
+                        <span
+                          class="block text-gray-300 font-bold font-bengali text-[12px] tracking-widest lang-bn"
+                          >শাখা ০২</span
+                        >
+                      </div>
+                    </div>
+                    <span class="block text-white mb-4 font-serif text-lg"
+                      >Rupayan Shopping Square</span
+                    >
+                    <div
+                      class="flex flex-col gap-3 font-sans text-xs font-light"
+                    >
+                      <a
+                        href="tel:+8801721824826"
+                        class="flex items-center gap-3 text-gray-300 hover:text-white transition-colors"
+                      >
+                        <i class="fas fa-phone-alt text-white/50 w-3"></i> +88
+                        01721-824826
+                      </a>
+                      <a
+                        href="mailto:rolrose2016@gmail.com"
+                        class="flex items-center gap-3 text-gray-300 hover:text-white transition-colors"
+                      >
+                        <i class="fas fa-envelope text-white/50 w-3"></i>
+                        rolrose2016@gmail.com
+                      </a>
+                      <span class="flex items-start gap-3 text-gray-400 mt-1">
+                        <i
+                          class="fas fa-map-marker-alt text-white/50 w-3 mt-1"
+                        ></i>
+                        <span class="leading-relaxed"
+                          >Shop 404A, Bashundhara<br />Dhaka, Bangladesh,
+                          1229</span
+                        >
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </div>
+
               <div>
                 <h4
                   class="font-sans text-white uppercase tracking-[0.2em] text-[10px] font-bold mb-6 lang-en"
@@ -2368,15 +2391,14 @@
                     >
                   </li>
                 </ul>
-              </div>
-              <div>
+
                 <h4
-                  class="font-sans text-white uppercase tracking-[0.2em] text-[10px] font-bold mb-6 lang-en"
+                  class="font-sans text-white uppercase tracking-[0.2em] text-[10px] font-bold mb-6 mt-10 lang-en"
                 >
                   Follow Elegance
                 </h4>
                 <h4
-                  class="font-bengali text-white tracking-widest text-sm font-bold mb-6 lang-bn"
+                  class="font-bengali text-white tracking-widest text-sm font-bold mb-6 mt-10 lang-bn"
                 >
                   ফলো করুন
                 </h4>
@@ -2394,6 +2416,7 @@
                 </div>
               </div>
             </div>
+
             <div
               class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center font-sans text-[9px] md:text-[10px] text-gray-600 uppercase tracking-widest text-center md:text-left"
             >
@@ -2417,7 +2440,6 @@
     <!-- WORLD-CLASS CUSTOM PACKAGE MODAL -->
     <div id="package-modal" class="package-modal-overlay cursor-hover">
       <div class="pm-content" data-lenis-prevent>
-        <!-- Left Side Image -->
         <div
           class="w-full md:w-2/5 h-[250px] md:h-auto relative overflow-hidden shrink-0"
         >
@@ -2440,16 +2462,13 @@
           </div>
         </div>
 
-        <!-- Right Side Details -->
         <div
           class="w-full md:w-3/5 p-6 md:p-10 flex flex-col max-h-[70vh] md:max-h-none pm-details cursor-hover"
           data-lenis-prevent
         >
           <div class="flex justify-between items-start mb-6 shrink-0">
             <div class="w-full pr-4">
-              <!-- Live Timer Injected Here -->
               <div id="pm-timer-container" class="mb-4 w-full"></div>
-
               <h2
                 id="pm-title-en"
                 class="font-serif text-3xl md:text-4xl text-white lang-en"
@@ -2483,9 +2502,7 @@
             <h4 class="font-bengali text-xs font-bold text-gold mb-4 lang-bn">
               অন্তর্ভুক্ত সেবাসমূহ
             </h4>
-            <ul id="pm-items" class="space-y-4">
-              <!-- JS will inject services here -->
-            </ul>
+            <ul id="pm-items" class="space-y-4"></ul>
           </div>
 
           <div class="mt-8 pt-6 border-t border-white/5 shrink-0">
@@ -2532,10 +2549,9 @@
       const app = initializeApp(firebaseConfig);
       const db = getFirestore(app);
 
-      // Store Database in memory for Modal Cross-referencing
       window.globalCategories = [];
       window.globalServices = [];
-      window.liveOffers =[];
+      window.liveOffers = [];
 
       onSnapshot(collection(db, "categories"), (snap) => {
         window.globalCategories = snap.docs.map((doc) => ({
@@ -2550,11 +2566,7 @@
         }));
       });
 
-      // -------------------------------------------
-      // SMART DYNAMIC COUNTDOWN ENGINE
-      // -------------------------------------------
       function getTimerMarkup(validUntil) {
-        // Set to end of the day for precision
         const endDate = new Date(validUntil);
         endDate.setHours(23, 59, 59, 999);
         return `<div class="live-countdown transition-all duration-300 w-full cursor-explore" data-expire="${endDate.toISOString()}">Loading...</div>`;
@@ -2578,9 +2590,7 @@
           }
 
           const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-
           if (days > 10) {
-            // Beyond 10 days: Elegant Safe Badge
             const dateStr = new Date(end).toLocaleDateString("en-GB", {
               day: "2-digit",
               month: "short",
@@ -2597,7 +2607,6 @@
               </div>
             `;
           } else {
-            // 10 days or less: High Urgency Live Countdown Blocks
             const h = Math.floor(
               (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
             )
@@ -2634,12 +2643,24 @@
       }, 1000);
 
       // -------------------------------------------
-      // WORLD-CLASS PERFECT INFINITE TICKER LOGIC
+      // WORLD-CLASS TICKER & SLIDING DIAL LOGIC
       // -------------------------------------------
+      let isMobileGlobally = window.innerWidth < 768;
       let tickerAnimId;
+
+      window.addEventListener("resize", () => {
+        if (!window.liveOffers || window.liveOffers.length === 0) return;
+        const currentlyMobile = window.innerWidth < 768;
+        if (currentlyMobile !== isMobileGlobally) {
+          isMobileGlobally = currentlyMobile;
+          buildAndInitTicker(window.liveOffers);
+        }
+      });
+
       function buildAndInitTicker(offers) {
         const track = document.getElementById("offers-track");
         const section = document.getElementById("offers-section");
+        const isMobile = window.innerWidth < 768;
 
         if (offers.length === 0) {
           section.style.display = "none";
@@ -2649,7 +2670,7 @@
         section.style.display = "block";
         track.innerHTML = "";
 
-        const themes =[
+        const themes = [
           "theme-gold",
           "theme-silver",
           "theme-rose",
@@ -2675,43 +2696,30 @@
 
           const safeEnTitle = (o.enTitle || "").replace(/'/g, "\\'");
           const safeBnTitle = (o.bnTitle || "").replace(/'/g, "\\'");
-
-          // Determine specific click action and unique badge if it's a Custom Package
           const clickAction = isCustom
             ? `openPackageModal('${o.id}')`
             : `openWAOffer('${safeEnTitle}', '${safeBnTitle}')`;
 
           const customBadgeHtml = isCustom
-            ? `
-            <div class="absolute top-14 left-4 holographic-badge px-3 py-1.5 rounded-full flex items-center gap-2 z-20">
-              <i class="fas fa-crown text-[10px]"></i>
-              <span class="text-[8px] uppercase tracking-[0.2em] font-black">Custom Bundle</span>
-            </div>
-          `
+            ? `<div class="absolute top-14 left-4 holographic-badge px-3 py-1.5 rounded-full flex items-center gap-2 z-20">
+                <i class="fas fa-crown text-[10px]"></i>
+                <span class="text-[8px] uppercase tracking-[0.2em] font-black">Custom Bundle</span>
+              </div>`
             : "";
 
           originalHTML += `
             <div class="premium-offer-card ${currentTheme} w-[80vw] md:w-[360px] flex flex-col group cursor-pointer shrink-0" onclick="${clickAction}">
-              
-              <div class="premium-discount-badge">
-                <span class="amount">${discText}</span>
-                <span class="off-text">OFF</span>
-              </div>
-
+              <div class="premium-discount-badge"><span class="amount">${discText}</span><span class="off-text">OFF</span></div>
               <div class="h-[200px] relative overflow-hidden rounded-t-[1.25rem]">
                 <img src="${
                   o.image
                 }" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter grayscale-[20%] group-hover:grayscale-0">
                 <div class="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-transparent"></div>
-
                 <div class="absolute top-4 left-4 bg-red-500/10 border border-red-500/20 backdrop-blur-md px-3 py-1.5 rounded-full flex items-center gap-2 z-20">
-                  <span class="live-beacon"></span>
-                  <span class="text-red-500 text-[8px] uppercase tracking-[0.2em] font-bold">Live</span>
+                  <span class="live-beacon"></span><span class="text-red-500 text-[8px] uppercase tracking-[0.2em] font-bold">Live</span>
                 </div>
-                
                 ${customBadgeHtml}
               </div>
-              
               <div class="p-6 md:p-8 flex flex-col flex-grow relative z-10 -mt-4 bg-gradient-to-b from-transparent to-[#080808] rounded-b-[1.25rem]">
                 <h3 class="font-serif text-2xl text-white mb-2 leading-tight lang-en offer-accent-text">${
                   o.enTitle
@@ -2719,28 +2727,131 @@
                 <h3 class="font-bengali text-xl text-white mb-2 lang-bn offer-accent-text">${
                   o.bnTitle
                 }</h3>
-                
                 <div class="h-[1px] w-full bg-gradient-to-r from-white/10 to-transparent my-4"></div>
-                
-                <div class="mb-6 w-full flex items-center gap-2">
-                  ${getTimerMarkup(o.validUntil)}
-                </div>
-                
+                <div class="mb-6 w-full flex items-center gap-2">${getTimerMarkup(
+                  o.validUntil,
+                )}</div>
                 <div class="mt-auto flex items-end justify-between">
                   <div>${promoHtml}</div>
-                  <div class="w-10 h-10 rounded-full border flex items-center justify-center offer-accent-btn">
-                     <i class="fas fa-arrow-right -rotate-45"></i>
-                  </div>
+                  <div class="w-10 h-10 rounded-full border flex items-center justify-center offer-accent-btn"><i class="fas fa-arrow-right -rotate-45"></i></div>
                 </div>
               </div>
-            </div>
-          `;
+            </div>`;
         });
 
+        if (isMobile) {
+          track.innerHTML = originalHTML;
+          track.style.transform = `translate3d(0, 0, 0)`;
+          track.classList.remove("ticker-smooth");
+          track.style.transition =
+            "transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)";
+          track.style.width = "max-content";
+
+          const paginationContainer = document.getElementById(
+            "mobile-pagination",
+          );
+
+          // Build the World-Class Sliding Mask Dial UI
+          let paginationHTML = `
+                <button id="mob-prev" class="w-10 h-10 rounded-full bg-[#0a0a0a] border border-white/10 text-gray-500 hover:text-gold hover:border-gold/50 flex items-center justify-center transition-all shadow-[0_5px_15px_rgba(0,0,0,0.5)] z-20 flex-shrink-0">
+                    <i class="fas fa-chevron-left text-xs"></i>
+                </button>
+                <div class="relative w-[120px] overflow-hidden rounded-md flex-shrink-0 mask-dial">
+                    <!-- Edge fade illusions -->
+                    <div class="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-[#060606] to-transparent z-10 pointer-events-none"></div>
+                    <div class="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-[#060606] to-transparent z-10 pointer-events-none"></div>
+                    
+                    <div id="mob-pages-track" class="flex items-center transition-transform duration-500 ease-out px-[40px] w-max">
+            `;
+
+          for (let i = 0; i < offers.length; i++) {
+            let num = (i + 1).toString().padStart(2, "0");
+            paginationHTML += `<span class="mob-page-num w-[40px] flex-shrink-0 text-center cursor-pointer transition-all duration-500 font-serif text-xl tracking-widest ${
+              i === 0
+                ? "text-gold scale-125 font-bold drop-shadow-[0_0_12px_rgba(212,175,55,0.8)]"
+                : "text-gray-600 scale-90 hover:text-gray-400"
+            }" data-index="${i}">${num}</span>`;
+          }
+
+          paginationHTML += `
+                    </div>
+                </div>
+                <button id="mob-next" class="w-10 h-10 rounded-full bg-[#0a0a0a] border border-white/10 text-gray-500 hover:text-gold hover:border-gold/50 flex items-center justify-center transition-all shadow-[0_5px_15px_rgba(0,0,0,0.5)] z-20 flex-shrink-0">
+                    <i class="fas fa-chevron-right text-xs"></i>
+                </button>
+            `;
+          paginationContainer.innerHTML = paginationHTML;
+
+          let currentIndex = 0;
+          const updateSlider = (index) => {
+            if (index < 0) index = 0;
+            if (index >= offers.length) index = offers.length - 1;
+            currentIndex = index;
+
+            // Move Main Track
+            const card = track.children[0];
+            const gap = parseFloat(window.getComputedStyle(track).gap) || 0;
+            const offset = -(card.offsetWidth + gap) * currentIndex;
+            track.style.transform = `translate3d(${offset}px, 0, 0)`;
+
+            // Move Sliding Dial (40px per step ensures exactly 1 number shifts dynamically)
+            const dialTrack = document.getElementById("mob-pages-track");
+            dialTrack.style.transform = `translate3d(-${
+              currentIndex * 40
+            }px, 0, 0)`;
+
+            // Animate the active states beautifully
+            document.querySelectorAll(".mob-page-num").forEach((el, i) => {
+              if (i === currentIndex) {
+                el.className =
+                  "mob-page-num w-[40px] flex-shrink-0 text-center cursor-pointer transition-all duration-500 font-serif text-xl tracking-widest text-gold scale-125 font-bold drop-shadow-[0_0_12px_rgba(212,175,55,0.8)]";
+              } else {
+                el.className =
+                  "mob-page-num w-[40px] flex-shrink-0 text-center cursor-pointer transition-all duration-500 font-serif text-xl tracking-widest text-gray-600 scale-90 hover:text-gray-400";
+              }
+            });
+          };
+
+          document
+            .getElementById("mob-prev")
+            .addEventListener("click", () => updateSlider(currentIndex - 1));
+          document
+            .getElementById("mob-next")
+            .addEventListener("click", () => updateSlider(currentIndex + 1));
+          document.querySelectorAll(".mob-page-num").forEach((el) => {
+            el.addEventListener("click", (e) => {
+              updateSlider(parseInt(e.target.getAttribute("data-index")));
+            });
+          });
+
+          // Physics Touch Swipe Integration
+          let startX = 0,
+            currentX = 0;
+          track.ontouchstart = (e) => (startX = e.touches[0].clientX);
+          track.ontouchmove = (e) => (currentX = e.touches[0].clientX);
+          track.ontouchend = () => {
+            if (startX - currentX > 40 && currentX !== 0)
+              updateSlider(currentIndex + 1);
+            else if (currentX - startX > 40 && currentX !== 0)
+              updateSlider(currentIndex - 1);
+            currentX = 0;
+          };
+
+          if (tickerAnimId) cancelAnimationFrame(tickerAnimId);
+          return;
+        }
+
+        // DESKTOP: Infinite Ticker Active
+        track.style.transition = "none";
+        track.classList.add("ticker-smooth");
         track.innerHTML =
           originalHTML + originalHTML + originalHTML + originalHTML;
 
-        // Physics Engine
+        const paginationContainer = document.getElementById(
+          "mobile-pagination",
+        );
+        if (paginationContainer) paginationContainer.innerHTML = "";
+
         if (tickerAnimId) cancelAnimationFrame(tickerAnimId);
 
         let pos = -99999;
@@ -2786,7 +2897,6 @@
           startX = e.clientX;
           lastX = e.clientX;
           dragVelocity = 0;
-          // We are handling cursors strictly in CSS so no inline styles here to conflict.
         });
         window.addEventListener("pointermove", (e) => {
           if (!isDragging) return;
@@ -2806,9 +2916,7 @@
           }
         });
         track.addEventListener("pointerleave", () => {
-          if (isDragging) {
-            isDragging = false;
-          }
+          if (isDragging) isDragging = false;
         });
         track.addEventListener("mouseenter", () => (isHovered = true));
         track.addEventListener("mouseleave", () => {
@@ -2826,44 +2934,27 @@
         };
       }
 
-      // -------------------------------------------
-      // WORLD-CLASS CUSTOM BUNDLE MODAL LOGIC
-      // -------------------------------------------
       window.openPackageModal = function (id) {
         const offer = window.liveOffers.find((o) => o.id === id);
         if (!offer) return;
 
-        // Cross-reference DB Arrays to Resolve IDs into Human Readable Names
         let itemsHtml = "";
         if (offer.targetItems && offer.targetItems.length > 0) {
           offer.targetItems.forEach((itemStr) => {
             const parts = itemStr.split("|");
             const type = parts[0];
-
             if (type === "service") {
               const s = window.globalServices.find((x) => x.id === parts[1]);
               if (s)
-                itemsHtml += `
-                        <li class="flex items-start gap-4 p-3 bg-white/5 border border-white/5 rounded-sm hover:border-gold/30 transition-colors">
-                          <i class="fas fa-check-circle text-gold mt-1 text-base"></i> 
-                          <div><span class="block text-white font-sans text-xs tracking-wide">${s.enName}</span><span class="text-xs text-gray-500 font-bengali mt-1 block">${s.bnName}</span></div>
-                        </li>`;
+                itemsHtml += `<li class="flex items-start gap-4 p-3 bg-white/5 border border-white/5 rounded-sm hover:border-gold/30 transition-colors"><i class="fas fa-check-circle text-gold mt-1 text-base"></i><div><span class="block text-white font-sans text-xs tracking-wide">${s.enName}</span><span class="text-xs text-gray-500 font-bengali mt-1 block">${s.bnName}</span></div></li>`;
             } else if (type === "category") {
               const c = window.globalCategories.find((x) => x.id === parts[1]);
               if (c)
-                itemsHtml += `
-                        <li class="flex items-start gap-4 p-3 bg-white/5 border border-white/5 rounded-sm hover:border-gold/30 transition-colors">
-                          <i class="fas fa-layer-group text-gold mt-1 text-base"></i> 
-                          <div><span class="block text-white font-sans text-xs tracking-wide">${c.enName} <span class="text-gray-500 font-normal italic">(Complete Sector)</span></span><span class="text-xs text-gray-500 font-bengali mt-1 block">${c.bnName}</span></div>
-                        </li>`;
+                itemsHtml += `<li class="flex items-start gap-4 p-3 bg-white/5 border border-white/5 rounded-sm hover:border-gold/30 transition-colors"><i class="fas fa-layer-group text-gold mt-1 text-base"></i><div><span class="block text-white font-sans text-xs tracking-wide">${c.enName} <span class="text-gray-500 font-normal italic">(Complete Sector)</span></span><span class="text-xs text-gray-500 font-bengali mt-1 block">${c.bnName}</span></div></li>`;
             } else if (type === "subcategory") {
               const c = window.globalCategories.find((x) => x.id === parts[1]);
               if (c)
-                itemsHtml += `
-                        <li class="flex items-start gap-4 p-3 bg-white/5 border border-white/5 rounded-sm hover:border-gold/30 transition-colors">
-                          <i class="fas fa-layer-group text-gold mt-1 text-base"></i> 
-                          <div><span class="block text-white font-sans text-xs tracking-wide">${c.enName} <span class="text-gold">></span> ${parts[2]}</span></div>
-                        </li>`;
+                itemsHtml += `<li class="flex items-start gap-4 p-3 bg-white/5 border border-white/5 rounded-sm hover:border-gold/30 transition-colors"><i class="fas fa-layer-group text-gold mt-1 text-base"></i><div><span class="block text-white font-sans text-xs tracking-wide">${c.enName} <span class="text-gold">></span> ${parts[2]}</span></div></li>`;
             }
           });
         } else {
@@ -2874,8 +2965,6 @@
         document.getElementById("pm-title-bn").innerText = offer.bnTitle;
         document.getElementById("pm-image").src = offer.image;
         document.getElementById("pm-items").innerHTML = itemsHtml;
-
-        // Re-inject the dynamic countdown div directly into the modal
         document.getElementById(
           "pm-timer-container",
         ).innerHTML = getTimerMarkup(offer.validUntil);
@@ -2891,7 +2980,6 @@
 
         const modal = document.getElementById("package-modal");
         modal.style.display = "flex";
-
         gsap.fromTo(
           modal,
           { opacity: 0 },
@@ -2902,7 +2990,6 @@
           { scale: 0.95, y: 30 },
           { scale: 1, y: 0, duration: 0.4, ease: "power3.out", force3D: true },
         );
-
         if (window.lenisInstance) window.lenisInstance.stop();
       };
 
@@ -2913,7 +3000,7 @@
           y: 30,
           duration: 0.3,
           ease: "power2.in",
-          force3D: true
+          force3D: true,
         });
         gsap.to(modal, {
           opacity: 0,
@@ -2927,24 +3014,20 @@
         });
       };
 
-      // General Click-to-WA
       window.openWAOffer = function (enTitle, bnTitle) {
         const currentLang = document.body.getAttribute("data-lang");
-        let textMessage = "";
-        if (currentLang === "bn") {
-          textMessage = `হ্যালো রোল অ্যান্ড রস! আমি *${bnTitle}* এর এক্সক্লুসিভ অফারটি সম্পর্কে আগ্রহী। দয়া করে আমাকে আরও বিস্তারিত জানান এবং বুকিং করতে সাহায্য করুন।`;
-        } else {
-          textMessage = `Hello Rol & Rose! I am interested in the exclusive offer for *${enTitle}*. Could you please provide more details and help me book?`;
-        }
+        let textMessage =
+          currentLang === "bn"
+            ? `হ্যালো রোল অ্যান্ড রস! আমি *${bnTitle}* এর এক্সক্লুসিভ অফারটি সম্পর্কে আগ্রহী। দয়া করে আমাকে আরও বিস্তারিত জানান এবং বুকিং করতে সাহায্য করুন।`
+            : `Hello Rol & Rose! I am interested in the exclusive offer for *${enTitle}*. Could you please provide more details and help me book?`;
         window.open(
           `https://wa.me/8801750087889?text=${encodeURIComponent(textMessage)}`,
           "_blank",
         );
       };
 
-      // Fetch Offers
       onSnapshot(collection(db, "offers"), (snapshot) => {
-        let activeOffers =[];
+        let activeOffers = [];
         const now = new Date();
         snapshot.forEach((doc) => {
           const data = doc.data();
@@ -2961,7 +3044,6 @@
     </script>
 
     <script>
-      // 1. Lenis Smooth Scroll Setup
       const lenis = new Lenis({
         duration: 1.2,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -2969,7 +3051,7 @@
         smooth: true,
         smoothTouch: false,
       });
-      window.lenisInstance = lenis; // Expose to global for modal to pause/play
+      window.lenisInstance = lenis;
 
       function raf(time) {
         lenis.raf(time);
@@ -2982,11 +3064,9 @@
       gsap.ticker.add((time) => lenis.raf(time * 1000));
       gsap.ticker.lagSmoothing(0);
 
-      // 2. HYPER-PREMIUM CUSTOM CURSOR (GSAP Powered)
       if (window.innerWidth > 1024) {
         const cursorDot = document.querySelector(".cursor-dot");
         const cursorOutline = document.querySelector(".cursor-outline");
-
         let xToDot = gsap.quickTo(cursorDot, "x", {
           duration: 0.1,
           ease: "power3",
@@ -3019,7 +3099,6 @@
             document.body.classList.remove("cursor-hover-link"),
           );
         });
-
         document.querySelectorAll(".cursor-explore").forEach((el) => {
           el.addEventListener("mouseenter", () =>
             document.body.classList.add("cursor-explore"),
@@ -3030,18 +3109,14 @@
         });
       }
 
-      // 3. DYNAMIC MOUSE TRACKING GLOW ON SERVICES CARDS
       document.querySelectorAll(".glow-card").forEach((card) => {
         card.addEventListener("mousemove", (e) => {
           const rect = card.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          card.style.setProperty("--mouse-x", `${x}px`);
-          card.style.setProperty("--mouse-y", `${y}px`);
+          card.style.setProperty("--mouse-x", `${e.clientX - rect.left}px`);
+          card.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`);
         });
       });
 
-      // 4. Bilingual Toggle Logic
       const langBtns = document.querySelectorAll(".lang-btn");
       langBtns.forEach((btn) => {
         btn.addEventListener("click", (e) => {
@@ -3059,7 +3134,7 @@
           ScrollTrigger.refresh();
         });
       });
-      // 5. Mobile Drawer Logic
+
       const menuToggle = document.getElementById("menu-toggle");
       const drawer = document.getElementById("mobile-drawer");
       const drawerLinks = document.querySelectorAll(".drawer-link");
@@ -3072,19 +3147,17 @@
           menuToggle.innerHTML = '<i class="fas fa-times"></i>';
           menuToggle.classList.add("text-white");
           lenis.stop();
-
-          // UPDATED: GPU-Accelerated, Ultra-Smooth Premium Reveal
           gsap.fromTo(
             drawerLinks,
             { opacity: 0 },
             {
               x: 0,
               opacity: 1,
-              duration: 2, // Longer duration for the "tail" of the animation
-              stagger: 0.06, // Tighter cascade so they flow together
-              ease: "expo.out", // "expo.out" gives a fast start and a beautiful, slow deceleration
-              delay: 0.2, // Overlaps slightly with the drawer sliding in
-              force3D: true, // THE FIX: Forces the GPU to render this, killing the lag completely
+              duration: 2,
+              stagger: 0.06,
+              ease: "expo.out",
+              delay: 0.2,
+              force3D: true,
             },
           );
         } else {
@@ -3106,22 +3179,18 @@
         });
       });
 
-      // 6. Dual-Language WhatsApp Handlers
       window.openWA = function (enName, bnName) {
         const currentLang = document.body.getAttribute("data-lang");
-        let textMessage = "";
-        if (currentLang === "bn") {
-          textMessage = `হ্যালো রোল অ্যান্ড রস! আমি *${bnName}* সম্পর্কে আরও জানতে চাই। দয়া করে বিস্তারিত জানাবেন কি?`;
-        } else {
-          textMessage = `Hello Rol & Rose! I would love to learn more about the *${enName}*. Could you please provide details?`;
-        }
+        let textMessage =
+          currentLang === "bn"
+            ? `হ্যালো রোল অ্যান্ড রস! আমি *${bnName}* সম্পর্কে আরও জানতে চাই। দয়া করে বিস্তারিত জানাবেন কি?`
+            : `Hello Rol & Rose! I would love to learn more about the *${enName}*. Could you please provide details?`;
         window.open(
           `https://wa.me/8801750087889?text=${encodeURIComponent(textMessage)}`,
           "_blank",
         );
       };
 
-      // 7. Preloader & Standard GSAP Reveals
       document.body.style.overflow = "hidden";
       lenis.stop();
       const tlLoader = gsap.timeline();
@@ -3198,7 +3267,6 @@
         start: "top 85%",
       });
 
-      // 8. ABOUT SECTION REVEAL ANIMATION (Runs Always)
       const tlAbout = gsap.timeline({
         scrollTrigger: {
           trigger: "#about",
@@ -3300,7 +3368,6 @@
         },
       );
 
-      // 9. General Parallax Effects
       gsap.to(".hero-bg img", {
         scrollTrigger: {
           trigger: "#home",
@@ -3312,10 +3379,8 @@
         ease: "none",
       });
 
-      // 10. Horizontal Scroll Gallery with BULLETPROOF Internal Parallax
       let horizWrapper = document.querySelector(".horizontal-scroll-wrapper");
       let horizContent = document.querySelector(".horizontal-scroll-content");
-
       if (horizContent) {
         window.addEventListener("load", () => {
           let scrollDistance =
@@ -3354,7 +3419,6 @@
         });
       }
 
-      // Header Glass State
       const header = document.getElementById("navbar");
       window.addEventListener("scroll", () => {
         if (window.scrollY > 50) {
