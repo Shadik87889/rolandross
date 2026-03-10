@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rol & Rose | Executive Operations Manual</title>
+    <link
+      rel="shortcut icon"
+      href="https://image2url.com/r2/default/images/1772645168831-3c6d4695-b910-48ea-81db-bbd83a5094e3.png"
+      type="image/x-icon"
+    />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              black: "#050505",
+              dark: "#0a0a0a",
+              gold: "#d4af37",
+              goldlight: "#f9df9f",
+              golddark: "#aa7c11",
+            },
+            fontFamily: {
+              serif: ['"Playfair Display"', "serif"],
+              sans: ["Montserrat", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- GSAP & Lenis for World-Class Smooth Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+
+    <style>
+      /* Global Resets & Scrollbar */
+      body {
+        background-color: #050505;
+        color: #ffffff;
+        overflow-x: hidden;
+      }
+      ::-webkit-scrollbar {
+        width: 0px; /* Hidden for lenis smooth scroll */
+      }
+
+      /* Premium Custom Cursor */
+      @media (min-width: 1024px) {
+        body,
+        body * {
+          cursor: none !important;
+        }
+        .cursor-dot {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 6px;
+          height: 6px;
+          background: #d4af37;
+          border-radius: 50%;
+          z-index: 999999;
+          pointer-events: none;
+          transform: translate(-50%, -50%);
+        }
+        .cursor-outline {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 40px;
+          height: 40px;
+          border: 1px solid rgba(212, 175, 55, 0.6);
+          border-radius: 50%;
+          z-index: 999998;
+          pointer-events: none;
+          transform: translate(-50%, -50%);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          transition: width 0.3s, height 0.3s, background-color 0.3s;
+        }
+        .cursor-hover-link .cursor-outline {
+          width: 60px;
+          height: 60px;
+          background-color: rgba(212, 175, 55, 0.1);
+        }
+      }
+      @media (max-width: 1023px) {
+        .cursor-dot,
+        .cursor-outline {
+          display: none !important;
+        }
+      }
+
+      /* UI Components */
+      .text-gold-gradient {
+        background: linear-gradient(
+          to right,
+          #bf953f,
+          #fcf6ba,
+          #b38728,
+          #fbf5b7,
+          #aa771c
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .glass-card {
+        background: linear-gradient(
+          145deg,
+          rgba(15, 15, 15, 0.8),
+          rgba(5, 5, 5, 0.95)
+        );
+        border: 1px solid rgba(255, 255, 255, 0.03);
+        border-top: 1px solid rgba(212, 175, 55, 0.2);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        border-radius: 8px;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.4s ease, border-color 0.4s ease;
+      }
+      .glass-card:hover {
+        border-top-color: #d4af37;
+        box-shadow: 0 30px 60px rgba(212, 175, 55, 0.08);
+      }
+      .glass-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+          800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+          rgba(212, 175, 55, 0.06),
+          transparent 40%
+        );
+        z-index: 0;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+      }
+      .glass-card:hover::before {
+        opacity: 1;
+      }
+      .glass-content {
+        position: relative;
+        z-index: 10;
+      }
+
+      .nav-item {
+        position: relative;
+        padding-left: 1.5rem;
+        transition: all 0.3s ease;
+      }
+      .nav-item::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 0;
+        height: 2px;
+        background: #d4af37;
+        transition: width 0.3s ease;
+      }
+      .nav-item.active {
+        color: #d4af37;
+      }
+      .nav-item.active::before {
+        width: 1rem;
+      }
+
+      .step-box {
+        background: rgba(255, 255, 255, 0.02);
+        border-left: 2px solid #d4af37;
+        padding: 1rem 1.5rem;
+        margin-bottom: 1rem;
+        border-radius: 0 4px 4px 0;
+      }
+
+      .number-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        background: rgba(212, 175, 55, 0.1);
+        color: #d4af37;
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        border-radius: 50%;
+        font-size: 12px;
+        font-weight: 700;
+        margin-right: 12px;
+      }
+
+      .ambient-glow {
+        position: fixed;
+        border-radius: 50%;
+        filter: blur(120px);
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.3;
+      }
+
+      .term-translation {
+        background: repeating-linear-gradient(
+          45deg,
+          rgba(212, 175, 55, 0.03),
+          rgba(212, 175, 55, 0.03) 10px,
+          transparent 10px,
+          transparent 20px
+        );
+        border: 1px dashed rgba(212, 175, 55, 0.3);
+      }
+    </style>
+  </head>
+  <body class="selection:bg-gold selection:text-black">
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <!-- Ambient Background Lighting -->
+    <div
+      class="ambient-glow bg-gold/20 w-[600px] h-[600px] top-[-200px] left-[-200px]"
+    ></div>
+    <div
+      class="ambient-glow bg-gold/10 w-[800px] h-[800px] bottom-[-300px] right-[-300px]"
+    ></div>
+
+    <!-- Header -->
+    <header
+      class="fixed top-0 w-full z-50 bg-[#050505]/80 backdrop-blur-xl border-b border-white/5 py-5 px-6 md:px-12 flex justify-between items-center transition-all duration-300"
+      id="main-header"
+    >
+      <div class="flex flex-col cursor-hover cursor-hover-link">
+        <h1
+          class="font-serif text-2xl font-bold tracking-[0.15em] text-gold-gradient uppercase leading-none"
+        >
+          Rol & Rose
+        </h1>
+        <span
+          class="font-sans text-[8px] uppercase tracking-[0.35em] text-gray-400 mt-1"
+          >Executive Manual</span
+        >
+      </div>
+      <div
+        class="text-[10px] text-gray-500 font-sans tracking-widest uppercase hidden md:block"
+      >
+        Confidential Operations Guide
+      </div>
+    </header>
+
+    <div
+      class="container mx-auto px-6 lg:px-12 pt-32 pb-24 relative z-10 flex flex-col lg:flex-row gap-12 items-start"
+    >
+      <!-- Sticky Sidebar Navigation -->
+      <aside
+        class="w-full lg:w-1/4 shrink-0 lg:sticky lg:top-32 hidden md:block"
+      >
+        <div class="glass-card p-6 cursor-hover-link">
+          <div class="glass-content">
+            <h3
+              class="font-sans text-[10px] uppercase tracking-widest text-gray-500 mb-6 border-b border-white/10 pb-4"
+            >
+              Table of Contents
+            </h3>
+            <nav
+              class="flex flex-col gap-4 font-sans text-[11px] tracking-wider uppercase font-medium"
+              id="toc"
+            >
+              <a
+                href="#welcome"
+                class="nav-item text-gray-400 hover:text-white transition"
+                >01. Initialization</a
+              >
+              <a
+                href="#dashboard"
+                class="nav-item text-gray-400 hover:text-white transition"
+                >02. Analytics Hub</a
+              >
+              <a
+                href="#categories"
+                class="nav-item text-gray-400 hover:text-white transition"
+                >03. Category Generation</a
+              >
+              <a
+                href="#services"
+                class="nav-item text-gray-400 hover:text-white transition"
+                >04. The Vault (Services)</a
+              >
+              <a
+                href="#gallery"
+                class="nav-item text-gray-400 hover:text-white transition"
+                >05. The Gallery</a
+              >
+              <a
+                href="#offers"
+                class="nav-item text-gray-400 hover:text-white transition"
+                >06. Promotional Matrix</a
+              >
+              <a
+                href="#security"
+                class="nav-item text-gray-400 hover:text-white transition"
+                >07. Security Protocol</a
+              >
+            </nav>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Documentation Content -->
+      <main class="w-full lg:w-3/4 space-y-16">
+        <!-- Welcome Section -->
+        <section
+          id="welcome"
+          class="scroll-section scroll-mt-32 reveal-up cursor-hover-link"
+        >
+          <div class="glass-card p-8 md:p-12">
+            <div class="glass-content">
+              <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-[1px] bg-gold/50"></div>
+                <p
+                  class="font-sans text-[10px] uppercase tracking-widest text-gold"
+                >
+                  Master Control Guide
+                </p>
+              </div>
+              <h2 class="font-serif text-4xl md:text-5xl text-white mb-6">
+                Welcome to the <br /><span
+                  class="text-gold-gradient italic font-light"
+                  >Command Center</span
+                >
+              </h2>
+              <p
+                class="font-sans text-gray-300 text-sm leading-relaxed font-light mb-8"
+              >
+                Welcome, Executive. We have designed a world-class, highly
+                secure, and visually stunning admin panel for Rol & Rose. While
+                the system uses advanced engineering, operating it is as simple
+                as filling out a standard form. This manual translates the
+                system terminology into plain English so you can manage your
+                digital empire with ease.
+              </p>
+
+              <h3
+                class="font-serif text-2xl text-white mb-4 border-b border-white/5 pb-2"
+              >
+                How to Access the System
+              </h3>
+              <div class="step-box">
+                <span class="number-badge">1</span>
+                <span class="font-sans text-sm text-gray-300"
+                  >Open your Admin Panel link in any web browser.</span
+                >
+              </div>
+              <div class="step-box">
+                <span class="number-badge">2</span>
+                <span class="font-sans text-sm text-gray-300"
+                  >Enter your <strong>Secure Identity (Email: rolandross@admin.com)</strong> and your
+                  <strong>Access Cipher (Password: 123456)</strong>.</span
+                >
+              </div>
+              <div class="step-box">
+                <span class="number-badge">3</span>
+                <span class="font-sans text-sm text-gray-300"
+                  >Click
+                  <strong class="text-gold">Establish Connection</strong>. The
+                  system will securely log you in and load the Dashboard.</span
+                >
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Dashboard Section -->
+        <section
+          id="dashboard"
+          class="scroll-section scroll-mt-32 reveal-up cursor-hover-link"
+        >
+          <div class="glass-card p-8 md:p-12">
+            <div class="glass-content">
+              <p
+                class="font-sans text-[10px] uppercase tracking-widest text-gold mb-2"
+              >
+                System Overview
+              </p>
+              <h2 class="font-serif text-3xl md:text-4xl text-white mb-6">
+                Analytics Hub (Dashboard)
+              </h2>
+
+              <p
+                class="font-sans text-gray-300 text-sm leading-relaxed font-light mb-8"
+              >
+                The moment you log in, you are greeted by the Analytics Hub.
+                This acts as the heartbeat of your website, giving you real-time
+                insights without needing to dig through menus.
+              </p>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-[#080808] border border-white/5 p-6 rounded">
+                  <i class="fas fa-chart-line text-2xl text-gold mb-4"></i>
+                  <h4 class="font-sans text-sm text-white font-bold mb-2">
+                    Live Metric Counters
+                  </h4>
+                  <p
+                    class="font-sans text-xs text-gray-400 leading-relaxed font-light"
+                  >
+                    You will see three large numbers. These show exactly how
+                    many <strong>Taxonomy Sectors (Categories)</strong>,
+                    <strong>Active Services (Treatments)</strong>, and
+                    <strong>Visual Assets (Gallery Images)</strong> you
+                    currently have live on the website.
+                  </p>
+                </div>
+                <div class="bg-[#080808] border border-white/5 p-6 rounded">
+                  <i class="fas fa-server text-2xl text-gold mb-4"></i>
+                  <h4 class="font-sans text-sm text-white font-bold mb-2">
+                    System Health
+                  </h4>
+                  <p
+                    class="font-sans text-xs text-gray-400 leading-relaxed font-light"
+                  >
+                    These loading bars show how much database and storage power
+                    you are using. The panel is heavily optimized, meaning your
+                    website will remain lightning-fast regardless of how much
+                    data you add.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section
+          id="categories"
+          class="scroll-section scroll-mt-32 reveal-up cursor-hover-link"
+        >
+          <div class="glass-card p-8 md:p-12">
+            <div class="glass-content">
+              <p
+                class="font-sans text-[10px] uppercase tracking-widest text-gold mb-2"
+              >
+                Organizing Your Services
+              </p>
+              <h2 class="font-serif text-3xl md:text-4xl text-white mb-6">
+                Category Generation
+              </h2>
+
+              <div class="term-translation p-4 rounded mb-8">
+                <p class="font-sans text-xs text-gray-300">
+                  <strong class="text-gold">Admin Term:</strong> Sector Taxonomy
+                  / Sub-Segments<br />
+                  <strong class="text-gold">Simple Meaning:</strong> Main
+                  Service Folders (e.g., Hair Care, Spa) and Sub-Folders (e.g.,
+                  Hair Cut, Facial).
+                </p>
+              </div>
+
+              <p
+                class="font-sans text-gray-300 text-sm leading-relaxed font-light mb-6"
+              >
+                Before adding a service, you must create a Category to put it
+                in. Think of these as the main chapters of a book.
+              </p>
+
+              <h3
+                class="font-serif text-xl text-white mb-4 border-b border-white/5 pb-2"
+              >
+                Step-by-Step Instructions
+              </h3>
+              <div class="step-box">
+                <span class="number-badge">1</span>
+                <span class="font-sans text-sm text-gray-300"
+                  >Click the
+                  <strong class="text-gold">Formulate Sector</strong> button
+                  (has a '+' icon).</span
+                >
+              </div>
+              <div class="step-box">
+                <span class="number-badge">2</span>
+                <span class="font-sans text-sm text-gray-300"
+                  >Paste an image link into the
+                  <strong>Direct Image URL</strong> box. The system will
+                  automatically show you a preview.</span
+                >
+              </div>
+              <div class="step-box">
+                <span class="number-badge">3</span>
+                <span class="font-sans text-sm text-gray-300"
+                  >Type the Category Name & Subtitle in
+                  <strong>English</strong> (left side) and
+                  <strong>Bengali</strong> (right side).</span
+                >
+              </div>
+              <div class="step-box">
+                <span class="number-badge">4</span>
+                <span class="font-sans text-sm text-gray-300"></span>
+                  To create sub-categories (like "Hair Color" inside "Hair
+                  Care"), click <strong>Add Segment</strong> and type the
+                  names.</span
+                >
+              </div>
+              <div class="step-box">
+                <span class="number-badge">5</span>
+                <span class="font-sans text-sm text-gray-300"
+                  >Click <strong class="text-gold">Establish Sector</strong> to
+                  save it.</span
+                >
+              </div>
+
+              <div class="mt-8 bg-gold/5 border border-gold/20 p-5 rounded">
+                <h4
+                  class="font-sans text-xs text-gold uppercase tracking-widest font-bold mb-2"
+                >
+                  <i class="fas fa-sort mr-2"></i> How to Change the Order
+                </h4>
+                <p
+                  class="font-sans text-xs text-gray-300 leading-relaxed font-light"
+                >
+                  Don't like the order categories appear on your website? Click
+                  the <strong>Reorder Taxonomy</strong> button. You can simply
+                  drag and drop the items into the perfect order, then click
+                  <strong>Lock Sequence</strong>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- The Vault (Services) Section -->
+        <section
+          id="services"
+          class="scroll-section scroll-mt-32 reveal-up cursor-hover-link"
+        >
+          <div class="glass-card p-8 md:p-12">
+            <div class="glass-content">
+              <p
+                class="font-sans text-[10px] uppercase tracking-widest text-gold mb-2"
+              >
+                Adding Treatments
+              </p>
+              <h2 class="font-serif text-3xl md:text-4xl text-white mb-6">
+                The Vault (Services)
+              </h2>
+
+              <div class="term-translation p-4 rounded mb-8">
+                <p class="font-sans text-xs text-gray-300">
+                  <strong class="text-gold">Admin Term:</strong> Vault Signature
+                  / Inject New Service<br />
+                  <strong class="text-gold">Simple Meaning:</strong> Creating a
+                  new Treatment/Service to show on the website.
+                </p>
+              </div>
+
+              <p
+                class="font-sans text-gray-300 text-sm leading-relaxed font-light mb-6"
+              >
+                This is where you add the actual salon treatments. You must link
+                every service to a Category you created in the previous step.
+              </p>
+
+              <h3
+                class="font-serif text-xl text-white mb-4 border-b border-white/5 pb-2"
+              >
+                Step-by-Step Instructions
+              </h3>
+              <div class="step-box">
+                <span class="number-badge">1</span>
+                <span class="font-sans text-sm text-gray-300"
+                  >Click the
+                  <strong class="text-gold">Inject New Service</strong>
+                  button.</span
+                >
+              </div>
+              <div class="step-box">
+                <span class="number-badge">2</span>
+                <span class="font-sans text-sm text-gray-300"
+                  >Paste your high-quality image link into the Image URL
+                  box.</span
+                >
+              </div>
+              <div class="step-box">
+                <span class="number-badge">3</span>
+                <span class="font-sans text-sm text-gray-300"
+                  ><strong>Assign Sector:</strong> Click the dropdown and search
+                  for the Main Category this service belongs to.</span
+                >
+              </div>
+              <div class="step-box">
+                <span class="number-badge">4</span>
+                <span class="font-sans text-sm text-gray-300"
+                  ><strong>Lock Segment:</strong> If you created sub-categories
+                  earlier, select the specific sub-category here.</span
+                >
+              </div>
+              <div class="step-box">
+                <span class="number-badge">5</span>
+                <span class="font-sans text-sm text-gray-300"
+                  >Enter the Service Name and Description in both English and
+                  Bengali.</span
+                >
+              </div>
+              <div class="step-box">
+                <span class="number-badge">6</span>
+                <span class="font-sans text-sm text-gray-300"
+                  >Click
+                  <strong class="text-gold">Commit to Vault</strong>.</span
+                >
+              </div>
+
+              <p class="font-sans text-xs text-gray-400 mt-6 italic">
+                * Note: You can use the
+                <i class="fas fa-search text-gold mx-1"></i> search bar to
+                quickly find existing services, and the
+                <i class="fas fa-pen text-gold mx-1"></i> pen icon to edit them
+                anytime.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- The Gallery Section -->
+        <section
+          id="gallery"
+          class="scroll-section scroll-mt-32 reveal-up cursor-hover-link"
+        >
+          <div class="glass-card p-8 md:p-12">
+            <div class="glass-content">
+              <p
+                class="font-sans text-[10px] uppercase tracking-widest text-gold mb-2"
+              >
+                Your Portfolio
+              </p>
+              <h2 class="font-serif text-3xl md:text-4xl text-white mb-6">
+                The Gallery
+              </h2>
+
+              <div class="term-translation p-4 rounded mb-8">
+                <p class="font-sans text-xs text-gray-300">
+                  <strong class="text-gold">Admin Term:</strong> Visual Assets /
+                  Inject Rendering Layer<br />
+                  <strong class="text-gold">Simple Meaning:</strong> Uploading
+                  photos to your website's Gallery page.
+                </p>
+              </div>
+
+              <h3
+                class="font-serif text-xl text-white mb-4 border-b border-white/5 pb-2"
+              >
+                Step-by-Step Instructions
+              </h3>
+              <div class="step-box">
+                <span class="number-badge">1</span>
+                <span class="font-sans text-sm text-gray-300"
+                  >Click the
+                  <strong class="text-gold">Inject New Image</strong>
+                  button.</span
+                >
+              </div>
+              <div class="step-box">
+                <span class="number-badge">2</span>
+                <span class="font-sans text-sm text-gray-300"
+                  >Paste your image link.</span
+                >
+              </div>
+              <div class="step-box">
+                <span class="number-badge">3</span>
+                <span class="font-sans text-sm text-gray-300"
+                  >Provide an Image Title and Subtitle in both languages.</span
+                >
+              </div>
+              <div class="step-box">
+                <span class="number-badge">4</span>
+                <span class="font-sans text-sm text-gray-300"
+                  ><strong>System Filter Mapping:</strong> This is highly
+                  important! Choose whether this photo belongs to "Aesthetic
+                  Clinic", "Luxury Spa", or "Products". This controls which tab
+                  the user clicks on the website to see the image.</span
+                >
+              </div>
+              <div class="step-box">
+                <span class="number-badge">5</span>
+                <span class="font-sans text-sm text-gray-300"
+                  >Click <strong class="text-gold">Commit Visual</strong>.</span
+                >
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Promotional Matrix (Offers) Section -->
+        <section
+          id="offers"
+          class="scroll-section scroll-mt-32 reveal-up cursor-hover-link"
+        >
+          <div
+            class="glass-card p-8 md:p-12 border-t-2 border-t-gold shadow-[0_0_50px_rgba(212,175,55,0.15)]"
+          >
+            <div class="glass-content">
+              <div class="flex items-center gap-4 mb-2">
+                <i class="fas fa-crown text-3xl text-gold"></i>
+                <p
+                  class="font-sans text-[10px] uppercase tracking-widest text-gold"
+                >
+                  Advanced Features
+                </p>
+              </div>
+              <h2 class="font-serif text-3xl md:text-4xl text-white mb-6">
+                Promotional Matrix (Offers)
+              </h2>
+
+              <div class="term-translation p-4 rounded mb-8">
+                <p class="font-sans text-xs text-gray-300">
+                  <strong class="text-gold">Admin Term:</strong> Algorithmic
+                  Target Vector / Neural-Sync<br />
+                  <strong class="text-gold">Simple Meaning:</strong> Creating
+                  Discount Codes, Live Countdowns, and Custom Bundles (like a
+                  Bridal Package).
+                </p>
+              </div>
+
+              <p
+                class="font-sans text-gray-300 text-sm leading-relaxed font-light mb-8"
+              >
+                This is the most powerful tool in your entire command center. It
+                generates live scrolling offer cards on your home page with
+                working countdown timers!
+              </p>
+
+              <h3
+                class="font-serif text-xl text-white mb-4 border-b border-white/5 pb-2"
+              >
+                How to Create a Promotion
+              </h3>
+
+              <div class="step-box">
+                <span class="number-badge">1</span>
+                <span class="font-sans text-sm text-gray-300"
+                  >Click
+                  <strong class="text-gold">Formulate Offer</strong>.</span
+                >
+              </div>
+              <div class="step-box">
+                <span class="number-badge">2</span>
+                <span class="font-sans text-sm text-gray-300"
+                  ><strong>State & Validity:</strong> Set the status to "Active"
+                  and pick an Expiration Date. The website will automatically
+                  turn this into a live ticking clock!</span
+                >
+              </div>
+              <div class="step-box">
+                <span class="number-badge">3</span>
+                <span class="font-sans text-sm text-gray-300"
+                  >Enter your Campaign Title (e.g., "EID Supreme Package") and
+                  an optional Promo Code.</span
+                >
+              </div>
+
+              <div
+                class="mt-6 mb-4 p-5 bg-[#050505] border border-gold/30 rounded"
+              >
+                <h4 class="font-sans text-sm text-white font-bold mb-3">
+                  <i class="fas fa-crosshairs text-gold mr-2"></i> Step 4: The
+                  Target (Crucial Step)
+                </h4>
+                <p
+                  class="font-sans text-xs text-gray-400 leading-relaxed font-light mb-4"
+                >
+                  You must tell the system WHAT is on discount. Click the
+                  dropdown to choose:
+                </p>
+                <ul
+                  class="space-y-3 font-sans text-xs text-gray-300 font-light list-none"
+                >
+                  <li class="flex gap-3 items-start">
+                    <i class="fas fa-check text-gold mt-0.5"></i>
+                    <span
+                      ><strong>Single Service / Category:</strong> Choose this
+                      to discount just one item. <br /><em class="text-gray-500"
+                        >(Bonus: The system uses "Neural-Sync" to automatically
+                        pull the image for you! You don't even need to upload a
+                        photo.)</em
+                      ></span
+                    >
+                  </li>
+                  <li class="flex gap-3 items-start">
+                    <i class="fas fa-box-open text-gold mt-0.5"></i>
+                    <span
+                      ><strong>Custom Bundle (Multi-Select):</strong> Want to
+                      create a "Bridal Package"? Select this! A giant checklist
+                      will appear, allowing you to combine multiple services
+                      (like Haircut + Facial + Spa) into one mega-offer.</span
+                    >
+                  </li>
+                </ul>
+              </div>
+
+              <div class="step-box">
+                <span class="number-badge">5</span>
+                <span class="font-sans text-sm text-gray-300"
+                  ><strong>Financial Matrix:</strong> Choose either "Percentage
+                  %" or "Flat Value ৳" and enter the amount.</span
+                >
+              </div>
+              <div class="step-box">
+                <span class="number-badge">6</span>
+                <span class="font-sans text-sm text-gray-300"
+                  >Click <strong class="text-gold">Establish Matrix</strong> to
+                  launch the campaign live.</span
+                >
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Security Section -->
+        <section
+          id="security"
+          class="scroll-section scroll-mt-32 reveal-up cursor-hover-link mb-24"
+        >
+          <div class="glass-card p-8 md:p-12">
+            <div class="glass-content">
+              <p
+                class="font-sans text-[10px] uppercase tracking-widest text-gold mb-2"
+              >
+                System Protection
+              </p>
+              <h2 class="font-serif text-3xl md:text-4xl text-white mb-6">
+                Security Protocol
+              </h2>
+
+              <p
+                class="font-sans text-gray-300 text-sm leading-relaxed font-light mb-6"
+              >
+                To keep your digital empire safe from unauthorized access, you
+                can update your password at any time.
+              </p>
+
+              <div class="step-box">
+                <span class="number-badge">1</span>
+                <span class="font-sans text-sm text-gray-300"
+                  >Navigate to the <strong>Security Protocol</strong> tab in the
+                  left menu.</span
+                >
+              </div>
+              <div class="step-box">
+                <span class="number-badge">2</span>
+                <span class="font-sans text-sm text-gray-300"
+                  >Enter your new password into the
+                  <strong>New Master Cipher</strong> box (it must be at least 6
+                  characters long).</span
+                >
+              </div>
+              <div class="step-box">
+                <span class="number-badge">3</span>
+                <span class="font-sans text-sm text-gray-300"
+                  >Click <strong class="text-gold">Execute Override</strong>.
+                  Your credentials will update instantly.</span
+                >
+              </div>
+
+              <div
+                class="mt-8 p-4 bg-red-900/10 border border-red-500/20 rounded flex items-center gap-4"
+              >
+                <i class="fas fa-shield-alt text-red-500 text-2xl shrink-0"></i>
+                <p
+                  class="font-sans text-xs text-red-200 uppercase tracking-widest leading-relaxed"
+                >
+                  Never share your Access Cipher (Password) with anyone. If you
+                  lose access, contact your web engineering team immediately to
+                  force a database reset.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Footer -->
+    <footer
+      class="border-t border-white/5 bg-[#020202] py-10 relative z-10 text-center"
+    >
+      <div class="w-16 h-[1px] bg-gold/50 mx-auto mb-4"></div>
+      <h2
+        class="font-serif text-xl font-bold tracking-[0.15em] text-gold-gradient uppercase mb-2"
+      >
+        Rol & Rose
+      </h2>
+      <p class="font-sans text-[9px] uppercase tracking-[0.3em] text-gray-600">
+        &copy; 2026 Luxury Aesthetics. Engineered for Perfection.
+      </p>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+      // 1. Lenis Smooth Scrolling Setup
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        direction: "vertical",
+        smooth: true,
+        smoothTouch: false,
+      });
+
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
+
+      // 2. Custom Premium Cursor
+      if (window.innerWidth > 1024) {
+        const cursorDot = document.querySelector(".cursor-dot");
+        const cursorOutline = document.querySelector(".cursor-outline");
+        let xToDot = gsap.quickTo(cursorDot, "x", {
+          duration: 0.1,
+          ease: "power3",
+        });
+        let yToDot = gsap.quickTo(cursorDot, "y", {
+          duration: 0.1,
+          ease: "power3",
+        });
+        let xToOutline = gsap.quickTo(cursorOutline, "x", {
+          duration: 0.5,
+          ease: "power3",
+        });
+        let yToOutline = gsap.quickTo(cursorOutline, "y", {
+          duration: 0.5,
+          ease: "power3",
+        });
+
+        window.addEventListener("mousemove", (e) => {
+          xToDot(e.clientX);
+          yToDot(e.clientY);
+          xToOutline(e.clientX);
+          yToOutline(e.clientY);
+        });
+
+        document.querySelectorAll(".cursor-hover-link").forEach((el) => {
+          el.addEventListener("mouseenter", () =>
+            document.body.classList.add("cursor-hover-link"),
+          );
+          el.addEventListener("mouseleave", () =>
+            document.body.classList.remove("cursor-hover-link"),
+          );
+        });
+      }
+
+      // 3. GSAP Animations & Scroll Spy
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Update Lenis to work with GSAP
+      lenis.on("scroll", ScrollTrigger.update);
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+      });
+      gsap.ticker.lagSmoothing(0);
+
+      // Reveal Animations for sections
+      document.querySelectorAll(".reveal-up").forEach((el) => {
+        gsap.from(el, {
+          scrollTrigger: {
+            trigger: el,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+          y: 40,
+          opacity: 0,
+          duration: 1.2,
+          ease: "power3.out",
+        });
+      });
+
+      // Interactive Hover effect for Cards (Glowing Light Tracking)
+      document.querySelectorAll(".glass-card").forEach((card) => {
+        card.addEventListener("mousemove", (e) => {
+          const rect = card.getBoundingClientRect();
+          card.style.setProperty("--mouse-x", `${e.clientX - rect.left}px`);
+          card.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`);
+        });
+      });
+
+      // Scroll Spy (Highlighting Sidebar links dynamically)
+      const sections = document.querySelectorAll(".scroll-section");
+      const navLinks = document.querySelectorAll("#toc .nav-item");
+
+      window.addEventListener("scroll", () => {
+        let current = "";
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop;
+          if (pageYOffset >= sectionTop - 200) {
+            current = section.getAttribute("id");
+          }
+        });
+
+        navLinks.forEach((link) => {
+          link.classList.remove("active");
+          if (link.getAttribute("href").includes(current)) {
+            link.classList.add("active");
+          }
+        });
+      });
+
+      // Header background effect on scroll
+      const header = document.getElementById("main-header");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+          header.classList.add("py-3", "bg-black/95");
+          header.classList.remove("py-5", "bg-[#050505]/80");
+        } else {
+          header.classList.add("py-5", "bg-[#050505]/80");
+          header.classList.remove("py-3", "bg-black/95");
+        }
+      });
+
+      // Smooth Scroll anchor links for Lenis
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            lenis.scrollTo(target, { offset: -100 });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
