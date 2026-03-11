@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rol & Rose - Brand Logo</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              gold: "#d4af37",
+            },
+            fontFamily: {
+              serif: ['"Playfair Display"', "serif"],
+              sans: ["Montserrat", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- HTML to Image Library (Replaced html2canvas for perfect CSS Gradient Text support) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.11/html-to-image.min.js"></script>
+
+    <style>
+      body {
+        background-color: #050505;
+        color: #ffffff;
+        overflow: hidden; /* Keep it clean */
+      }
+
+      .text-gold-gradient {
+        background: linear-gradient(
+          to right,
+          #bf953f,
+          #fcf6ba,
+          #b38728,
+          #fbf5b7,
+          #aa771c
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        color: transparent;
+      }
+
+      /* Hide the buttons when generating the image */
+      .exporting .controls {
+        display: none !important;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen flex flex-col items-center justify-center relative">
+    <!-- Top Controls (Won't be in the saved image) -->
+    <!-- <div class="controls absolute top-10 flex gap-4 z-50">
+      <button
+        onclick="downloadLogo('transparent')"
+        class="px-6 py-2.5 bg-white/10 text-white text-sm font-sans tracking-widest uppercase rounded hover:bg-white/20 transition border border-white/20 backdrop-blur-sm"
+      >
+        Save Transparent PNG
+      </button>
+      <button
+        onclick="downloadLogo('black')"
+        class="px-6 py-2.5 bg-gold/10 text-gold text-sm font-sans tracking-widest uppercase rounded hover:bg-gold/20 transition border border-gold/40 backdrop-blur-sm"
+      >
+        Save with Background
+      </button>
+    </div> -->
+
+    <!-- The Logo Container -->
+    <!-- This div is what gets captured. Padding ensures it has breathing room in the final image -->
+    <div
+      id="logo-capture"
+      class="p-20 md:p-32 flex flex-col items-center justify-center rounded-xl"
+      style="background-color: transparent;"
+    >
+      <div class="flex flex-col relative items-start">
+        <!-- Main Brand Name (Scaled up for high-res export) -->
+        <span
+          class="font-serif text-6xl md:text-8xl lg:text-9xl font-bold tracking-[0.15em] text-gold-gradient uppercase leading-none"
+        >
+          Rol & Rose
+        </span>
+
+        <!-- Smart Subtitle Lockup -->
+        <div class="flex items-center mt-4 md:mt-6 ml-[4px]">
+          <div class="h-[2px] w-8 md:w-12 bg-gold mr-4"></div>
+          <span
+            class="font-sans text-xs md:text-sm lg:text-base font-medium uppercase tracking-[0.4em] text-gray-400"
+          >
+            Beauty Salon & Makeover
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function downloadLogo(mode) {
+        const captureElement = document.getElementById("logo-capture");
+        const body = document.body;
+
+        // 1. Hide the buttons
+        body.classList.add("exporting");
+
+        // 2. Temporarily set the background color if requested
+        const originalBg = captureElement.style.backgroundColor;
+        if (mode === "black") {
+          captureElement.style.backgroundColor = "#050505";
+        }
+
+        // 3. Generate the image using html-to-image
+        const options = {
+          backgroundColor: mode === "transparent" ? "rgba(0,0,0,0)" : "#050505",
+          pixelRatio: 4, // 4x scale ensures the downloaded image is very high resolution and crisp
+          style: {
+            transform: "scale(1)",
+            transformOrigin: "top left",
+          },
+        };
+
+        htmlToImage
+          .toPng(captureElement, options)
+          .then(function (dataUrl) {
+            // 4. Restore the page back to normal
+            captureElement.style.backgroundColor = originalBg;
+            body.classList.remove("exporting");
+
+            // 5. Trigger the download to the user's computer
+            const link = document.createElement("a");
+            link.download = `rol-and-rose-logo-${mode}.png`;
+            link.href = dataUrl;
+            link.click();
+          })
+          .catch(function (error) {
+            console.error("Oops, something went wrong!", error);
+            // Ensure the UI resets even if it fails
+            captureElement.style.backgroundColor = originalBg;
+            body.classList.remove("exporting");
+          });
+      }
+    </script>
+  </body>
+</html>
