@@ -2557,7 +2557,7 @@
                   class="absolute inset-0 bg-gold/20 pointer-events-none mix-blend-overlay z-10 opacity-0 group-hover:opacity-10 transition-opacity duration-500"
                 ></div>
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.328095156291!2d90.42585257602416!3d23.80693538936986!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c64bf21516e5%3A0xc3b7fc76036195ba!2sRupayan%20Shopping%20Square!5e0!3m2!1sen!2sbd!4v1709484918237!5m2!1sen!2sbd"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3891.6842676411225!2d90.43600470155192!3d23.81429660929461!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c633b4c0780f%3A0x1875afab5e269c52!2sJCX%20Business%20Tower!5e1!3m2!1sen!2sbd!4v1773297327990!5m2!1sen!2sbd"
                   class="w-full h-full relative z-0 cursor-hover"
                   style="
                     border: 0;
@@ -3513,48 +3513,106 @@
         });
       });
 
+      // Mobile Menu
       const menuToggle = document.getElementById("menu-toggle");
       const drawer = document.getElementById("mobile-drawer");
-      const drawerLinks = document.querySelectorAll(".drawer-link");
       let menuOpen = false;
+
+      // Inject custom SVG for the premium morphing button
+      menuToggle.innerHTML = `
+  <svg viewBox="0 0 24 24" width="28" height="28" style="overflow: visible;">
+    <path id="menu-line-top" d="M3 9h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none" />
+    <path id="menu-line-bottom" d="M3 15h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none" />
+  </svg>
+`;
+
+      const svgIcon = menuToggle.querySelector("svg");
+      const lineTop = menuToggle.querySelector("#menu-line-top");
+      const lineBottom = menuToggle.querySelector("#menu-line-bottom");
+
+      gsap.set([lineTop, lineBottom], { transformOrigin: "50% 50%" });
 
       menuToggle.addEventListener("click", () => {
         menuOpen = !menuOpen;
+        const tl = gsap.timeline();
+
         if (menuOpen) {
           drawer.classList.add("active");
-          menuToggle.innerHTML = '<i class="fas fa-times"></i>';
           menuToggle.classList.add("text-white");
           lenis.stop();
+
+          /* --- WORLD CLASS BUTTON MORPH --- */
+          tl.to(lineTop, { y: -3, duration: 0.2, ease: "power2.out" }, 0)
+            .to(lineBottom, { y: 3, duration: 0.2, ease: "power2.out" }, 0)
+            .to(
+              svgIcon,
+              { rotation: 90, duration: 0.6, ease: "expo.inOut" },
+              0.15,
+            )
+            .to(
+              lineTop,
+              { y: 3, rotation: 45, duration: 0.6, ease: "expo.inOut" },
+              0.15,
+            )
+            .to(
+              lineBottom,
+              { y: -3, rotation: -45, duration: 0.6, ease: "expo.inOut" },
+              0.15,
+            );
+
+          /* --- THE NEW WORLD-CLASS LINK REVEAL --- */
           gsap.fromTo(
-            drawerLinks,
-            { opacity: 0 },
+            ".drawer-link",
             {
-              x: 0,
+              y: 60, // Start much further down
+              opacity: 0,
+              rotationX: -70, // Folded backward in 3D space
+              transformOrigin: "top", // Pivot from the top of the text
+              transformPerspective: 800, // Gives the 3D rotation realistic depth
+              filter: "blur(12px)", // Out of focus (Cinematic depth of field)
+            },
+            {
+              y: 0,
               opacity: 1,
-              duration: 2,
-              stagger: 0.06,
-              ease: "expo.out",
-              delay: 0.2,
+              rotationX: 0, // Swings perfectly flat into view
+              filter: "blur(0px)", // Snaps perfectly into focus
+              duration: 1.4, // Slightly longer for a luxurious feel
+              stagger: 0.08, // Beautiful cascading effect
+              ease: "expo.out", // Starts fast, slowly drifts into place
+              delay: 0.15, // Waits just a split second for the button to start morphing
               force3D: true,
             },
           );
         } else {
           drawer.classList.remove("active");
-          menuToggle.innerHTML = '<i class="fas fa-grip-lines"></i>';
           menuToggle.classList.remove("text-white");
           lenis.start();
-        }
-      });
 
-      drawerLinks.forEach((link) => {
-        link.addEventListener("click", (e) => {
-          if (e.target.classList.contains("lang-btn")) return;
-          menuOpen = false;
-          drawer.classList.remove("active");
-          menuToggle.innerHTML = '<i class="fas fa-grip-lines"></i>';
-          menuToggle.classList.remove("text-white");
-          lenis.start();
-        });
+          /* --- BUTTON CLOSE ANIMATION --- */
+          tl.to(svgIcon, { rotation: 0, duration: 0.6, ease: "expo.inOut" }, 0)
+            .to(
+              lineTop,
+              { y: -3, rotation: 0, duration: 0.6, ease: "expo.inOut" },
+              0,
+            )
+            .to(
+              lineBottom,
+              { y: 3, rotation: 0, duration: 0.6, ease: "expo.inOut" },
+              0,
+            )
+            .to(lineTop, { y: 0, duration: 0.35, ease: "back.out(2)" }, 0.6)
+            .to(lineBottom, { y: 0, duration: 0.35, ease: "back.out(2)" }, 0.6);
+
+          /* --- LINK EXIT ANIMATION --- */
+          // Instead of just vanishing, let them swiftly drop away
+          gsap.to(".drawer-link", {
+            y: 20,
+            opacity: 0,
+            duration: 0.3,
+            stagger: 0.02,
+            ease: "power2.in",
+          });
+        }
       });
 
       window.openWA = function (enName, bnName) {

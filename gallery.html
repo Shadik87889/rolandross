@@ -1044,49 +1044,106 @@
         });
       });
 
-      // 4. Mobile Drawer Menu Logic
+      // Mobile Menu
       const menuToggle = document.getElementById("menu-toggle");
       const drawer = document.getElementById("mobile-drawer");
-      const drawerLinks = document.querySelectorAll(".drawer-link");
       let menuOpen = false;
+
+      // Inject custom SVG for the premium morphing button
+      menuToggle.innerHTML = `
+  <svg viewBox="0 0 24 24" width="28" height="28" style="overflow: visible;">
+    <path id="menu-line-top" d="M3 9h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none" />
+    <path id="menu-line-bottom" d="M3 15h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none" />
+  </svg>
+`;
+
+      const svgIcon = menuToggle.querySelector("svg");
+      const lineTop = menuToggle.querySelector("#menu-line-top");
+      const lineBottom = menuToggle.querySelector("#menu-line-bottom");
+
+      gsap.set([lineTop, lineBottom], { transformOrigin: "50% 50%" });
 
       menuToggle.addEventListener("click", () => {
         menuOpen = !menuOpen;
+        const tl = gsap.timeline();
+
         if (menuOpen) {
           drawer.classList.add("active");
-          menuToggle.innerHTML = '<i class="fas fa-times"></i>';
           menuToggle.classList.add("text-white");
           lenis.stop();
+
+          /* --- WORLD CLASS BUTTON MORPH --- */
+          tl.to(lineTop, { y: -3, duration: 0.2, ease: "power2.out" }, 0)
+            .to(lineBottom, { y: 3, duration: 0.2, ease: "power2.out" }, 0)
+            .to(
+              svgIcon,
+              { rotation: 90, duration: 0.6, ease: "expo.inOut" },
+              0.15,
+            )
+            .to(
+              lineTop,
+              { y: 3, rotation: 45, duration: 0.6, ease: "expo.inOut" },
+              0.15,
+            )
+            .to(
+              lineBottom,
+              { y: -3, rotation: -45, duration: 0.6, ease: "expo.inOut" },
+              0.15,
+            );
+
+          /* --- THE NEW WORLD-CLASS LINK REVEAL --- */
           gsap.fromTo(
-            drawerLinks,
-            { opacity: 0 },
+            ".drawer-link",
             {
-              x: 0,
+              y: 60, // Start much further down
+              opacity: 0,
+              rotationX: -70, // Folded backward in 3D space
+              transformOrigin: "top", // Pivot from the top of the text
+              transformPerspective: 800, // Gives the 3D rotation realistic depth
+              filter: "blur(12px)", // Out of focus (Cinematic depth of field)
+            },
+            {
+              y: 0,
               opacity: 1,
-              duration: 2, // Longer duration for the "tail" of the animation
-              stagger: 0.06, // Tighter cascade so they flow together
-              ease: "expo.out", // "expo.out" gives a fast start and a beautiful, slow deceleration
-              delay: 0.2, // Overlaps slightly with the drawer sliding in
-              force3D: true, // THE FIX: Forces the GPU to render this, killing the lag completely
+              rotationX: 0, // Swings perfectly flat into view
+              filter: "blur(0px)", // Snaps perfectly into focus
+              duration: 1.4, // Slightly longer for a luxurious feel
+              stagger: 0.08, // Beautiful cascading effect
+              ease: "expo.out", // Starts fast, slowly drifts into place
+              delay: 0.15, // Waits just a split second for the button to start morphing
+              force3D: true,
             },
           );
         } else {
           drawer.classList.remove("active");
-          menuToggle.innerHTML = '<i class="fas fa-grip-lines"></i>';
           menuToggle.classList.remove("text-white");
           lenis.start();
-        }
-      });
 
-      drawerLinks.forEach((link) => {
-        link.addEventListener("click", (e) => {
-          if (e.target.classList.contains("lang-btn")) return;
-          menuOpen = false;
-          drawer.classList.remove("active");
-          menuToggle.innerHTML = '<i class="fas fa-grip-lines"></i>';
-          menuToggle.classList.remove("text-white");
-          lenis.start();
-        });
+          /* --- BUTTON CLOSE ANIMATION --- */
+          tl.to(svgIcon, { rotation: 0, duration: 0.6, ease: "expo.inOut" }, 0)
+            .to(
+              lineTop,
+              { y: -3, rotation: 0, duration: 0.6, ease: "expo.inOut" },
+              0,
+            )
+            .to(
+              lineBottom,
+              { y: 3, rotation: 0, duration: 0.6, ease: "expo.inOut" },
+              0,
+            )
+            .to(lineTop, { y: 0, duration: 0.35, ease: "back.out(2)" }, 0.6)
+            .to(lineBottom, { y: 0, duration: 0.35, ease: "back.out(2)" }, 0.6);
+
+          /* --- LINK EXIT ANIMATION --- */
+          // Instead of just vanishing, let them swiftly drop away
+          gsap.to(".drawer-link", {
+            y: 20,
+            opacity: 0,
+            duration: 0.3,
+            stagger: 0.02,
+            ease: "power2.in",
+          });
+        }
       });
 
       // 5. Global Cursor & Physics-Based Magnetic Buttons
