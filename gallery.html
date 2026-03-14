@@ -1369,6 +1369,12 @@
 
         newFilterBtns.forEach((btn) => {
           btn.addEventListener("click", () => {
+            // Smoothly scroll to the top of the gallery container so filtered items are immediately visible
+            lenis.scrollTo("#gallery-container", {
+              offset: -150,
+              duration: 1.2,
+            });
+
             newFilterBtns.forEach((b) => b.classList.remove("active"));
             btn.classList.add("active");
 
