@@ -1228,7 +1228,53 @@
         });
       }
 
-      // 6. Firebase Dynamic Injection & Live Sorting
+      // 6. Filter Buttons Interaction Setup (Attached just ONCE statically)
+      const filterBtns = document.querySelectorAll(".filter-btn");
+      filterBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          // Smoothly scroll to the top of the gallery container
+          lenis.scrollTo("#gallery-container", { offset: -150, duration: 1.2 });
+
+          // Prevent large cursor state from getting stuck if hovered item disappears
+          document.body.classList.remove("cursor-explore");
+
+          filterBtns.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+
+          const filterValue = btn.getAttribute("data-filter");
+          const filterItems = document.querySelectorAll(".filter-item");
+
+          filterItems.forEach((item) => {
+            gsap.to(item, {
+              scale: 0.9,
+              opacity: 0,
+              duration: 0.4,
+              ease: "power2.inOut",
+              onComplete: () => {
+                if (
+                  filterValue === "all" ||
+                  item.classList.contains(filterValue)
+                ) {
+                  item.style.display = "inline-block";
+                  gsap.to(item, {
+                    scale: 1,
+                    opacity: 1,
+                    duration: 0.6,
+                    ease: "power3.out",
+                    delay: 0.1,
+                    overwrite: "auto",
+                  });
+                } else {
+                  item.style.display = "none";
+                }
+                setTimeout(() => ScrollTrigger.refresh(), 100);
+              },
+            });
+          });
+        });
+      });
+
+      // 7. Firebase Dynamic Injection & Live Sorting
       const grid = document.getElementById("dynamic-gallery-grid");
 
       onSnapshot(collection(db, "gallery"), (snapshot) => {
@@ -1247,7 +1293,6 @@
           galleryData.sort((a, b) => (a.order ?? 9999) - (b.order ?? 9999));
 
           let html = "";
-          // These classes preserve your original staggered layout architecture dynamically
           const staggerClasses = [
             "",
             "md:mt-16",
@@ -1280,7 +1325,7 @@
           });
           grid.innerHTML = html;
 
-          // Re-bind Custom Cursor hover for dynamic items
+          // Re-bind Custom Cursor hover strictly for newly created dynamic items
           if (window.innerWidth > 1024) {
             document.querySelectorAll(".cursor-explore").forEach((el) => {
               el.addEventListener("mouseenter", () =>
@@ -1292,8 +1337,24 @@
             });
           }
 
+          // Force newly generated items to obey the currently selected filter
+          const activeFilterBtn = document.querySelector(".filter-btn.active");
+          const activeFilterValue = activeFilterBtn
+            ? activeFilterBtn.getAttribute("data-filter")
+            : "all";
+
+          document.querySelectorAll(".filter-item").forEach((item) => {
+            if (
+              activeFilterValue !== "all" &&
+              !item.classList.contains(activeFilterValue)
+            ) {
+              item.style.display = "none";
+            } else {
+              item.style.display = "inline-block";
+            }
+          });
+
           // EXPLICIT CONTINUOUS SCROLL TRIGGERS FOR GALLERY ITEMS
-          // 1. First, gracefully kill old scroll triggers to prevent overlapping behavior during Firebase updates
           ScrollTrigger.getAll().forEach((st) => {
             if (
               st.vars.trigger &&
@@ -1304,7 +1365,6 @@
             }
           });
 
-          // 2. Map through elements and create explicit bidirectional continuous triggers
           gsap.utils.toArray(".gallery-item-wrapper").forEach((wrapper) => {
             gsap.set(wrapper, { y: 60, opacity: 0 }); // Initial hidden state
             ScrollTrigger.create({
@@ -1346,73 +1406,14 @@
             });
           });
 
-          // Re-bind Filter Logic to dynamic content
-          initFilters();
-          ScrollTrigger.refresh();
+          setTimeout(() => ScrollTrigger.refresh(), 100);
         } catch (error) {
           console.error("Error connecting to Vault:", error);
           grid.innerHTML = `<div class="w-full py-20 text-center col-span-1 md:col-span-2 lg:col-span-3 text-red-500 font-sans text-xs tracking-widest uppercase">Failed to retrieve visuals</div>`;
         }
       });
 
-      function initFilters() {
-        const filterBtns = document.querySelectorAll(".filter-btn");
-        const filterItems = document.querySelectorAll(".filter-item");
-
-        filterBtns.forEach((btn) => {
-          // Prevent multiple bindings by cloning or removing old listener (safe inside module scope)
-          btn.replaceWith(btn.cloneNode(true));
-        });
-
-        // Re-select after cloning
-        const newFilterBtns = document.querySelectorAll(".filter-btn");
-
-        newFilterBtns.forEach((btn) => {
-          btn.addEventListener("click", () => {
-            // Smoothly scroll to the top of the gallery container so filtered items are immediately visible
-            lenis.scrollTo("#gallery-container", {
-              offset: -150,
-              duration: 1.2,
-            });
-
-            newFilterBtns.forEach((b) => b.classList.remove("active"));
-            btn.classList.add("active");
-
-            const filterValue = btn.getAttribute("data-filter");
-
-            filterItems.forEach((item) => {
-              gsap.to(item, {
-                scale: 0.9,
-                opacity: 0,
-                duration: 0.4,
-                ease: "power2.inOut",
-                onComplete: () => {
-                  if (
-                    filterValue === "all" ||
-                    item.classList.contains(filterValue)
-                  ) {
-                    item.style.display = "inline-block";
-                    gsap.to(item, {
-                      scale: 1,
-                      opacity: 1,
-                      duration: 0.6,
-                      ease: "power3.out",
-                      delay: 0.1,
-                      overwrite: "auto", // Prevent conflict with ScrollTrigger opacity
-                    });
-                  } else {
-                    item.style.display = "none";
-                  }
-                  // Refresh scroll triggers so they adapt to newly hidden/shown elements
-                  setTimeout(() => ScrollTrigger.refresh(), 100);
-                },
-              });
-            });
-          });
-        });
-      }
-
-      // 7. Preloader & Hero Header Reveal Animations
+      // 8. Preloader & Hero Header Reveal Animations
       document.body.style.overflow = "hidden";
       lenis.stop();
       const tlLoader = gsap.timeline();
